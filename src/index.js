@@ -1,22 +1,11 @@
 import { word } from "./word_creator";
+import { openForm, closeForm, showDropDown } from "./dom_stuff";
 
 const allWords = [];
 
-let test = new word("moelijk", "difficuly", 0);
-
-allWords.push(test);
-
-console.log(allWords);
-
-document.querySelector(".dropbtn").addEventListener("click", myFunction);
+document.querySelector(".dropbtn").addEventListener("click", showDropDown);
 document.querySelector(".add_word").addEventListener("click", openForm);
 document.getElementById("btnCancel").addEventListener("click", closeForm);
-
-/* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
-function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
 
 // Close the dropdown menu if the user clicks outside of it
 window.onclick = function (event) {
@@ -31,11 +20,3 @@ window.onclick = function (event) {
     }
   }
 };
-
-function openForm() {
-  document.getElementById("myForm").style.display = "block";
-}
-
-function closeForm() {
-  document.getElementById("myForm").style.display = "none";
-}
