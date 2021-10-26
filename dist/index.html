@@ -38,6 +38,47 @@
             <h3 id="high_score_value">0</h3>
           </div>
         </div>
+        <div class="form-popup" id="myForm">
+          <form class="form-container">
+            <h1>Add Word</h1>
+
+            <label for="dutchWord"><b>Dutch Word</b></label>
+            <input
+              type="text"
+              placeholder="Enter Dutch Word"
+              name="dutchWord"
+              required
+            />
+
+            <label for="nativeWord"><b>Native Word</b></label>
+            <input
+              type="text"
+              placeholder="Enter Word in your Language"
+              name="nativeWord"
+              required
+            />
+
+            <label for="typeOfWord"><b>Type Word</b></label>
+            <select id="typeOfWord">
+              <option value="0">Verbum</option>
+              <option value="1">Substantive</option>
+              <option value="2">Adjective</option>
+              <option value="3">Adverbium</option>
+            </select>
+            <br />
+            <label for="deOfHet"><b>DE of HET?</b></label>
+            <select id="deOfHet">
+              <option value="0">-</option>
+              <option value="1">DE</option>
+              <option value="2">HET</option>
+            </select>
+            <br />
+            <button type="submit" class="btn">Login</button>
+            <button id="btnCancel" type="button" class="btn cancel">
+              Close
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   </body>

@@ -1,12 +1,6 @@
-console.log("hello worldddddd");
+import { word } from "./word_creator";
 
 const allWords = [];
-
-const word = function (nedWord, natWord, value) {
-  this.nedWord = nedWord;
-  this.natWord = natWord;
-  this.value = value;
-};
 
 let test = new word("moelijk", "difficuly", 0);
 
@@ -15,6 +9,8 @@ allWords.push(test);
 console.log(allWords);
 
 document.querySelector(".dropbtn").addEventListener("click", myFunction);
+document.querySelector(".add_word").addEventListener("click", openForm);
+document.getElementById("btnCancel").addEventListener("click", closeForm);
 
 /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
@@ -35,3 +31,11 @@ window.onclick = function (event) {
     }
   }
 };
+
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
