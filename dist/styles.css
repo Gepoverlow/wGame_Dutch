@@ -81,7 +81,7 @@ html {
 }
 
 .dropbtn {
-  color: white;
+  color: rgb(211, 198, 198);
   padding: 16px;
   font-size: 1.7vw;
   border: none;
@@ -132,7 +132,7 @@ html {
 }
 
 .open-button {
-  background-color: #555;
+  background-color: #ddd;
   color: white;
   padding: 16px 20px;
   border: none;
@@ -181,14 +181,14 @@ html {
 
 /* Set a style for the submit/login button */
 .form-container .btn {
-  background-color: #04aa6d;
-  color: white;
+  background-color: rgb(68, 32, 68);
   padding: 16px 20px;
   border: none;
   cursor: pointer;
   width: 100%;
   margin-bottom: 10px;
   opacity: 0.8;
+  color: #ddd;
 }
 
 /* Add a red background color to the cancel button */
