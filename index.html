@@ -20,13 +20,14 @@
             <h3>Other</h3>
           </div>
         </div>
+        <button id="playBtn">PLAY</button>
         <div class="title_and_add">
           <h1>wGame</h1>
           <button class="add_word">+</button>
         </div>
       </div>
       <div class="container_body">
-        <h1>Here is where the word goes</h1>
+        <h1 id="wordOnScreen">Here is where the word goes</h1>
         <input id="input_answer" type="text" />
         <div class="score">
           <div class="c_score">
@@ -48,6 +49,7 @@
               placeholder="Enter Dutch Word"
               name="dutchWord"
               required
+              id="dutchWord_input"
             />
 
             <label for="nativeWord"><b>Native Word</b></label>
@@ -56,6 +58,7 @@
               placeholder="Enter meaning in your Language"
               name="nativeWord"
               required
+              id="nativeWord_input"
             />
 
             <label for="typeOfWord"><b>Type Word</b></label>
@@ -73,7 +76,7 @@
               <option value="2">HET</option>
             </select>
             <br />
-            <button type="submit" class="btn">Add</button>
+            <button id="btnAdd" type="submit" class="btn">Add</button>
             <button id="btnCancel" type="button" class="btn cancel">
               Close
             </button>
