@@ -1,39 +1,14 @@
 import { createWord } from "./word_creator";
 import { openForm, closeForm, showDropDown } from "./dom_stuff";
-import { Game, randomWord } from "./game";
+import { Game } from "./game";
 
-export let allWords = [
-  // {
-  //   dutch: "moelijk",
-  //   english: "difficult",
-  // },
-  // {
-  //   dutch: "mooi",
-  //   english: "nice",
-  // },
-  // {
-  //   dutch: "vrouw",
-  //   english: "woman",
-  // },
-  // {
-  //   dutch: "aantrekkelijk",
-  //   english: "atractive",
-  // },
-  // {
-  //   dutch: "vrede",
-  //   english: "peace",
-  // },
-  // {
-  //   dutch: "regenachtig",
-  //   english: "rainy",
-  // },
-  // {
-  //   dutch: "wisselvalig",
-  //   english: "changeable",
-  // },
-];
+let allWords = [];
 
-let game = new Game(allWords);
+let initialArray = [];
+let correctArray = [];
+let wrongArray = [];
+
+let game = new Game(initialArray, correctArray, wrongArray);
 
 let addForm = document.querySelector(".form-container");
 let dropBtn = document.querySelector(".dropbtn");
@@ -42,12 +17,13 @@ let cancelBtn = document.getElementById("btnCancel");
 let addBtn = document.getElementById("btnAdd");
 let playBtn = document.getElementById("playBtn");
 let inputAnswer = document.getElementById("input_answer");
+let wordOnScreen = document.getElementById("wordOnScreen");
 
 playBtn.addEventListener("click", function () {
-  if (allWords.length !== 0) {
-    game.selectRandom(allWords);
+  if (initialArray.length !== 0) {
+    game.randomizeArray();
+    game.nextWord(wordOnScreen);
   }
-  console.log(allWords);
 });
 
 dropBtn.addEventListener("click", showDropDown);
@@ -59,17 +35,24 @@ cancelBtn.addEventListener("click", closeForm);
 addBtn.addEventListener("click", function (e) {
   if (addForm.checkValidity()) {
     e.preventDefault();
+    createWord(initialArray);
     createWord(allWords);
     addForm.reset();
   }
 });
 
 inputAnswer.addEventListener("keyup", function (e) {
-  if (e.keyCode === 13 && allWords.length !== 0 && randomWord !== undefined) {
-    game.compare(inputAnswer);
-    game.selectRandom(allWords);
+  if (e.keyCode === 13 && allWords.length !== 0) {
+    game.compareWords(inputAnswer);
+    if (game.initialArray.length !== 0) {
+      game.nextWord(wordOnScreen);
+    } else {
+      wordOnScreen.textContent = "DONE!";
+    }
     inputAnswer.value = "";
   }
+  console.log(game);
+  console.log(allWords);
 });
 
 // Close the dropdown menu if the user clicks outside of it

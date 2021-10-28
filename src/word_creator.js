@@ -6,6 +6,14 @@ class Word {
     this.wArticle = wArticle;
     this.wType = wType;
   }
+
+  compare(input) {
+    if (this.natWord === input.value) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
 
 export function createWord(arr) {
