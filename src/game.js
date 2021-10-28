@@ -24,15 +24,18 @@
 // }
 
 export class Game {
-  constructor(initialArray, correctArray, wrongArray) {
+  constructor(initialArray, correctArray, wrongArray, currentScore, hiScore) {
     this.initialArray = initialArray;
     this.correctArray = correctArray;
     this.wrongArray = wrongArray;
+    this.currentScore = currentScore;
+    this.hiScore = hiScore;
   }
 
   compareWords(input) {
     if (this.initialArray[0].natWord === input.value) {
       this.addValue();
+      this.addPointToScore();
       this.addToCorrectArray();
     } else {
       this.removeValue();
@@ -41,15 +44,31 @@ export class Game {
   }
 
   nextWord(htmlElement) {
-    htmlElement.textContent = this.initialArray[0].nedWord;
+    return (htmlElement.textContent = this.initialArray[0].nedWord);
+  }
+
+  addPointToScore() {
+    return this.currentScore++;
+  }
+
+  updateScore(htmlElementC, htmlElementH) {
+    this.checkForHiscore();
+    htmlElementC.textContent = this.currentScore;
+    htmlElementH.textContent = this.hiScore;
+  }
+
+  checkForHiscore() {
+    if (this.currentScore >= this.hiScore) {
+      this.hiScore = this.currentScore;
+    }
   }
 
   addValue() {
-    this.initialArray[0].value++;
+    return this.initialArray[0].value++;
   }
 
   removeValue() {
-    this.initialArray[0].value--;
+    return this.initialArray[0].value--;
   }
 
   removeFirstObject() {
@@ -66,4 +85,11 @@ export class Game {
   randomizeArray() {
     return this.initialArray.sort((a, b) => 0.5 - Math.random());
   }
+  updateLocalStorage(name) {
+    return localStorage.setItem(name, JSON.stringify(this.hiScore));
+  }
 }
+
+// function addToLocalStorage(name, objKey) {
+//   localStorage.setItem(name, JSON.stringify(objKey));
+// }

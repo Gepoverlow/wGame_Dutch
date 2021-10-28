@@ -8,7 +8,13 @@ let initialArray = [];
 let correctArray = [];
 let wrongArray = [];
 
-let game = new Game(initialArray, correctArray, wrongArray);
+let game = new Game(
+  initialArray,
+  correctArray,
+  wrongArray,
+  0,
+  getStorageData("hiScore")
+);
 
 let addForm = document.querySelector(".form-container");
 let dropBtn = document.querySelector(".dropbtn");
@@ -18,6 +24,10 @@ let addBtn = document.getElementById("btnAdd");
 let playBtn = document.getElementById("playBtn");
 let inputAnswer = document.getElementById("input_answer");
 let wordOnScreen = document.getElementById("wordOnScreen");
+let currentScoreValue = document.getElementById("current_score_value");
+let hiScoreValue = document.getElementById("high_score_value");
+
+hiScoreValue.textContent = game.hiScore;
 
 playBtn.addEventListener("click", function () {
   if (initialArray.length !== 0) {
@@ -42,8 +52,10 @@ addBtn.addEventListener("click", function (e) {
 });
 
 inputAnswer.addEventListener("keyup", function (e) {
-  if (e.keyCode === 13 && allWords.length !== 0) {
+  if (e.keyCode === 13 && game.initialArray.length !== 0) {
     game.compareWords(inputAnswer);
+    game.updateScore(currentScoreValue, hiScoreValue);
+    game.updateLocalStorage("hiScore");
     if (game.initialArray.length !== 0) {
       game.nextWord(wordOnScreen);
     } else {
@@ -51,8 +63,6 @@ inputAnswer.addEventListener("keyup", function (e) {
     }
     inputAnswer.value = "";
   }
-  console.log(game);
-  console.log(allWords);
 });
 
 // Close the dropdown menu if the user clicks outside of it
@@ -68,3 +78,7 @@ window.onclick = function (event) {
     }
   }
 };
+
+function getStorageData(name) {
+  return JSON.parse(localStorage.getItem(name) || "[]");
+}
