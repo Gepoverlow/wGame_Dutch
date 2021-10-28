@@ -32,14 +32,24 @@ export class Game {
 
   compareWords(input) {
     if (this.initialArray[0].natWord === input.value) {
+      this.addValue();
       this.addToCorrectArray();
     } else {
+      this.removeValue();
       this.addToWrongArray();
     }
   }
 
   nextWord(htmlElement) {
     htmlElement.textContent = this.initialArray[0].nedWord;
+  }
+
+  addValue() {
+    this.initialArray[0].value++;
+  }
+
+  removeValue() {
+    this.initialArray[0].value--;
   }
 
   removeFirstObject() {
