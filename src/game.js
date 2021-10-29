@@ -32,6 +32,12 @@ export class Game {
     this.hiScore = hiScore;
   }
 
+  startGame(allWords, htmlElementC, htmlElementH) {
+    this.gameArray = [...allWords];
+    this.currentScore = 0;
+    this.updateScore(htmlElementC, htmlElementH);
+  }
+
   compareWords(input) {
     if (this.gameArray[0].natWord === input.value) {
       this.addValue();

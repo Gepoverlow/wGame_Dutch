@@ -2,7 +2,7 @@ import { createWord } from "./word_creator";
 import { openForm, closeForm, showDropDown } from "./dom_stuff";
 import { Game } from "./game";
 
-let allWords = [];
+let allWords = getStorageData("wordsArray");
 
 let gameArray = [];
 let correctArray = [];
@@ -30,10 +30,14 @@ let hiScoreValue = document.getElementById("high_score_value");
 hiScoreValue.textContent = game.hiScore;
 
 playBtn.addEventListener("click", function () {
-  if (gameArray.length !== 0) {
+  // game.gameArray = [...allWords];
+  game.startGame(allWords, currentScoreValue, hiScoreValue);
+  if (game.gameArray.length !== 0) {
     game.randomizeArray();
     game.nextWord(wordOnScreen);
   }
+  console.log(game.gameArray);
+  console.log(allWords);
 });
 
 dropBtn.addEventListener("click", showDropDown);
@@ -45,8 +49,9 @@ cancelBtn.addEventListener("click", closeForm);
 addBtn.addEventListener("click", function (e) {
   if (addForm.checkValidity()) {
     e.preventDefault();
-    createWord(gameArray);
+    // createWord(gameArray);
     createWord(allWords);
+    addToLocalStorage("wordsArray", allWords);
     addForm.reset();
     console.log(allWords);
     console.log(gameArray);
@@ -64,6 +69,8 @@ inputAnswer.addEventListener("keyup", function (e) {
       wordOnScreen.textContent = "DONE!";
     }
     inputAnswer.value = "";
+    console.log(game.gameArray);
+    console.log(allWords);
   }
 });
 
@@ -80,6 +87,10 @@ window.onclick = function (event) {
     }
   }
 };
+
+function addToLocalStorage(name, arr) {
+  localStorage.setItem(name, JSON.stringify(arr));
+}
 
 function getStorageData(name) {
   return JSON.parse(localStorage.getItem(name) || "[]");
