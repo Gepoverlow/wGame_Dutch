@@ -4,12 +4,12 @@ import { Game } from "./game";
 
 let allWords = [];
 
-let initialArray = [];
+let gameArray = [];
 let correctArray = [];
 let wrongArray = [];
 
 let game = new Game(
-  initialArray,
+  gameArray,
   correctArray,
   wrongArray,
   0,
@@ -30,7 +30,7 @@ let hiScoreValue = document.getElementById("high_score_value");
 hiScoreValue.textContent = game.hiScore;
 
 playBtn.addEventListener("click", function () {
-  if (initialArray.length !== 0) {
+  if (gameArray.length !== 0) {
     game.randomizeArray();
     game.nextWord(wordOnScreen);
   }
@@ -45,18 +45,20 @@ cancelBtn.addEventListener("click", closeForm);
 addBtn.addEventListener("click", function (e) {
   if (addForm.checkValidity()) {
     e.preventDefault();
-    createWord(initialArray);
+    createWord(gameArray);
     createWord(allWords);
     addForm.reset();
+    console.log(allWords);
+    console.log(gameArray);
   }
 });
 
 inputAnswer.addEventListener("keyup", function (e) {
-  if (e.keyCode === 13 && game.initialArray.length !== 0) {
+  if (e.keyCode === 13 && game.gameArray.length !== 0) {
     game.compareWords(inputAnswer);
     game.updateScore(currentScoreValue, hiScoreValue);
     game.updateLocalStorage("hiScore");
-    if (game.initialArray.length !== 0) {
+    if (game.gameArray.length !== 0) {
       game.nextWord(wordOnScreen);
     } else {
       wordOnScreen.textContent = "DONE!";

@@ -24,8 +24,8 @@
 // }
 
 export class Game {
-  constructor(initialArray, correctArray, wrongArray, currentScore, hiScore) {
-    this.initialArray = initialArray;
+  constructor(gameArray, correctArray, wrongArray, currentScore, hiScore) {
+    this.gameArray = gameArray;
     this.correctArray = correctArray;
     this.wrongArray = wrongArray;
     this.currentScore = currentScore;
@@ -33,7 +33,7 @@ export class Game {
   }
 
   compareWords(input) {
-    if (this.initialArray[0].natWord === input.value) {
+    if (this.gameArray[0].natWord === input.value) {
       this.addValue();
       this.addPointToScore();
       this.addToCorrectArray();
@@ -44,7 +44,7 @@ export class Game {
   }
 
   nextWord(htmlElement) {
-    return (htmlElement.textContent = this.initialArray[0].nedWord);
+    return (htmlElement.textContent = this.gameArray[0].nedWord);
   }
 
   addPointToScore() {
@@ -64,15 +64,15 @@ export class Game {
   }
 
   addValue() {
-    return this.initialArray[0].value++;
+    return this.gameArray[0].value++;
   }
 
   removeValue() {
-    return this.initialArray[0].value--;
+    return this.gameArray[0].value--;
   }
 
   removeFirstObject() {
-    return this.initialArray.shift();
+    return this.gameArray.shift();
   }
 
   addToCorrectArray() {
@@ -83,7 +83,7 @@ export class Game {
     return this.wrongArray.push(this.removeFirstObject());
   }
   randomizeArray() {
-    return this.initialArray.sort((a, b) => 0.5 - Math.random());
+    return this.gameArray.sort((a, b) => 0.5 - Math.random());
   }
   updateLocalStorage(name) {
     return localStorage.setItem(name, JSON.stringify(this.hiScore));

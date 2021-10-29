@@ -6,14 +6,6 @@ class Word {
     this.wArticle = wArticle;
     this.wType = wType;
   }
-
-  compare(input) {
-    if (this.natWord === input.value) {
-      return true;
-    } else {
-      return false;
-    }
-  }
 }
 
 export function createWord(arr) {
@@ -22,6 +14,13 @@ export function createWord(arr) {
   let typeOfWord = document.getElementById("typeOfWord").value;
   let deOfHet = document.getElementById("deOfHet").value;
   //
+
   let newWord = new Word(dWordInput, nWordInput, 0, deOfHet, typeOfWord);
-  arr.push(newWord);
+
+  //
+  if (arr.some((e) => e.nedWord === `${dWordInput}`)) {
+    alert("word is already here");
+  } else {
+    arr.push(newWord);
+  }
 }
