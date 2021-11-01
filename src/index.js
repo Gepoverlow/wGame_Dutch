@@ -1,5 +1,11 @@
 import { createWord } from "./word_creator";
-import { openForm, closeForm, showDropDown } from "./dom_stuff";
+import {
+  openForm,
+  closeForm,
+  showDropDown,
+  renderGameInfo,
+  renderWords,
+} from "./dom_stuff";
 import { Game } from "./game";
 
 let allWords = getStorageData("wordsArray");
@@ -26,6 +32,7 @@ let inputAnswer = document.getElementById("input_answer");
 let wordOnScreen = document.getElementById("wordOnScreen");
 let currentScoreValue = document.getElementById("current_score_value");
 let hiScoreValue = document.getElementById("high_score_value");
+let listWords = document.getElementById("seeWordsBtn");
 
 hiScoreValue.textContent = game.hiScore;
 
@@ -36,8 +43,10 @@ playBtn.addEventListener("click", function () {
     game.randomizeArray();
     game.nextWord(wordOnScreen);
   }
-  console.log(game.gameArray);
-  console.log(allWords);
+});
+
+listWords.addEventListener("click", function () {
+  renderWords(allWords);
 });
 
 dropBtn.addEventListener("click", showDropDown);
@@ -53,8 +62,7 @@ addBtn.addEventListener("click", function (e) {
     createWord(allWords);
     addToLocalStorage("wordsArray", allWords);
     addForm.reset();
-    console.log(allWords);
-    console.log(gameArray);
+    renderWords(allWords);
   }
 });
 
@@ -63,14 +71,13 @@ inputAnswer.addEventListener("keyup", function (e) {
     game.compareWords(inputAnswer);
     game.updateScore(currentScoreValue, hiScoreValue);
     game.updateLocalStorage("hiScore");
+    addToLocalStorage("wordsArray", allWords);
     if (game.gameArray.length !== 0) {
       game.nextWord(wordOnScreen);
     } else {
       wordOnScreen.textContent = "DONE!";
     }
     inputAnswer.value = "";
-    console.log(game.gameArray);
-    console.log(allWords);
   }
 });
 
