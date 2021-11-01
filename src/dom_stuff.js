@@ -1,5 +1,6 @@
 let containerBody = document.querySelector(".container_body");
 let addForm = document.getElementById("myForm");
+let containerGame = document.getElementById("container_game");
 
 let headers = ["Type", "DE/HET", "Word", "Your Meaning", "score"];
 
@@ -50,6 +51,7 @@ export function renderWords(arr) {
 
 export function renderGameInfo() {
   emptyNode(containerBody);
+  containerBody.appendChild(containerGame);
 }
 
 function emptyNode(node) {

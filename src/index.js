@@ -37,7 +37,7 @@ let listWords = document.getElementById("seeWordsBtn");
 hiScoreValue.textContent = game.hiScore;
 
 playBtn.addEventListener("click", function () {
-  // game.gameArray = [...allWords];
+  renderGameInfo();
   game.startGame(allWords, currentScoreValue, hiScoreValue);
   if (game.gameArray.length !== 0) {
     game.randomizeArray();
