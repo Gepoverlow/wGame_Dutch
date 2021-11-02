@@ -12,16 +12,16 @@
       <div class="container_header">
         <div class="dropdown">
           <h2 class="dropbtn">MENU</h2>
-          <div id="myDropdown" class="dropdown-content">
-            <h3>Woordenschat</h3>
-            <h3>Grammatica</h3>
+          <div id="myDropdown" class="dropdown_content">
+            <h3 id="playBtn">Play</h3>
+            <h3 id="seeWordsBtn">Word List</h3>
             <h3>Usefull Links</h3>
             <h3>Examples</h3>
             <h3>Other</h3>
           </div>
         </div>
-        <button id="playBtn">PLAY</button>
-        <button id="seeWordsBtn">LIST</button>
+        <!-- <button id="playBtn">PLAY</button> -->
+        <!-- <button id="seeWordsBtn">LIST</button> -->
         <div class="title_and_add">
           <h1>wGame</h1>
           <button class="add_word">+</button>
@@ -45,8 +45,8 @@
 
         <!--------------------------------------------- ADD ------------------------------------------------>
 
-        <div class="form-popup" id="myForm-add">
-          <form class="form-container">
+        <div class="form_popup" id="myForm_add">
+          <form class="form_container">
             <h1>Add Word</h1>
 
             <label for="dutchWord"><b>Dutch Word</b></label>
@@ -55,7 +55,7 @@
               placeholder="Enter Dutch Word"
               name="dutchWord"
               required
-              id="dutchWord_input-add"
+              id="dutchWord_input_add"
             />
 
             <label for="nativeWord"><b>Native Word</b></label>
@@ -64,11 +64,11 @@
               placeholder="Enter meaning in your Language"
               name="nativeWord"
               required
-              id="nativeWord_input-add"
+              id="nativeWord_input_add"
             />
 
             <label for="typeOfWord"><b>Type Word</b></label>
-            <select id="typeOfWord-add">
+            <select id="typeOfWord_add">
               <option value="Verbum">Verbum</option>
               <option value="Substantive">Substantive</option>
               <option value="Adjective">Adjective</option>
@@ -76,14 +76,14 @@
             </select>
             <br />
             <label for="deOfHet"><b>DE of HET?</b></label>
-            <select id="deOfHet-add">
+            <select id="deOfHet_add">
               <option value="-">-</option>
               <option value="DE">DE</option>
               <option value="HET">HET</option>
             </select>
             <br />
-            <button id="btnAdd-add" type="submit" class="btn">Submit</button>
-            <button id="btnCancel-add" type="button" class="btn cancel">
+            <button id="btnAdd_add" type="submit" class="btn">Submit</button>
+            <button id="btnCancel_add" type="button" class="btn cancel">
               Close
             </button>
           </form>
@@ -93,8 +93,8 @@
 
         <!--------------------------------------------- EDIT ------------------------------------------------>
 
-        <div class="form-popup" id="myForm-edit">
-          <form class="form-container">
+        <div class="form_popup" id="myForm_edit">
+          <form class="form_container">
             <h1>Edit Word</h1>
 
             <label for="dutchWord"><b>Dutch Word</b></label>
@@ -103,7 +103,7 @@
               placeholder="Enter Dutch Word"
               name="dutchWord"
               required
-              id="dutchWord_input-edit"
+              id="dutchWord_input_edit"
             />
 
             <label for="nativeWord"><b>Native Word</b></label>
@@ -112,11 +112,11 @@
               placeholder="Enter meaning in your Language"
               name="nativeWord"
               required
-              id="nativeWord_input-edit"
+              id="nativeWord_input_edit"
             />
 
             <label for="typeOfWord"><b>Type Word</b></label>
-            <select id="typeOfWord-edit">
+            <select id="typeOfWord_edit">
               <option value="Verbum">Verbum</option>
               <option value="Substantive">Substantive</option>
               <option value="Adjective">Adjective</option>
@@ -124,14 +124,16 @@
             </select>
             <br />
             <label for="deOfHet"><b>DE of HET?</b></label>
-            <select id="deOfHet-edit">
+            <select id="deOfHet_edit">
               <option value="-">-</option>
               <option value="DE">DE</option>
               <option value="HET">HET</option>
             </select>
             <br />
-            <button id="btnAdd-edit" type="submit" class="btn">Submit</button>
-            <button id="btnCancel-edit" type="button" class="btn cancel">
+            <button id="btnAdd_edit" type="submit" class="btn">
+              Submit Edit
+            </button>
+            <button id="btnCancel_edit" type="button" class="btn cancel">
               Close
             </button>
           </form>

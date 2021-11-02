@@ -112,7 +112,7 @@ html {
 }
 
 /* Dropdown Content (Hidden by Default) */
-.dropdown-content {
+.dropdown_content {
   display: none;
   position: absolute;
   background-color: rgb(68, 32, 68);
@@ -124,7 +124,7 @@ html {
 }
 
 /* Links inside the dropdown */
-.dropdown-content h3 {
+.dropdown_content h3 {
   color: rgb(211, 198, 198);
   padding: 12px 16px;
   text-decoration: none;
@@ -132,7 +132,7 @@ html {
 }
 
 /* Change color of dropdown links on hover */
-.dropdown-content h3:hover {
+.dropdown_content h3:hover {
   background-color: rgb(172, 15, 172);
 }
 
@@ -141,7 +141,7 @@ html {
   display: block;
 }
 
-.open-button {
+.open_button {
   background-color: #ddd;
   color: white;
   padding: 16px 20px;
@@ -155,7 +155,7 @@ html {
 }
 
 /* The popup form - hidden by default */
-.form-popup {
+.form_popup {
   display: none;
   position: fixed;
   bottom: 0;
@@ -165,16 +165,16 @@ html {
 }
 
 /* Add styles to the form container */
-.form-container {
+.form_container {
   max-width: 300px;
   padding: 10px;
   background-color: white;
 }
 
 /* Full-width input fields */
-.form-container input[type="text"],
-.form-container input[type="password"],
-.form-container select {
+.form_container input[type="text"],
+.form_container input[type="password"],
+.form_container select {
   width: 100%;
   padding: 15px;
   margin: 5px 0 22px 0;
@@ -183,14 +183,14 @@ html {
 }
 
 /* When the inputs get focus, do something */
-.form-container input[type="text"]:focus,
-.form-container input[type="password"]:focus {
+.form_container input[type="text"]:focus,
+.form_container input[type="password"]:focus {
   background-color: #ddd;
   outline: none;
 }
 
 /* Set a style for the submit/login button */
-.form-container .btn {
+.form_container .btn {
   background-color: rgb(68, 32, 68);
   padding: 16px 20px;
   border: none;
@@ -202,13 +202,13 @@ html {
 }
 
 /* Add a red background color to the cancel button */
-.form-container .cancel {
+.form_container .cancel {
   background-color: red;
 }
 
 /* Add some hover effects to buttons */
-.form-container .btn:hover,
-.open-button:hover {
+.form_container .btn:hover,
+.open_button:hover {
   opacity: 1;
 }
 
