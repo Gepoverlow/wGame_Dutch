@@ -1,15 +1,16 @@
 let containerBody = document.querySelector(".container_body");
-let addForm = document.getElementById("myForm");
+let addForm = document.getElementById("myForm-add");
+let editForm = document.getElementById("myForm-edit");
 let containerGame = document.getElementById("container_game");
 
 let headers = ["Type", "DE/HET", "Word", "Your Meaning", "score"];
 
-export function openForm() {
-  addForm.style.display = "block";
+export function openForm(htmlElement) {
+  htmlElement.style.display = "block";
 }
 
-export function closeForm() {
-  document.getElementById("myForm").style.display = "none";
+export function closeForm(htmlElement) {
+  htmlElement.style.display = "none";
 }
 
 /* When the user clicks on the button,
@@ -60,4 +61,5 @@ function emptyNode(node) {
     node.removeChild(node.lastElementChild);
   }
   containerBody.appendChild(addForm);
+  containerBody.appendChild(editForm);
 }

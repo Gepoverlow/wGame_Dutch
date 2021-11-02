@@ -1,7 +1,9 @@
 import { createWord } from "./word_creator";
 import {
   openForm,
+  openEditForm,
   closeForm,
+  closeEditForm,
   showDropDown,
   renderGameInfo,
   renderWords,
@@ -23,11 +25,16 @@ let game = new Game(
 );
 
 let containerBody = document.querySelector(".container_body");
-let addForm = document.querySelector(".form-container-add");
+let addForm = document.querySelector(".form-container");
 let dropBtn = document.querySelector(".dropbtn");
 let addWord = document.querySelector(".add_word");
-let cancelBtn = document.getElementById("btnCancel");
-let addBtn = document.getElementById("btnAdd");
+
+let addBtn = document.getElementById("btnAdd-add");
+let editBtn = document.getElementById("btnAdd-edit");
+
+let cancelBtnAdd = document.getElementById("btnCancel-add");
+let cancelBtnEdit = document.getElementById("btnCancel-edit");
+
 let playBtn = document.getElementById("playBtn");
 let inputAnswer = document.getElementById("input_answer");
 let wordOnScreen = document.getElementById("wordOnScreen");
@@ -35,14 +42,15 @@ let currentScoreValue = document.getElementById("current_score_value");
 let hiScoreValue = document.getElementById("high_score_value");
 let listBtn = document.getElementById("seeWordsBtn");
 
-let myForm = document.getElementById("myForm");
+let myFormAdd = document.getElementById("myForm-add");
+let editForm = document.getElementById("myForm-edit");
 
 hiScoreValue.textContent = game.hiScore;
 
 containerBody.addEventListener("click", function (e) {
   if (e.target.parentNode.className === "row") {
     console.log(e.target.parentNode.rowIndex);
-    openForm();
+    openForm(editForm);
   }
 });
 
@@ -100,11 +108,15 @@ window.onclick = function (event) {
 dropBtn.addEventListener("click", showDropDown);
 
 addWord.addEventListener("click", function () {
-  openForm(myForm);
+  openForm(myFormAdd);
 });
 
-cancelBtn.addEventListener("click", function () {
-  closeForm(myForm);
+cancelBtnAdd.addEventListener("click", function () {
+  closeForm(myFormAdd);
+});
+
+cancelBtnEdit.addEventListener("click", function () {
+  closeForm(editForm);
 });
 
 function addToLocalStorage(name, arr) {

@@ -9,10 +9,10 @@ class Word {
 }
 
 export function createWord(arr) {
-  let typeOfWord = document.getElementById("typeOfWord").value;
-  let deOfHet = document.getElementById("deOfHet").value;
-  let dWordInput = document.getElementById("dutchWord_input").value;
-  let nWordInput = document.getElementById("nativeWord_input").value;
+  let typeOfWord = document.getElementById("typeOfWord-add").value;
+  let deOfHet = document.getElementById("deOfHet-add").value;
+  let dWordInput = document.getElementById("dutchWord_input-add").value;
+  let nWordInput = document.getElementById("nativeWord_input-add").value;
   //
 
   let newWord = new Word(typeOfWord, deOfHet, dWordInput, nWordInput, 0);
