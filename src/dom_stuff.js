@@ -43,6 +43,7 @@ export function renderWords(arr) {
       cell.appendChild(textNode);
       row.appendChild(cell);
     });
+    row.classList.add("row");
     table.appendChild(row);
   });
   tableWrapper.appendChild(table);

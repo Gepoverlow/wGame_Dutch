@@ -22,7 +22,8 @@ let game = new Game(
   getStorageData("hiScore")
 );
 
-let addForm = document.querySelector(".form-container");
+let containerBody = document.querySelector(".container_body");
+let addForm = document.querySelector(".form-container-add");
 let dropBtn = document.querySelector(".dropbtn");
 let addWord = document.querySelector(".add_word");
 let cancelBtn = document.getElementById("btnCancel");
@@ -32,9 +33,18 @@ let inputAnswer = document.getElementById("input_answer");
 let wordOnScreen = document.getElementById("wordOnScreen");
 let currentScoreValue = document.getElementById("current_score_value");
 let hiScoreValue = document.getElementById("high_score_value");
-let listWords = document.getElementById("seeWordsBtn");
+let listBtn = document.getElementById("seeWordsBtn");
+
+let myForm = document.getElementById("myForm");
 
 hiScoreValue.textContent = game.hiScore;
+
+containerBody.addEventListener("click", function (e) {
+  if (e.target.parentNode.className === "row") {
+    console.log(e.target.parentNode.rowIndex);
+    openForm();
+  }
+});
 
 playBtn.addEventListener("click", function () {
   renderGameInfo();
@@ -45,20 +55,13 @@ playBtn.addEventListener("click", function () {
   }
 });
 
-listWords.addEventListener("click", function () {
-  renderWords(allWords);
+listBtn.addEventListener("click", function () {
+  renderWords(allWords, containerBody);
 });
-
-dropBtn.addEventListener("click", showDropDown);
-
-addWord.addEventListener("click", openForm);
-
-cancelBtn.addEventListener("click", closeForm);
 
 addBtn.addEventListener("click", function (e) {
   if (addForm.checkValidity()) {
     e.preventDefault();
-    // createWord(gameArray);
     createWord(allWords);
     addToLocalStorage("wordsArray", allWords);
     addForm.reset();
@@ -85,8 +88,7 @@ inputAnswer.addEventListener("keyup", function (e) {
 window.onclick = function (event) {
   if (!event.target.matches(".dropbtn")) {
     let dropdowns = document.getElementsByClassName("dropdown-content");
-    let i;
-    for (i = 0; i < dropdowns.length; i++) {
+    for (let i = 0; i < dropdowns.length; i++) {
       let openDropdown = dropdowns[i];
       if (openDropdown.classList.contains("show")) {
         openDropdown.classList.remove("show");
@@ -94,6 +96,16 @@ window.onclick = function (event) {
     }
   }
 };
+
+dropBtn.addEventListener("click", showDropDown);
+
+addWord.addEventListener("click", function () {
+  openForm(myForm);
+});
+
+cancelBtn.addEventListener("click", function () {
+  closeForm(myForm);
+});
 
 function addToLocalStorage(name, arr) {
   localStorage.setItem(name, JSON.stringify(arr));
