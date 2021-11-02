@@ -1,6 +1,6 @@
 let containerBody = document.querySelector(".container_body");
-let addForm = document.getElementById("myForm-add");
-let editForm = document.getElementById("myForm-edit");
+let addForm = document.getElementById("myForm_add");
+let editForm = document.getElementById("myForm_edit");
 let containerGame = document.getElementById("container_game");
 
 let headers = ["Type", "DE/HET", "Word", "Your Meaning", "score"];

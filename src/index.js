@@ -1,9 +1,7 @@
-import { createWord } from "./word_creator";
+import { createWord, printWordInfo, submitEdit } from "./word_creator";
 import {
   openForm,
-  openEditForm,
   closeForm,
-  closeEditForm,
   showDropDown,
   renderGameInfo,
   renderWords,
@@ -25,15 +23,15 @@ let game = new Game(
 );
 
 let containerBody = document.querySelector(".container_body");
-let addForm = document.querySelector(".form-container");
+let addForm = document.querySelector(".form_container");
 let dropBtn = document.querySelector(".dropbtn");
 let addWord = document.querySelector(".add_word");
 
-let addBtn = document.getElementById("btnAdd-add");
-let editBtn = document.getElementById("btnAdd-edit");
+let addBtn = document.getElementById("btnAdd_add");
+// let editBtn = document.getElementById("btnAdd_edit");
 
-let cancelBtnAdd = document.getElementById("btnCancel-add");
-let cancelBtnEdit = document.getElementById("btnCancel-edit");
+let cancelBtnAdd = document.getElementById("btnCancel_add");
+let cancelBtnEdit = document.getElementById("btnCancel_edit");
 
 let playBtn = document.getElementById("playBtn");
 let inputAnswer = document.getElementById("input_answer");
@@ -42,15 +40,26 @@ let currentScoreValue = document.getElementById("current_score_value");
 let hiScoreValue = document.getElementById("high_score_value");
 let listBtn = document.getElementById("seeWordsBtn");
 
-let myFormAdd = document.getElementById("myForm-add");
-let editForm = document.getElementById("myForm-edit");
+let myFormAdd = document.getElementById("myForm_add");
+let editForm = document.getElementById("myForm_edit");
 
 hiScoreValue.textContent = game.hiScore;
 
+let indexx = undefined;
+
 containerBody.addEventListener("click", function (e) {
   if (e.target.parentNode.className === "row") {
-    console.log(e.target.parentNode.rowIndex);
+    indexx = e.target.parentNode.rowIndex - 1;
+    printWordInfo(allWords, indexx);
     openForm(editForm);
+  }
+
+  if (e.target.id === "btnAdd_edit") {
+    e.preventDefault();
+    submitEdit(allWords, indexx);
+    addToLocalStorage("wordsArray", allWords);
+    renderWords(allWords, containerBody);
+    closeForm(editForm);
   }
 });
 
@@ -95,7 +104,7 @@ inputAnswer.addEventListener("keyup", function (e) {
 // Close the dropdown menu if the user clicks outside of it
 window.onclick = function (event) {
   if (!event.target.matches(".dropbtn")) {
-    let dropdowns = document.getElementsByClassName("dropdown-content");
+    let dropdowns = document.getElementsByClassName("dropdown_content");
     for (let i = 0; i < dropdowns.length; i++) {
       let openDropdown = dropdowns[i];
       if (openDropdown.classList.contains("show")) {
