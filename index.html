@@ -42,8 +42,11 @@
             </div>
           </div>
         </div>
-        <div class="form-popup" id="myForm">
-          <form class="form-container-add">
+
+        <!--------------------------------------------- ADD ------------------------------------------------>
+
+        <div class="form-popup" id="myForm-add">
+          <form class="form-container">
             <h1>Add Word</h1>
 
             <label for="dutchWord"><b>Dutch Word</b></label>
@@ -52,7 +55,7 @@
               placeholder="Enter Dutch Word"
               name="dutchWord"
               required
-              id="dutchWord_input"
+              id="dutchWord_input-add"
             />
 
             <label for="nativeWord"><b>Native Word</b></label>
@@ -61,11 +64,11 @@
               placeholder="Enter meaning in your Language"
               name="nativeWord"
               required
-              id="nativeWord_input"
+              id="nativeWord_input-add"
             />
 
             <label for="typeOfWord"><b>Type Word</b></label>
-            <select id="typeOfWord">
+            <select id="typeOfWord-add">
               <option value="Verbum">Verbum</option>
               <option value="Substantive">Substantive</option>
               <option value="Adjective">Adjective</option>
@@ -73,18 +76,68 @@
             </select>
             <br />
             <label for="deOfHet"><b>DE of HET?</b></label>
-            <select id="deOfHet">
+            <select id="deOfHet-add">
               <option value="-">-</option>
               <option value="DE">DE</option>
               <option value="HET">HET</option>
             </select>
             <br />
-            <button id="btnAdd" type="submit" class="btn">Submit</button>
-            <button id="btnCancel" type="button" class="btn cancel">
+            <button id="btnAdd-add" type="submit" class="btn">Submit</button>
+            <button id="btnCancel-add" type="button" class="btn cancel">
               Close
             </button>
           </form>
         </div>
+
+        <!--------------------------------------------- ADD ------------------------------------------------>
+
+        <!--------------------------------------------- EDIT ------------------------------------------------>
+
+        <div class="form-popup" id="myForm-edit">
+          <form class="form-container">
+            <h1>Edit Word</h1>
+
+            <label for="dutchWord"><b>Dutch Word</b></label>
+            <input
+              type="text"
+              placeholder="Enter Dutch Word"
+              name="dutchWord"
+              required
+              id="dutchWord_input-edit"
+            />
+
+            <label for="nativeWord"><b>Native Word</b></label>
+            <input
+              type="text"
+              placeholder="Enter meaning in your Language"
+              name="nativeWord"
+              required
+              id="nativeWord_input-edit"
+            />
+
+            <label for="typeOfWord"><b>Type Word</b></label>
+            <select id="typeOfWord-edit">
+              <option value="Verbum">Verbum</option>
+              <option value="Substantive">Substantive</option>
+              <option value="Adjective">Adjective</option>
+              <option value="Adverbium">Adverbium</option>
+            </select>
+            <br />
+            <label for="deOfHet"><b>DE of HET?</b></label>
+            <select id="deOfHet-edit">
+              <option value="-">-</option>
+              <option value="DE">DE</option>
+              <option value="HET">HET</option>
+            </select>
+            <br />
+            <button id="btnAdd-edit" type="submit" class="btn">Submit</button>
+            <button id="btnCancel-edit" type="button" class="btn cancel">
+              Close
+            </button>
+          </form>
+        </div>
+
+        <!--------------------------------------------- EDIT ------------------------------------------------>
       </div>
     </div>
   </body>
