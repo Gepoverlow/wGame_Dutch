@@ -1,4 +1,9 @@
-import { createWord, printWordInfo, submitEdit } from "./word_creator";
+import {
+  createWord,
+  printWordInfo,
+  submitEdit,
+  findIndex,
+} from "./word_creator";
 import {
   openForm,
   closeForm,
@@ -47,18 +52,21 @@ let searchBar = document.getElementById("searchBar");
 
 hiScoreValue.textContent = game.hiScore;
 
-let indexx = undefined;
+let index = undefined;
 
 containerBody.addEventListener("click", function (e) {
   if (e.target.parentNode.className === "row") {
-    indexx = e.target.parentNode.rowIndex - 1;
-    printWordInfo(allWords, indexx);
+    index = allWords.findIndex((word) => {
+      return word.nedWord === `${e.target.parentNode.id}`;
+    });
+    printWordInfo(allWords, index);
     openForm(editForm);
+    console.log(index);
   }
 
   if (e.target.id === "btnAdd_edit") {
     e.preventDefault();
-    submitEdit(allWords, indexx);
+    submitEdit(allWords, index);
     addToLocalStorage("wordsArray", allWords);
     renderWords(allWords, containerBody);
     closeForm(editForm);
@@ -146,13 +154,4 @@ function addToLocalStorage(name, arr) {
 
 function getStorageData(name) {
   return JSON.parse(localStorage.getItem(name) || "[]");
-}
-
-function findIndex(arr, target) {
-  let pos = arr
-    .map(function (e) {
-      return e.id;
-    })
-    .indexOf(parseInt(target));
-  return pos;
 }

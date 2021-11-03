@@ -36,9 +36,10 @@ export function renderWords(arr) {
   });
   table.appendChild(headerRow);
 
-  arr.forEach((emp) => {
+  arr.forEach((word) => {
     let row = document.createElement("tr");
-    Object.values(emp).forEach((text) => {
+    row.id = word.nedWord;
+    Object.values(word).forEach((text) => {
       let cell = document.createElement("td");
       let textNode = document.createTextNode(text);
       cell.appendChild(textNode);
@@ -62,4 +63,16 @@ function emptyNode(node) {
   }
   containerBody.appendChild(addForm);
   containerBody.appendChild(editForm);
+}
+
+function createId() {
+  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+  const length = 5;
+  let randomStr = "";
+
+  for (let i = 0; i < length; i++) {
+    const randomNum = Math.floor(Math.random() * characters.length);
+    randomStr += characters[randomNum];
+  }
+  return randomStr;
 }
