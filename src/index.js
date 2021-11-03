@@ -113,10 +113,11 @@ inputAnswer.addEventListener("keyup", function (e) {
 });
 
 searchBar.addEventListener("keyup", (e) => {
-  const searchString = e.target.value;
+  const searchString = e.target.value.toLowerCase();
   const filteredWords = allWords.filter((word) => {
     return (
-      word.nedWord.includes(searchString) || word.natWord.includes(searchString)
+      word.nedWord.toLowerCase().includes(searchString) ||
+      word.natWord.toLowerCase().includes(searchString)
     );
   });
   renderWords(filteredWords);
