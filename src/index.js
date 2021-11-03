@@ -1,6 +1,7 @@
 import {
   createWord,
   printWordInfo,
+  deleteWord,
   submitEdit,
   findIndex,
 } from "./word_creator";
@@ -30,10 +31,11 @@ let game = new Game(
 let containerBody = document.querySelector(".container_body");
 let addForm = document.querySelector(".form_container");
 let dropBtn = document.querySelector(".dropbtn");
-let addWord = document.querySelector(".add_word");
+
+let addWordBtn = document.getElementById("add_word");
+let deleteWordBtn = document.getElementById("delete_word");
 
 let addBtn = document.getElementById("btnAdd_add");
-// let editBtn = document.getElementById("btnAdd_edit");
 
 let cancelBtnAdd = document.getElementById("btnCancel_add");
 let cancelBtnEdit = document.getElementById("btnCancel_edit");
@@ -61,7 +63,6 @@ containerBody.addEventListener("click", function (e) {
     });
     printWordInfo(allWords, index);
     openForm(editForm);
-    console.log(index);
   }
 
   if (e.target.id === "btnAdd_edit") {
@@ -121,6 +122,14 @@ searchBar.addEventListener("keyup", (e) => {
   renderWords(filteredWords);
 });
 
+deleteWordBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  deleteWord(allWords, index);
+  renderWords(allWords);
+  addToLocalStorage("wordsArray", allWords);
+  closeForm(editForm);
+});
+
 // Close the dropdown menu if the user clicks outside of it
 window.onclick = function (event) {
   if (!event.target.matches(".dropbtn")) {
@@ -136,7 +145,7 @@ window.onclick = function (event) {
 
 dropBtn.addEventListener("click", showDropDown);
 
-addWord.addEventListener("click", function () {
+addWordBtn.addEventListener("click", function () {
   openForm(myFormAdd);
 });
 

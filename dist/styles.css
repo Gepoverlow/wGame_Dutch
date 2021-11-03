@@ -38,7 +38,7 @@ html {
   padding: 1vw;
 }
 
-.add_word {
+#add_word {
   margin-left: 10px;
   background-color: rgb(211, 198, 198);
   cursor: pointer;

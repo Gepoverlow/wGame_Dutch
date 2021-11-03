@@ -28,6 +28,10 @@ export function createWord(arr) {
   }
 }
 
+export function deleteWord(array, index) {
+  return array.splice(index, 1);
+}
+
 export function printWordInfo(array, index) {
   typeOfWord.value = array[index].wType;
   deOfHet.value = array[index].wArticle;
