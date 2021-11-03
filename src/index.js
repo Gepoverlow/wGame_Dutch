@@ -43,6 +43,8 @@ let listBtn = document.getElementById("seeWordsBtn");
 let myFormAdd = document.getElementById("myForm_add");
 let editForm = document.getElementById("myForm_edit");
 
+let searchBar = document.getElementById("searchBar");
+
 hiScoreValue.textContent = game.hiScore;
 
 let indexx = undefined;
@@ -101,6 +103,16 @@ inputAnswer.addEventListener("keyup", function (e) {
   }
 });
 
+searchBar.addEventListener("keyup", (e) => {
+  const searchString = e.target.value;
+  const filteredWords = allWords.filter((word) => {
+    return (
+      word.nedWord.includes(searchString) || word.natWord.includes(searchString)
+    );
+  });
+  renderWords(filteredWords);
+});
+
 // Close the dropdown menu if the user clicks outside of it
 window.onclick = function (event) {
   if (!event.target.matches(".dropbtn")) {
@@ -134,4 +146,13 @@ function addToLocalStorage(name, arr) {
 
 function getStorageData(name) {
   return JSON.parse(localStorage.getItem(name) || "[]");
+}
+
+function findIndex(arr, target) {
+  let pos = arr
+    .map(function (e) {
+      return e.id;
+    })
+    .indexOf(parseInt(target));
+  return pos;
 }
