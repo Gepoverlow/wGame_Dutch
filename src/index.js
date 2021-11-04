@@ -40,6 +40,8 @@ let cancelBtnAdd = document.getElementById("btnCancel_add");
 let cancelBtnEdit = document.getElementById("btnCancel_edit");
 
 let playBtn = document.getElementById("playBtn");
+let playBtn_ = document.getElementById("playBtn_");
+
 let inputAnswer = document.getElementById("input_answer");
 let wordOnScreen = document.getElementById("wordOnScreen");
 let currentScoreValue = document.getElementById("current_score_value");
@@ -84,6 +86,12 @@ playBtn.addEventListener("click", function () {
     game.randomizeArray();
     game.nextWord(wordOnScreen);
   }
+});
+
+playBtn_.addEventListener("click", () => {
+  let AllNegativeWordsArray = allWords.filter((word) => word.value < 0);
+  console.log(allWords);
+  console.log(AllNegativeWordsArray);
 });
 
 listBtn.addEventListener("click", function () {
