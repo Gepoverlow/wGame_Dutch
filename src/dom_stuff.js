@@ -47,7 +47,14 @@ export function renderWords(arr) {
     });
     row.classList.add("row");
     table.appendChild(row);
+
+    if (word.value < 0) {
+      row.classList.add("negativeScore");
+    } else if (word.value > 0) {
+      row.classList.add("positiveScore");
+    }
   });
+
   tableWrapper.appendChild(table);
   containerBody.appendChild(tableWrapper);
 }
@@ -65,14 +72,14 @@ function emptyNode(node) {
   containerBody.appendChild(editForm);
 }
 
-function createId() {
-  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-  const length = 5;
-  let randomStr = "";
+// function createId() {
+//   const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+//   const length = 5;
+//   let randomStr = "";
 
-  for (let i = 0; i < length; i++) {
-    const randomNum = Math.floor(Math.random() * characters.length);
-    randomStr += characters[randomNum];
-  }
-  return randomStr;
-}
+//   for (let i = 0; i < length; i++) {
+//     const randomNum = Math.floor(Math.random() * characters.length);
+//     randomStr += characters[randomNum];
+//   }
+//   return randomStr;
+// }

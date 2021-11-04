@@ -46,11 +46,11 @@ export function submitEdit(array, index) {
   array[index].natWord = nWordInput.value;
 }
 
-export function findIndex(arr, target) {
-  let pos = arr
-    .map(function (e) {
-      return e.id;
-    })
-    .indexOf(parseInt(target));
-  return pos;
-}
+// export function findIndex(arr, target) {
+//   let pos = arr
+//     .map(function (e) {
+//       return e.id;
+//     })
+//     .indexOf(parseInt(target));
+//   return pos;
+// }

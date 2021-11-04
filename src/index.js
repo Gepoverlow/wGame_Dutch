@@ -3,7 +3,6 @@ import {
   printWordInfo,
   deleteWord,
   submitEdit,
-  findIndex,
 } from "./word_creator";
 import {
   openForm,
@@ -57,7 +56,11 @@ hiScoreValue.textContent = game.hiScore;
 let index = undefined;
 
 containerBody.addEventListener("click", function (e) {
-  if (e.target.parentNode.className === "row") {
+  if (
+    e.target.parentNode.className === "row" ||
+    e.target.parentNode.className === "row positiveScore" ||
+    e.target.parentNode.className === "row negativeScore"
+  ) {
     index = allWords.findIndex((word) => {
       return word.nedWord === `${e.target.parentNode.id}`;
     });
