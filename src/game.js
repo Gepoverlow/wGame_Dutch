@@ -1,14 +1,12 @@
 export class Game {
-  constructor(gameArray, correctArray, wrongArray, currentScore, hiScore) {
+  constructor(gameArray, currentScore, hiScore) {
     this.gameArray = gameArray;
-    this.correctArray = correctArray;
-    this.wrongArray = wrongArray;
     this.currentScore = currentScore;
     this.hiScore = hiScore;
   }
 
-  startGame(allWords, htmlElementC, htmlElementH) {
-    this.gameArray = [...allWords];
+  startGame(array, htmlElementC, htmlElementH) {
+    this.gameArray = [...array];
     this.currentScore = 0;
     this.updateScore(htmlElementC, htmlElementH);
   }
@@ -17,15 +15,17 @@ export class Game {
     if (this.gameArray[0].natWord === input.value) {
       this.addValue();
       this.addPointToScore();
-      this.addToCorrectArray();
+      this.removeFirstObject();
     } else {
       this.removeValue();
-      this.addToWrongArray();
+      this.removeFirstObject();
     }
   }
 
   nextWord(htmlElement) {
-    return (htmlElement.textContent = this.gameArray[0].nedWord);
+    return (htmlElement.textContent = `${
+      this.gameArray[0].nedWord
+    }        /${this.remainingWords()}`);
   }
 
   addPointToScore() {
@@ -56,18 +56,15 @@ export class Game {
     return this.gameArray.shift();
   }
 
-  addToCorrectArray() {
-    return this.correctArray.push(this.removeFirstObject());
-  }
-
-  addToWrongArray() {
-    return this.wrongArray.push(this.removeFirstObject());
-  }
   randomizeArray() {
     return this.gameArray.sort((a, b) => 0.5 - Math.random());
   }
   updateLocalStorage(name) {
     return localStorage.setItem(name, JSON.stringify(this.hiScore));
+  }
+
+  remainingWords() {
+    return this.gameArray.length.toString();
   }
 }
 

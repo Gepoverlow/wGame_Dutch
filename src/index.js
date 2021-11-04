@@ -16,16 +16,8 @@ import { Game } from "./game";
 let allWords = getStorageData("wordsArray");
 
 let gameArray = [];
-let correctArray = [];
-let wrongArray = [];
 
-let game = new Game(
-  gameArray,
-  correctArray,
-  wrongArray,
-  0,
-  getStorageData("hiScore")
-);
+let game = new Game(gameArray, 0, getStorageData("hiScore"));
 
 let containerBody = document.querySelector(".container_body");
 let addForm = document.querySelector(".form_container");
@@ -89,9 +81,13 @@ playBtn.addEventListener("click", function () {
 });
 
 playBtn_.addEventListener("click", () => {
+  renderGameInfo();
   let AllNegativeWordsArray = allWords.filter((word) => word.value < 0);
-  console.log(allWords);
-  console.log(AllNegativeWordsArray);
+  game.startGame(AllNegativeWordsArray, currentScoreValue, hiScoreValue);
+  if (game.gameArray.length !== 0) {
+    game.randomizeArray();
+    game.nextWord(wordOnScreen);
+  }
 });
 
 listBtn.addEventListener("click", function () {
@@ -135,11 +131,18 @@ searchBar.addEventListener("keyup", (e) => {
 });
 
 deleteWordBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-  deleteWord(allWords, index);
-  renderWords(allWords);
-  addToLocalStorage("wordsArray", allWords);
-  closeForm(editForm);
+  console.log(e.target);
+  if (e.keyCode === 13) {
+    e.preventDefault();
+    return;
+  }
+  if (e.target.id === "delete_word" && !e.keyCode === 13) {
+    e.preventDefault();
+    deleteWord(allWords, index);
+    renderWords(allWords);
+    addToLocalStorage("wordsArray", allWords);
+    closeForm(editForm);
+  }
 });
 
 // Close the dropdown menu if the user clicks outside of it
