@@ -101,6 +101,7 @@ addBtn.addEventListener("click", function (e) {
     addToLocalStorage("wordsArray", allWords);
     addForm.reset();
     renderWords(allWords);
+    document.getElementById("dutchWord_input_add").focus();
   }
 });
 
@@ -132,11 +133,8 @@ searchBar.addEventListener("keyup", (e) => {
 
 deleteWordBtn.addEventListener("click", (e) => {
   console.log(e.target);
-  if (e.keyCode === 13) {
-    e.preventDefault();
-    return;
-  }
-  if (e.target.id === "delete_word" && !e.keyCode === 13) {
+
+  if (e.target.id === "delete_word") {
     e.preventDefault();
     deleteWord(allWords, index);
     renderWords(allWords);

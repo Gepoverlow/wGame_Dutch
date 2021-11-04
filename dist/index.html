@@ -4,6 +4,18 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--  -->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <!--  -->
     <link rel="stylesheet" href="styles.css" />
     <title>wGame</title>
   </head>
@@ -95,9 +107,13 @@
         <!--------------------------------------------- EDIT ------------------------------------------------>
 
         <div class="form_popup" id="myForm_edit">
-          <form class="form_container">
-            <h1>Edit Word</h1>
-            <button id="delete_word">Delete Word</button>
+          <div class="form_container">
+            <div id="edit_form_header">
+              <h1>Edit Word</h1>
+              <span id="delete_word" class="material-icons-outlined">
+                delete
+              </span>
+            </div>
             <label for="dutchWord"><b>Dutch Word</b></label>
             <input
               type="text"
@@ -131,9 +147,13 @@
               <option value="HET">HET</option>
             </select>
             <br />
-            <button id="btnAdd_edit" class="btn">Submit Edit</button>
-            <button id="btnCancel_edit" class="btn cancel">Close</button>
-          </form>
+            <button id="btnAdd_edit" type="button" class="btn">
+              Submit Edit
+            </button>
+            <button id="btnCancel_edit" type="button" class="btn cancel">
+              Close
+            </button>
+          </div>
         </div>
 
         <!--------------------------------------------- EDIT ------------------------------------------------>
