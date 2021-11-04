@@ -3,7 +3,7 @@ let addForm = document.getElementById("myForm_add");
 let editForm = document.getElementById("myForm_edit");
 let containerGame = document.getElementById("container_game");
 
-let headers = ["Type", "DE/HET", "Word", "Your Meaning", "score"];
+let headers = ["Type", "DE/HET", "Word", "Your Meaning", "score", "Link"];
 
 export function openForm(htmlElement) {
   htmlElement.style.display = "block";

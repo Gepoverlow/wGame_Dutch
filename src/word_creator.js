@@ -4,12 +4,13 @@ let dWordInput = document.getElementById("dutchWord_input_edit");
 let nWordInput = document.getElementById("nativeWord_input_edit");
 
 class Word {
-  constructor(wType, wArticle, nedWord, natWord, value) {
+  constructor(wType, wArticle, nedWord, natWord, value, link) {
     this.wType = wType;
     this.wArticle = wArticle;
     this.nedWord = nedWord;
     this.natWord = natWord;
     this.value = value;
+    this.link = link + this.nedWord;
   }
 }
 
@@ -19,7 +20,14 @@ export function createWord(arr) {
   let dWordInput = document.getElementById("dutchWord_input_add").value;
   let nWordInput = document.getElementById("nativeWord_input_add").value;
   //
-  let newWord = new Word(typeOfWord, deOfHet, dWordInput, nWordInput, 0);
+  let newWord = new Word(
+    typeOfWord,
+    deOfHet,
+    dWordInput,
+    nWordInput,
+    0,
+    "https://www.woorden.org/woord/"
+  );
   //
   if (arr.some((e) => e.nedWord === `${dWordInput}`)) {
     alert("word is already here");

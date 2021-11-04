@@ -102,6 +102,7 @@ addBtn.addEventListener("click", function (e) {
     addForm.reset();
     renderWords(allWords);
     document.getElementById("dutchWord_input_add").focus();
+    console.log(allWords);
   }
 });
 
