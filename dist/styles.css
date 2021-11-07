@@ -139,6 +139,14 @@ html {
   transform-origin: top center;
 }
 
+.hideDropdown {
+  display: none;
+}
+
+.hideForm {
+  display: none;
+}
+
 @keyframes dropdown {
   0% {
     transform: rotateX(-90deg);
@@ -178,7 +186,7 @@ html {
 .form_container {
   max-width: 300px;
   padding: 10px;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255);
 }
 
 /* Full-width input fields */

@@ -10,7 +10,7 @@ class Word {
     this.nedWord = nedWord;
     this.natWord = natWord;
     this.value = value;
-    this.link = link + this.nedWord;
+    this.link = link;
   }
 }
 
@@ -26,7 +26,7 @@ export function createWord(arr) {
     dWordInput,
     nWordInput,
     0,
-    "https://www.woorden.org/woord/"
+    "Meaning in Woorden - > "
   );
   //
   if (arr.some((e) => e.nedWord === `${dWordInput}`)) {

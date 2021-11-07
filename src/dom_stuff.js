@@ -3,7 +3,14 @@ let addForm = document.getElementById("myForm_add");
 let editForm = document.getElementById("myForm_edit");
 let containerGame = document.getElementById("container_game");
 
-let headers = ["Type", "DE/HET", "Word", "Your Meaning", "score", "Link"];
+let headers = [
+  "Type",
+  "DE/HET",
+  "Word",
+  "Your Meaning",
+  "score",
+  "Woordensboek Meaning",
+];
 
 export function openForm(htmlElement) {
   htmlElement.style.display = "block";
@@ -39,12 +46,18 @@ export function renderWords(arr) {
   arr.forEach((word) => {
     let row = document.createElement("tr");
     row.id = word.nedWord;
+    let link = document.createElement("a");
+    link.text = "Search";
+    link.href = createWordLink(word);
+    link.target = "_blank";
     Object.values(word).forEach((text) => {
       let cell = document.createElement("td");
       let textNode = document.createTextNode(text);
       cell.appendChild(textNode);
       row.appendChild(cell);
+      cell.appendChild(link);
     });
+
     row.classList.add("row");
     table.appendChild(row);
 
@@ -70,6 +83,10 @@ function emptyNode(node) {
   }
   containerBody.appendChild(addForm);
   containerBody.appendChild(editForm);
+}
+
+function createWordLink(word) {
+  return `https://www.woorden.org/woord/${word.nedWord}`;
 }
 
 // function createId() {
