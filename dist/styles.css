@@ -40,12 +40,8 @@ html {
 
 #add_word {
   margin-left: 10px;
-  background-color: rgb(211, 198, 198);
+  font-size: 50px;
   cursor: pointer;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  font-size: 25px;
 }
 
 .container_body {
