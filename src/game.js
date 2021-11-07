@@ -22,6 +22,17 @@ export class Game {
     }
   }
 
+  compareWordsHard(input) {
+    if (this.gameArray[0].natWord === input.value) {
+      this.addValue();
+      this.addPointToScore();
+      this.removeFirstObject();
+    } else {
+      this.removeValue();
+      this.removeFirstObject();
+    }
+  }
+
   nextWord(htmlElement) {
     return (htmlElement.textContent = `${
       this.gameArray[0].nedWord

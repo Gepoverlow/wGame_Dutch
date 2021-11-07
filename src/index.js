@@ -39,6 +39,7 @@ let wordOnScreen = document.getElementById("wordOnScreen");
 let currentScoreValue = document.getElementById("current_score_value");
 let hiScoreValue = document.getElementById("high_score_value");
 let listBtn = document.getElementById("seeWordsBtn");
+let resetBtn = document.getElementById("resetWordsScore");
 
 let myFormAdd = document.getElementById("myForm_add");
 let editForm = document.getElementById("myForm_edit");
@@ -82,16 +83,28 @@ playBtn.addEventListener("click", function () {
 
 playBtn_.addEventListener("click", () => {
   renderGameInfo();
+
   let AllNegativeWordsArray = allWords.filter((word) => word.value < 0);
   game.startGame(AllNegativeWordsArray, currentScoreValue, hiScoreValue);
   if (game.gameArray.length !== 0) {
     game.randomizeArray();
     game.nextWord(wordOnScreen);
+  } else if (game.gameArray.length === 0) {
+    wordOnScreen.textContent = "0 NEGATIVE SCORE WORDS!";
   }
 });
 
 listBtn.addEventListener("click", function () {
   renderWords(allWords, containerBody);
+});
+
+resetBtn.addEventListener("click", () => {
+  allWords.forEach((word) => {
+    word.value = 0;
+    renderWords(allWords, containerBody);
+    addToLocalStorage("wordsArray", allWords);
+  });
+  console.log(allWords);
 });
 
 addBtn.addEventListener("click", function (e) {
