@@ -10,6 +10,7 @@ import {
   showDropDown,
   renderGameInfo,
   renderWords,
+  renderGameRules,
 } from "./dom_stuff";
 import { Game } from "./game";
 
@@ -33,6 +34,7 @@ let cancelBtnEdit = document.getElementById("btnCancel_edit");
 
 let playBtn = document.getElementById("playBtn");
 let playBtn_ = document.getElementById("playBtn_");
+let instructionsBtn = document.getElementById("instructions");
 
 let inputAnswer = document.getElementById("input_answer");
 let wordOnScreen = document.getElementById("wordOnScreen");
@@ -45,6 +47,7 @@ let myFormAdd = document.getElementById("myForm_add");
 let editForm = document.getElementById("myForm_edit");
 
 let searchBar = document.getElementById("searchBar");
+let correctAnswer = document.getElementById("correctAnswer");
 
 hiScoreValue.textContent = game.hiScore;
 
@@ -78,6 +81,8 @@ playBtn.addEventListener("click", function () {
   if (game.gameArray.length !== 0) {
     game.randomizeArray();
     game.nextWord(wordOnScreen);
+  } else if (game.gameArray.length === 0) {
+    wordOnScreen.textContent = "ADD SOME WORDS BEFORE PLAYING!";
   }
 });
 
@@ -107,6 +112,11 @@ resetBtn.addEventListener("click", () => {
   console.log(allWords);
 });
 
+instructionsBtn.addEventListener("click", () => {
+  console.log("testing");
+  renderGameRules();
+});
+
 addBtn.addEventListener("click", function (e) {
   if (addForm.checkValidity()) {
     e.preventDefault();
@@ -121,7 +131,8 @@ addBtn.addEventListener("click", function (e) {
 
 inputAnswer.addEventListener("keyup", function (e) {
   if (e.keyCode === 13 && game.gameArray.length !== 0) {
-    game.compareWords(inputAnswer);
+    game.compareWords(inputAnswer, correctAnswer);
+    game.removeFirstObject();
     game.updateScore(currentScoreValue, hiScoreValue);
     game.updateLocalStorage("hiScore");
     addToLocalStorage("wordsArray", allWords);

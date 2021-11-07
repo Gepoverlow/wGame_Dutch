@@ -5,6 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!--  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@1,300&display=swap"
+      rel="stylesheet"
+    />
+    <!--  -->
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
       rel="stylesheet"
@@ -29,7 +36,7 @@
             <h3 id="playBtn_">Play Wrong Words</h3>
             <h3 id="seeWordsBtn">Word List</h3>
             <h3 id="resetWordsScore">Reset Words Score</h3>
-            <h3>Other</h3>
+            <h3 id="instructions">General Info</h3>
           </div>
         </div>
         <input id="searchBar" type="search" placeholder="Search Word..." />
@@ -46,6 +53,7 @@
             Welcome! To start adding words click on the + at the top right
             corner!
           </h1>
+          <h2 id="correctAnswer"></h2>
           <input id="input_answer" type="text" />
           <div class="score">
             <div class="c_score">

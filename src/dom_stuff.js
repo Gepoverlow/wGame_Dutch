@@ -77,6 +77,71 @@ export function renderGameInfo() {
   containerBody.appendChild(containerGame);
 }
 
+export function renderGameRules() {
+  emptyNode(containerBody);
+
+  let rulesTitle = document.createElement("h1");
+  rulesTitle.textContent = "Rules & General Info";
+  rulesTitle.style.fontSize = "30px";
+  containerBody.appendChild(rulesTitle);
+
+  let rulesUL = document.createElement("ul");
+  rulesUL.textContent = "Some Rules";
+  rulesUL.style.fontSize = "20px";
+  containerBody.appendChild(rulesUL);
+
+  ruleCreator("First add as many words you want.", rulesUL);
+  ruleCreator(
+    "Then head to MENU -> Play All Words to start a new game with all the words you added.",
+    rulesUL
+  );
+  ruleCreator(
+    "The game consists on matching the Dutch Word with your own Meaning. PAS OP! Pronunciation counts.",
+    rulesUL
+  );
+  ruleCreator(
+    "Correct answers will earn you a point, while incorrect will not.",
+    rulesUL
+  );
+  ruleCreator(
+    "As you play through, depending on wether the answer was correct or not, each individual word will be gaining or loosing a value/score.",
+    rulesUL
+  );
+  ruleCreator(
+    "You can play this mode as many times you want, with how many words you want. The more words you add the better!",
+    rulesUL
+  );
+  ruleCreator(
+    "The second mode, Play Wrong Words, lets you practice on the words you are less strong (or have negative value/score)",
+    rulesUL
+  );
+
+  let infoUL = document.createElement("ul");
+  infoUL.textContent = "Some Info";
+  infoUL.style.fontSize = "20px";
+  containerBody.appendChild(infoUL);
+
+  ruleCreator(
+    "All words that you create will be stored on the localStorage of the browser you created them with.",
+    infoUL
+  );
+
+  ruleCreator(
+    "Because the data is stored on your own browser storage, try and don't delete it by going into browser settings/history/data etc.",
+    infoUL
+  );
+
+  ruleCreator(
+    "Within the List you can click each element and Edit/Delete its contents in case you made a mistake or wish to change the meaning of it.",
+    infoUL
+  );
+
+  ruleCreator(
+    "Because the List might get too long, you can use the Search feature to filter through all words!",
+    infoUL
+  );
+}
+
 function emptyNode(node) {
   while (node.lastElementChild) {
     node.removeChild(node.lastElementChild);
@@ -87,6 +152,12 @@ function emptyNode(node) {
 
 function createWordLink(word) {
   return `https://www.woorden.org/woord/${word.nedWord}`;
+}
+
+function ruleCreator(info, parentNode) {
+  let rule = document.createElement("li");
+  parentNode.appendChild(rule);
+  rule.textContent = info;
 }
 
 // function createId() {

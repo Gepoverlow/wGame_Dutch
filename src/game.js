@@ -11,26 +11,23 @@ export class Game {
     this.updateScore(htmlElementC, htmlElementH);
   }
 
-  compareWords(input) {
+  compareWords(input, htmlElement) {
     if (this.gameArray[0].natWord === input.value) {
       this.addValue();
       this.addPointToScore();
-      this.removeFirstObject();
+      htmlElement.textContent = ` YES! ${this.displayCorrectAnswer()} Your Answer -> ${
+        input.value
+      }`;
     } else {
       this.removeValue();
-      this.removeFirstObject();
+      htmlElement.textContent = `NO! ${this.displayCorrectAnswer()} Your Answer -> ${
+        input.value
+      }`;
     }
   }
 
-  compareWordsHard(input) {
-    if (this.gameArray[0].natWord === input.value) {
-      this.addValue();
-      this.addPointToScore();
-      this.removeFirstObject();
-    } else {
-      this.removeValue();
-      this.removeFirstObject();
-    }
+  displayCorrectAnswer() {
+    return `Correct Answer ->  ${this.gameArray[0].natWord}`;
   }
 
   nextWord(htmlElement) {
