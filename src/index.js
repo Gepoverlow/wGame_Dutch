@@ -21,7 +21,10 @@ let gameArray = [];
 let game = new Game(gameArray, 0, getStorageData("hiScore"));
 
 let containerBody = document.querySelector(".container_body");
-let addForm = document.querySelector(".form_container");
+
+let addForm = document.getElementById("form_container_add");
+let editForm = document.getElementById("form_container_edit");
+
 let dropBtn = document.querySelector(".dropbtn");
 
 let addWordBtn = document.getElementById("add_word");
@@ -44,7 +47,7 @@ let listBtn = document.getElementById("seeWordsBtn");
 let resetBtn = document.getElementById("resetWordsScore");
 
 let myFormAdd = document.getElementById("myForm_add");
-let editForm = document.getElementById("myForm_edit");
+let myFormEdit = document.getElementById("myForm_edit");
 
 let searchBar = document.getElementById("searchBar");
 let correctAnswer = document.getElementById("correctAnswer");
@@ -63,16 +66,40 @@ containerBody.addEventListener("click", function (e) {
       return word.nedWord === `${e.target.parentNode.id}`;
     });
     printWordInfo(allWords, index);
-    openForm(editForm);
+    openForm(myFormEdit);
   }
 
   if (e.target.id === "btnAdd_edit") {
-    e.preventDefault();
-    submitEdit(allWords, index);
-    addToLocalStorage("wordsArray", allWords);
-    renderWords(allWords, containerBody);
-    closeForm(editForm);
+    if (
+      editForm.childNodes[5].value !== "" &&
+      editForm.childNodes[9].value !== ""
+    ) {
+      submitEdit(allWords, index);
+      addToLocalStorage("wordsArray", allWords);
+      renderWords(allWords, containerBody);
+      closeForm(myFormEdit);
+    } else {
+      alert("cant edit a word to empty fields!");
+    }
   }
+
+  // if (
+  //   e.target.id === "btnAdd_edit" &&
+  //   editForm.childNodes[5].value !== "" &&
+  //   editForm.childNodes[9].value !== ""
+  // ) {
+  //   e.preventDefault();
+  //   submitEdit(allWords, index);
+  //   addToLocalStorage("wordsArray", allWords);
+  //   renderWords(allWords, containerBody);
+  //   closeForm(myFormEdit);
+  // } else if (
+  //   e.target.id === "btnAdd_edit" &&
+  //   editForm.childNodes[5].value === "" &&
+  //   editForm.childNodes[9].value === ""
+  // ) {
+  //   alert("cant edit a word to empty fields!");
+  // }
 });
 
 playBtn.addEventListener("click", function () {
@@ -125,7 +152,6 @@ addBtn.addEventListener("click", function (e) {
     addForm.reset();
     renderWords(allWords);
     document.getElementById("dutchWord_input_add").focus();
-    console.log(allWords);
   }
 });
 
@@ -157,14 +183,12 @@ searchBar.addEventListener("keyup", (e) => {
 });
 
 deleteWordBtn.addEventListener("click", (e) => {
-  console.log(e.target);
-
   if (e.target.id === "delete_word") {
     e.preventDefault();
     deleteWord(allWords, index);
     renderWords(allWords);
     addToLocalStorage("wordsArray", allWords);
-    closeForm(editForm);
+    closeForm(myFormEdit);
   }
 });
 
@@ -192,7 +216,7 @@ cancelBtnAdd.addEventListener("click", function () {
 });
 
 cancelBtnEdit.addEventListener("click", function () {
-  closeForm(editForm);
+  closeForm(myFormEdit);
 });
 
 function addToLocalStorage(name, arr) {

@@ -48,10 +48,14 @@ export function printWordInfo(array, index) {
 }
 
 export function submitEdit(array, index) {
-  array[index].wType = typeOfWord.value;
-  array[index].wArticle = deOfHet.value;
-  array[index].nedWord = dWordInput.value;
-  array[index].natWord = nWordInput.value;
+  if (array.some((e) => e.nedWord === `${dWordInput}`)) {
+    alert("word is already here");
+  } else {
+    array[index].wType = typeOfWord.value;
+    array[index].wArticle = deOfHet.value;
+    array[index].nedWord = dWordInput.value;
+    array[index].natWord = nWordInput.value;
+  }
 }
 
 // export function findIndex(arr, target) {
