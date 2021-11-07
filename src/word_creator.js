@@ -47,8 +47,8 @@ export function printWordInfo(array, index) {
   nWordInput.value = array[index].natWord;
 }
 
-export function submitEdit(array, index) {
-  if (array.some((e) => e.nedWord === `${dWordInput}`)) {
+export function submitEdit(array, index, input) {
+  if (array.some((e) => e.nedWord === input.value)) {
     alert("word is already here");
   } else {
     array[index].wType = typeOfWord.value;

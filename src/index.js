@@ -43,6 +43,7 @@ let inputAnswer = document.getElementById("input_answer");
 let wordOnScreen = document.getElementById("wordOnScreen");
 let currentScoreValue = document.getElementById("current_score_value");
 let hiScoreValue = document.getElementById("high_score_value");
+let hiScore = document.getElementById("high_score");
 let listBtn = document.getElementById("seeWordsBtn");
 let resetBtn = document.getElementById("resetWordsScore");
 
@@ -74,7 +75,7 @@ containerBody.addEventListener("click", function (e) {
       editForm.childNodes[5].value !== "" &&
       editForm.childNodes[9].value !== ""
     ) {
-      submitEdit(allWords, index);
+      submitEdit(allWords, index, editForm.childNodes[5]);
       addToLocalStorage("wordsArray", allWords);
       renderWords(allWords, containerBody);
       closeForm(myFormEdit);
@@ -82,24 +83,6 @@ containerBody.addEventListener("click", function (e) {
       alert("cant edit a word to empty fields!");
     }
   }
-
-  // if (
-  //   e.target.id === "btnAdd_edit" &&
-  //   editForm.childNodes[5].value !== "" &&
-  //   editForm.childNodes[9].value !== ""
-  // ) {
-  //   e.preventDefault();
-  //   submitEdit(allWords, index);
-  //   addToLocalStorage("wordsArray", allWords);
-  //   renderWords(allWords, containerBody);
-  //   closeForm(myFormEdit);
-  // } else if (
-  //   e.target.id === "btnAdd_edit" &&
-  //   editForm.childNodes[5].value === "" &&
-  //   editForm.childNodes[9].value === ""
-  // ) {
-  //   alert("cant edit a word to empty fields!");
-  // }
 });
 
 playBtn.addEventListener("click", function () {
@@ -204,6 +187,12 @@ window.onclick = function (event) {
     }
   }
 };
+
+hiScore.addEventListener("click", () => {
+  game.hiScore = 0;
+  hiScoreValue.textContent = game.hiScore;
+  game.updateLocalStorage("hiScore");
+});
 
 dropBtn.addEventListener("click", showDropDown);
 

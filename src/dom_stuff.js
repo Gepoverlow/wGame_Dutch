@@ -140,6 +140,7 @@ export function renderGameRules() {
     "Because the List might get too long, you can use the Search feature to filter through all words!",
     infoUL
   );
+  ruleCreator("Click on Hiscore to reset the number back to 0.", infoUL);
 }
 
 function emptyNode(node) {

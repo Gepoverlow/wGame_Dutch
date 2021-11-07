@@ -15,14 +15,16 @@ export class Game {
     if (this.gameArray[0].natWord === input.value) {
       this.addValue();
       this.addPointToScore();
-      htmlElement.textContent = ` YES! ${this.displayCorrectAnswer()} Your Answer -> ${
+      htmlElement.textContent = `Correct! ${this.displayCorrectAnswer()} Your Answer -> ${
         input.value
       }`;
+      this.addCorrectIcon(htmlElement);
     } else {
       this.removeValue();
-      htmlElement.textContent = `NO! ${this.displayCorrectAnswer()} Your Answer -> ${
+      htmlElement.textContent = `Wrong! ${this.displayCorrectAnswer()} Your Answer -> ${
         input.value
       }`;
+      this.addWrongIcon(htmlElement);
     }
   }
 
@@ -73,6 +75,24 @@ export class Game {
 
   remainingWords() {
     return this.gameArray.length.toString();
+  }
+
+  addCorrectIcon(htmlElement) {
+    let iconC = document.createElement("span");
+    iconC.textContent = "check";
+    iconC.classList.add("material-icons-outlined");
+    iconC.style.color = "green";
+    iconC.style.fontSize = "55px";
+    htmlElement.appendChild(iconC);
+  }
+
+  addWrongIcon(htmlElement) {
+    let iconW = document.createElement("span");
+    iconW.textContent = "clear";
+    iconW.classList.add("material-icons-outlined");
+    iconW.style.color = "red";
+    iconW.style.fontSize = "55px";
+    htmlElement.appendChild(iconW);
   }
 }
 
