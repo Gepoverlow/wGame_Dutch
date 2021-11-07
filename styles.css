@@ -45,6 +45,12 @@ html {
   cursor: pointer;
 }
 
+#correctAnswer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .container_body {
   display: flex;
   flex-direction: column;
@@ -69,6 +75,10 @@ html {
   width: 30vw;
   height: 7vh;
   font-size: 4vh;
+}
+
+#high_score {
+  cursor: pointer;
 }
 
 .score {
