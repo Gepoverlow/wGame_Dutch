@@ -111,7 +111,7 @@ html {
 .dropdown_content {
   display: none;
   position: absolute;
-  background-color: rgb(68, 32, 68);
+  background-color: rgba(68, 32, 68, 0.8);
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
@@ -135,6 +135,20 @@ html {
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {
   display: block;
+  animation: dropdown 400ms ease-in-out forwards;
+  transform-origin: top center;
+}
+
+@keyframes dropdown {
+  0% {
+    transform: rotateX(-90deg);
+  }
+  70% {
+    transform: rotateX(20deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
 }
 
 .open_button {
@@ -164,7 +178,7 @@ html {
 .form_container {
   max-width: 300px;
   padding: 10px;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 /* Full-width input fields */
