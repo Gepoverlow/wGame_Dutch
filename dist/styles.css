@@ -39,6 +39,14 @@ html {
   padding: 1vw;
 }
 
+#container_header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  font-size: 2vw;
+}
+
 #add_word {
   margin-left: 10px;
   font-size: 50px;
@@ -79,6 +87,10 @@ html {
 
 #high_score {
   cursor: pointer;
+}
+
+#wordOnScreen {
+  font-weight: bold;
 }
 
 .score {

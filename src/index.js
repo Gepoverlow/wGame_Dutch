@@ -53,6 +53,9 @@ let myFormEdit = document.getElementById("myForm_edit");
 let searchBar = document.getElementById("searchBar");
 let correctAnswer = document.getElementById("correctAnswer");
 
+let indicator = document.getElementById("indicator");
+let remainingWords = document.getElementById("remaining_words");
+
 hiScoreValue.textContent = game.hiScore;
 
 let index = undefined;
@@ -89,9 +92,11 @@ playBtn.addEventListener("click", function () {
   renderGameInfo();
   game.startGame(allWords, currentScoreValue, hiScoreValue);
   correctAnswer.textContent = "";
+  indicator.textContent = "Word ->";
+
   if (game.gameArray.length !== 0) {
     game.randomizeArray();
-    game.nextWord(wordOnScreen);
+    game.nextWord(wordOnScreen, remainingWords);
   } else if (game.gameArray.length === 0) {
     wordOnScreen.textContent = "ADD SOME WORDS BEFORE PLAYING!";
   }
@@ -100,12 +105,14 @@ playBtn.addEventListener("click", function () {
 playBtn_.addEventListener("click", () => {
   renderGameInfo();
   correctAnswer.textContent = "";
+  indicator.textContent = "Word ->";
 
   let AllNegativeWordsArray = allWords.filter((word) => word.value < 0);
   game.startGame(AllNegativeWordsArray, currentScoreValue, hiScoreValue);
+
   if (game.gameArray.length !== 0) {
     game.randomizeArray();
-    game.nextWord(wordOnScreen);
+    game.nextWord(wordOnScreen, remainingWords);
   } else if (game.gameArray.length === 0) {
     wordOnScreen.textContent = "0 NEGATIVE SCORE WORDS!";
   }
@@ -148,9 +155,10 @@ inputAnswer.addEventListener("keyup", function (e) {
     game.updateLocalStorage("hiScore");
     addToLocalStorage("wordsArray", allWords);
     if (game.gameArray.length !== 0) {
-      game.nextWord(wordOnScreen);
+      game.nextWord(wordOnScreen, remainingWords);
     } else {
       wordOnScreen.textContent = "DONE!";
+      remainingWords.textContent = "/0 words";
     }
     inputAnswer.value = "";
   }

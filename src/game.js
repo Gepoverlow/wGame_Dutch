@@ -32,10 +32,9 @@ export class Game {
     return `Correct Answer ->  ${this.gameArray[0].natWord}`;
   }
 
-  nextWord(htmlElement) {
-    return (htmlElement.textContent = `${
-      this.gameArray[0].nedWord
-    }        /${this.remainingWords()}`);
+  nextWord(htmlElement, htmlElement0) {
+    htmlElement.textContent = `${this.gameArray[0].nedWord}`;
+    htmlElement0.textContent = `/${this.remainingWords()} words`;
   }
 
   addPointToScore() {
