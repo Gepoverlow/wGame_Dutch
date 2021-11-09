@@ -88,6 +88,7 @@ containerBody.addEventListener("click", function (e) {
 playBtn.addEventListener("click", function () {
   renderGameInfo();
   game.startGame(allWords, currentScoreValue, hiScoreValue);
+  correctAnswer.textContent = "";
   if (game.gameArray.length !== 0) {
     game.randomizeArray();
     game.nextWord(wordOnScreen);
