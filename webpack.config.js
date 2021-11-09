@@ -1,7 +1,7 @@
 const path = require("path");
 
 module.exports = {
-  mode: "production",
+  mode: "development",
   entry: "./src/index.js",
   // To debug more efficiently:
   devtool: "inline-source-map",
