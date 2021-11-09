@@ -99,6 +99,7 @@ playBtn.addEventListener("click", function () {
 
 playBtn_.addEventListener("click", () => {
   renderGameInfo();
+  correctAnswer.textContent = "";
 
   let AllNegativeWordsArray = allWords.filter((word) => word.value < 0);
   game.startGame(AllNegativeWordsArray, currentScoreValue, hiScoreValue);
