@@ -134,7 +134,7 @@ prepositionsBtn.addEventListener("click", () => {
     game.randomizeArray();
     game.nextWord(wordOnScreen, remainingWords);
   } else if (game.gameArray.length === 0) {
-    wordOnScreen.textContent = "0 NEGATIVE SCORE WORDS!";
+    wordOnScreen.textContent = "0 PREPOSITIONS LEFT!";
   }
 });
 
