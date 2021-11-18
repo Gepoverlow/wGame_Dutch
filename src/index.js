@@ -37,6 +37,7 @@ let cancelBtnEdit = document.getElementById("btnCancel_edit");
 
 let playBtn = document.getElementById("playBtn");
 let playBtn_ = document.getElementById("playBtn_");
+let prepositionsBtn = document.getElementById("playPrepositions");
 let instructionsBtn = document.getElementById("instructions");
 
 let inputAnswer = document.getElementById("input_answer");
@@ -107,8 +108,27 @@ playBtn_.addEventListener("click", () => {
   correctAnswer.textContent = "";
   indicator.textContent = "Word ->";
 
-  let AllNegativeWordsArray = allWords.filter((word) => word.value < 0);
-  game.startGame(AllNegativeWordsArray, currentScoreValue, hiScoreValue);
+  let allNegativeWordsArray = allWords.filter((word) => word.value < 0);
+  game.startGame(allNegativeWordsArray, currentScoreValue, hiScoreValue);
+
+  if (game.gameArray.length !== 0) {
+    game.randomizeArray();
+    game.nextWord(wordOnScreen, remainingWords);
+  } else if (game.gameArray.length === 0) {
+    wordOnScreen.textContent = "0 NEGATIVE SCORE WORDS!";
+  }
+});
+
+prepositionsBtn.addEventListener("click", () => {
+  renderGameInfo();
+  correctAnswer.textContent = "";
+  indicator.textContent = "Word ->";
+
+  let allPrepositionsArray = allWords.filter((word) =>
+    word.nedWord.includes("ARTICLE")
+  );
+
+  game.startGame(allPrepositionsArray, currentScoreValue, hiScoreValue);
 
   if (game.gameArray.length !== 0) {
     game.randomizeArray();
