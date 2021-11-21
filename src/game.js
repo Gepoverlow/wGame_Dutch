@@ -33,7 +33,9 @@ export class Game {
   }
 
   nextWord(htmlElement, htmlElement0) {
-    htmlElement.textContent = `${this.gameArray[0].nedWord}`;
+    htmlElement.textContent = !this.gameArray[0].wArticle.includes("-")
+      ? `${this.gameArray[0].wArticle} ${this.gameArray[0].nedWord}`
+      : `${this.gameArray[0].nedWord}`;
     htmlElement0.textContent = `/${this.remainingWords()} words`;
   }
 
