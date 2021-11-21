@@ -37,6 +37,7 @@ let cancelBtnEdit = document.getElementById("btnCancel_edit");
 
 let playBtn = document.getElementById("playBtn");
 let playBtn_ = document.getElementById("playBtn_");
+let wordsBtn = document.getElementById("playWords");
 let prepositionsBtn = document.getElementById("playPrepositions");
 let instructionsBtn = document.getElementById("instructions");
 
@@ -116,6 +117,25 @@ playBtn_.addEventListener("click", () => {
     game.nextWord(wordOnScreen, remainingWords);
   } else if (game.gameArray.length === 0) {
     wordOnScreen.textContent = "0 NEGATIVE SCORE WORDS!";
+  }
+});
+
+wordsBtn.addEventListener("click", () => {
+  renderGameInfo();
+  correctAnswer.textContent = "";
+  indicator.textContent = "Word ->";
+
+  let allWoordenschatArray = allWords.filter(
+    (word) => !word.nedWord.includes("ARTICLE")
+  );
+
+  game.startGame(allWoordenschatArray, currentScoreValue, hiScoreValue);
+
+  if (game.gameArray.length !== 0) {
+    game.randomizeArray();
+    game.nextWord(wordOnScreen, remainingWords);
+  } else if (game.gameArray.length === 0) {
+    wordOnScreen.textContent = "0 WOORDENSCHAT LEFT!";
   }
 });
 
