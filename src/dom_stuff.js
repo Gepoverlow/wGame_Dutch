@@ -141,6 +141,11 @@ export function renderGameRules() {
     infoUL
   );
   ruleCreator("Click on Hiscore to reset the number back to 0.", infoUL);
+
+  ruleCreator(
+    "To add items to the PREPOSITIONS ONLY GAME, you must add the word ARTICLE to dutch word input when adding the item. For example ARTICLE - houden",
+    infoUL
+  );
 }
 
 function emptyNode(node) {
