@@ -127,7 +127,7 @@ wordsBtn.addEventListener("click", () => {
   indicator.textContent = "Word ->";
 
   let allWoordenschatArray = allWords.filter(
-    (word) => !word.nedWord.includes("ARTICLE")
+    (word) => !word.nedWord.includes("ARTICLE") && !word.nedWord.includes("IV")
   );
 
   game.startGame(allWoordenschatArray, currentScoreValue, hiScoreValue);
