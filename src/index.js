@@ -164,7 +164,7 @@ verbsBtn.addEventListener("click", () => {
   correctAnswer.textContent = "";
   indicator.textContent = "Word ->";
 
-  let allIVerbsArray = allWords.filter((word) => word.nedWord.includes("IR"));
+  let allIVerbsArray = allWords.filter((word) => word.nedWord.includes("IV"));
 
   game.startGame(allIVerbsArray, currentScoreValue, hiScoreValue);
 
