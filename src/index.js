@@ -39,6 +39,7 @@ let playBtn = document.getElementById("playBtn");
 let playBtn_ = document.getElementById("playBtn_");
 let wordsBtn = document.getElementById("playWords");
 let prepositionsBtn = document.getElementById("playPrepositions");
+let verbsBtn = document.getElementById("playVerbs");
 let instructionsBtn = document.getElementById("instructions");
 
 let inputAnswer = document.getElementById("input_answer");
@@ -155,6 +156,23 @@ prepositionsBtn.addEventListener("click", () => {
     game.nextWord(wordOnScreen, remainingWords);
   } else if (game.gameArray.length === 0) {
     wordOnScreen.textContent = "0 PREPOSITIONS LEFT!";
+  }
+});
+
+verbsBtn.addEventListener("click", () => {
+  renderGameInfo();
+  correctAnswer.textContent = "";
+  indicator.textContent = "Word ->";
+
+  let allIVerbsArray = allWords.filter((word) => word.nedWord.includes("IR"));
+
+  game.startGame(allIVerbsArray, currentScoreValue, hiScoreValue);
+
+  if (game.gameArray.length !== 0) {
+    game.randomizeArray();
+    game.nextWord(wordOnScreen, remainingWords);
+  } else if (game.gameArray.length === 0) {
+    wordOnScreen.textContent = "0 VERBS LEFT!";
   }
 });
 
