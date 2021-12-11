@@ -146,6 +146,11 @@ export function renderGameRules() {
     "To add items to the PREPOSITIONS ONLY GAME, you must add the word ARTICLE to dutch word input when adding the item. For example ARTICLE - houden",
     infoUL
   );
+
+  ruleCreator(
+    "To add items to the Irr. VERBS ONLY GAME, you must add the word IV to dutch word input when adding the item. For example IV - ruiken",
+    infoUL
+  );
 }
 
 function emptyNode(node) {
