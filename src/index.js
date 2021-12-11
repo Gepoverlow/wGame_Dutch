@@ -11,6 +11,7 @@ import {
   renderGameInfo,
   renderWords,
   renderGameRules,
+  reArrange,
 } from "./dom_stuff";
 import { Game } from "./game";
 
@@ -41,6 +42,7 @@ let wordsBtn = document.getElementById("playWords");
 let prepositionsBtn = document.getElementById("playPrepositions");
 let verbsBtn = document.getElementById("playVerbs");
 let instructionsBtn = document.getElementById("instructions");
+let rearrangeBtn = document.getElementById("re-arrange");
 
 let inputAnswer = document.getElementById("input_answer");
 let wordOnScreen = document.getElementById("wordOnScreen");
@@ -177,6 +179,12 @@ verbsBtn.addEventListener("click", () => {
 });
 
 listBtn.addEventListener("click", function () {
+  renderWords(allWords, containerBody);
+});
+
+rearrangeBtn.addEventListener("click", () => {
+  reArrange(allWords);
+  addToLocalStorage("wordsArray", allWords);
   renderWords(allWords, containerBody);
 });
 

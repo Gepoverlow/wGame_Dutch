@@ -166,6 +166,10 @@ function ruleCreator(info, parentNode) {
   rule.textContent = info;
 }
 
+export function reArrange(array) {
+  array.sort((a, b) => (a.value > b.value ? 1 : -1));
+}
+
 // function createId() {
 //   const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 //   const length = 5;
