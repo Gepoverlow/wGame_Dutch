@@ -1,3 +1,92 @@
+import { initializeApp } from "firebase/app";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  query,
+  orderBy,
+  limit,
+  onSnapshot,
+  setDoc,
+  updateDoc,
+  doc,
+  serverTimestamp,
+  getDocs,
+} from "firebase/firestore";
+import {
+  getAuth,
+  onAuthStateChanged,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCu0m9Rc5JpFfcjVsdGH4n2CwaKiADZxlk",
+  authDomain: "wdutchgame.firebaseapp.com",
+  projectId: "wdutchgame",
+  storageBucket: "wdutchgame.appspot.com",
+  messagingSenderId: "251365302162",
+  appId: "1:251365302162:web:f650cc63c8cc99f7c4eb4b",
+};
+
+initializeApp(firebaseConfig);
+
+//AUTH
+
+const provider = new GoogleAuthProvider();
+const auth = getAuth();
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/firebase.User
+    const uid = user.uid;
+    // ...
+    console.log("user is logged in");
+    showProfileInfo(user);
+  } else {
+    // User is signed out
+    // ...
+    console.log("user is logged out");
+    hideProfileInfo();
+  }
+});
+
+function googleLogIn() {
+  signInWithPopup(auth, provider)
+    .then((res) => {
+      console.log(res.user);
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+}
+
+function logOut() {
+  signOut(auth)
+    .then(() => {
+      console.log("user logged out!");
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+}
+
+function showProfileInfo(user) {
+  document.getElementById("profile-info").style.display = "flex";
+  document.getElementById("login").style.display = "none";
+  document.getElementById("profile-name").textContent = `${user.displayName}`;
+  document.getElementById("profile-picture").src = `${user.photoURL}`;
+}
+
+function hideProfileInfo() {
+  document.getElementById("profile-info").style.display = "none";
+  document.getElementById("login").style.display = "block";
+}
+
+//FIRESTORE
+
 import {
   createWord,
   printWordInfo,
@@ -60,6 +149,14 @@ let correctAnswer = document.getElementById("correctAnswer");
 
 let indicator = document.getElementById("indicator");
 let remainingWords = document.getElementById("remaining_words");
+
+let logInBtn = document.getElementById("login");
+let logOutBtn = document.getElementById("logout");
+
+//
+logInBtn.addEventListener("click", googleLogIn);
+logOutBtn.addEventListener("click", logOut);
+//
 
 hiScoreValue.textContent = game.hiScore;
 
