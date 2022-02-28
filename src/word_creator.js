@@ -14,6 +14,24 @@ class Word {
   }
 }
 
+export function createWordDB() {
+  let typeOfWord = document.getElementById("typeOfWord_add").value;
+  let deOfHet = document.getElementById("deOfHet_add").value;
+  let dWordInput = document.getElementById("dutchWord_input_add").value;
+  let nWordInput = document.getElementById("nativeWord_input_add").value;
+  //
+  let newWord = new Word(
+    typeOfWord,
+    deOfHet,
+    dWordInput,
+    nWordInput,
+    0,
+    "Meaning in Woorden - > "
+  );
+
+  return newWord;
+}
+
 export function createWord(arr) {
   let typeOfWord = document.getElementById("typeOfWord_add").value;
   let deOfHet = document.getElementById("deOfHet_add").value;

@@ -94,8 +94,45 @@ function hideProfileInfo() {
 
 //FIRESTORE
 
+async function saveWord(newWord) {
+  try {
+    await addDoc(collection(getFirestore(), "words"), wordToDoc(newWord));
+  } catch (error) {
+    console.error("Error writing new message to Firebase Database", error);
+  }
+}
+
+//UTILS
+
+function docsToWord(docs) {
+  return docs.map((doc) => {
+    return new Word(
+      doc.data().type,
+      doc.data().article,
+      doc.data().nedWord,
+      doc.data().natWord,
+      doc.data().value,
+      doc.data().link
+    );
+  });
+}
+
+function wordToDoc(word) {
+  return {
+    ownerId: auth.currentUser.uid,
+    type: word.wType,
+    article: word.wArticle,
+    nedWord: word.nedWord,
+    natWord: word.natWord,
+    value: word.value,
+    link: word.link,
+    createdAt: serverTimestamp(),
+  };
+}
+
 import {
   createWord,
+  createWordDB,
   printWordInfo,
   deleteWord,
   submitEdit,
@@ -315,6 +352,7 @@ addBtn.addEventListener("click", function (e) {
     e.preventDefault();
     if (isSignedIn) {
       createWord(allWords);
+      saveWord(createWordDB());
       addForm.reset();
       renderWords(allWords);
       document.getElementById("dutchWord_input_add").focus();
@@ -334,7 +372,7 @@ inputAnswer.addEventListener("keyup", function (e) {
     game.removeFirstObject();
     game.updateScore(currentScoreValue, hiScoreValue);
     game.updateLocalStorage("hiScore");
-    addToLocalStorage("wordsArray", allWords);
+    isSignedIn ? null : addToLocalStorage("wordsArray", allWords);
     if (game.gameArray.length !== 0) {
       game.nextWord(wordOnScreen, remainingWords);
     } else {
