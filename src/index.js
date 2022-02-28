@@ -37,19 +37,26 @@ initializeApp(firebaseConfig);
 const provider = new GoogleAuthProvider();
 const auth = getAuth();
 
+let isSignedIn;
+
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    // User is signed in, see docs for a list of available properties
-    // https://firebase.google.com/docs/reference/js/firebase.User
+    // User is signed in
     const uid = user.uid;
     // ...
     console.log("user is logged in");
     showProfileInfo(user);
+    isSignedIn = true;
+    allWords = [];
+    renderWords(allWords);
   } else {
     // User is signed out
     // ...
     console.log("user is logged out");
     hideProfileInfo();
+    isSignedIn = false;
+    allWords = getStorageData("wordsArray");
+    renderWords(allWords);
   }
 });
 
@@ -104,7 +111,7 @@ import {
 } from "./dom_stuff";
 import { Game } from "./game";
 
-let allWords = getStorageData("wordsArray");
+let allWords;
 
 let gameArray = [];
 
@@ -180,12 +187,16 @@ containerBody.addEventListener("click", function (e) {
       editForm.childNodes[5].value !== "" &&
       editForm.childNodes[9].value !== ""
     ) {
-      submitEdit(allWords, index, editForm.childNodes[5]);
-      addToLocalStorage("wordsArray", allWords);
-      renderWords(allWords, containerBody);
-      closeForm(myFormEdit);
-    } else {
-      alert("cant edit a word to empty fields!");
+      if (isSignedIn) {
+        submitEdit(allWords, index, editForm.childNodes[5]);
+        renderWords(allWords, containerBody);
+        closeForm(myFormEdit);
+      } else {
+        submitEdit(allWords, index, editForm.childNodes[5]);
+        addToLocalStorage("wordsArray", allWords);
+        renderWords(allWords, containerBody);
+        closeForm(myFormEdit);
+      }
     }
   }
 });
@@ -302,11 +313,18 @@ instructionsBtn.addEventListener("click", () => {
 addBtn.addEventListener("click", function (e) {
   if (addForm.checkValidity()) {
     e.preventDefault();
-    createWord(allWords);
-    addToLocalStorage("wordsArray", allWords);
-    addForm.reset();
-    renderWords(allWords);
-    document.getElementById("dutchWord_input_add").focus();
+    if (isSignedIn) {
+      createWord(allWords);
+      addForm.reset();
+      renderWords(allWords);
+      document.getElementById("dutchWord_input_add").focus();
+    } else {
+      createWord(allWords);
+      addToLocalStorage("wordsArray", allWords);
+      addForm.reset();
+      renderWords(allWords);
+      document.getElementById("dutchWord_input_add").focus();
+    }
   }
 });
 
@@ -341,10 +359,16 @@ searchBar.addEventListener("keyup", (e) => {
 deleteWordBtn.addEventListener("click", (e) => {
   if (e.target.id === "delete_word") {
     e.preventDefault();
-    deleteWord(allWords, index);
-    renderWords(allWords);
-    addToLocalStorage("wordsArray", allWords);
-    closeForm(myFormEdit);
+    if (isSignedIn) {
+      deleteWord(allWords, index);
+      renderWords(allWords);
+      closeForm(myFormEdit);
+    } else {
+      deleteWord(allWords, index);
+      renderWords(allWords);
+      addToLocalStorage("wordsArray", allWords);
+      closeForm(myFormEdit);
+    }
   }
 });
 
