@@ -4,6 +4,7 @@ import {
   collection,
   addDoc,
   query,
+  where,
   orderBy,
   limit,
   onSnapshot,
@@ -12,6 +13,7 @@ import {
   doc,
   serverTimestamp,
   getDocs,
+  QuerySnapshot,
 } from "firebase/firestore";
 import {
   getAuth,
@@ -20,6 +22,24 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth";
+import {
+  createWord,
+  createWordDB,
+  printWordInfo,
+  deleteWord,
+  submitEdit,
+  Word,
+} from "./word_creator";
+import {
+  openForm,
+  closeForm,
+  showDropDown,
+  renderGameInfo,
+  renderWords,
+  renderGameRules,
+  reArrange,
+} from "./dom_stuff";
+import { Game } from "./game";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCu0m9Rc5JpFfcjVsdGH4n2CwaKiADZxlk",
@@ -42,17 +62,11 @@ let isSignedIn;
 onAuthStateChanged(auth, (user) => {
   if (user) {
     // User is signed in
-    const uid = user.uid;
-    // ...
-    console.log("user is logged in");
+    loadWords();
     showProfileInfo(user);
     isSignedIn = true;
-    allWords = [];
-    renderWords(allWords);
   } else {
     // User is signed out
-    // ...
-    console.log("user is logged out");
     hideProfileInfo();
     isSignedIn = false;
     allWords = getStorageData("wordsArray");
@@ -61,13 +75,7 @@ onAuthStateChanged(auth, (user) => {
 });
 
 function googleLogIn() {
-  signInWithPopup(auth, provider)
-    .then((res) => {
-      console.log(res.user);
-    })
-    .catch((e) => {
-      console.log(e);
-    });
+  signInWithPopup(auth, provider);
 }
 
 function logOut() {
@@ -94,27 +102,39 @@ function hideProfileInfo() {
 
 //FIRESTORE
 
+const db = getFirestore();
+
 async function saveWord(newWord) {
   try {
-    await addDoc(collection(getFirestore(), "words"), wordToDoc(newWord));
+    await addDoc(collection(db, "words"), wordToDoc(newWord));
   } catch (error) {
     console.error("Error writing new message to Firebase Database", error);
   }
 }
+function loadWords() {
+  const q = query(
+    collection(db, "words"),
+    where("ownerId", "==", auth.currentUser.uid),
+    orderBy("createdAt")
+  );
+  const unsubscribe = onSnapshot(q, (querySnapshot) => {
+    allWords = [];
+    querySnapshot.forEach((snapshot) => allWords.push(docsToWord(snapshot)));
+    renderWords(allWords);
+  });
+}
 
 //UTILS
 
-function docsToWord(docs) {
-  return docs.map((doc) => {
-    return new Word(
-      doc.data().type,
-      doc.data().article,
-      doc.data().nedWord,
-      doc.data().natWord,
-      doc.data().value,
-      doc.data().link
-    );
-  });
+function docsToWord(doc) {
+  return new Word(
+    doc.data().type,
+    doc.data().article,
+    doc.data().nedWord,
+    doc.data().natWord,
+    doc.data().value,
+    doc.data().link
+  );
 }
 
 function wordToDoc(word) {
@@ -129,24 +149,6 @@ function wordToDoc(word) {
     createdAt: serverTimestamp(),
   };
 }
-
-import {
-  createWord,
-  createWordDB,
-  printWordInfo,
-  deleteWord,
-  submitEdit,
-} from "./word_creator";
-import {
-  openForm,
-  closeForm,
-  showDropDown,
-  renderGameInfo,
-  renderWords,
-  renderGameRules,
-  reArrange,
-} from "./dom_stuff";
-import { Game } from "./game";
 
 let allWords;
 

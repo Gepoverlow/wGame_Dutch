@@ -3,7 +3,7 @@ let deOfHet = document.getElementById("deOfHet_edit");
 let dWordInput = document.getElementById("dutchWord_input_edit");
 let nWordInput = document.getElementById("nativeWord_input_edit");
 
-class Word {
+export class Word {
   constructor(wType, wArticle, nedWord, natWord, value, link) {
     this.wType = wType;
     this.wArticle = wArticle;
