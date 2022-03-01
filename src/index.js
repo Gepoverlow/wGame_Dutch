@@ -13,6 +13,7 @@ import {
   doc,
   serverTimestamp,
   getDocs,
+  deleteDoc,
   QuerySnapshot,
 } from "firebase/firestore";
 import {
@@ -124,6 +125,12 @@ function loadWords() {
   });
 }
 
+async function removeWord(nedWord) {
+  const docRef = doc(db, "words", await getWordIdDB(nedWord));
+
+  deleteDoc(docRef);
+}
+
 async function getWordIdDB(nedWord) {
   const q = query(collection(db, "words"), where("nedWord", "==", nedWord));
 
@@ -132,16 +139,6 @@ async function getWordIdDB(nedWord) {
 
   return docRefId;
 }
-
-// const getBookIdDB = async (title) => {
-//   const snapshot = await db
-//     .collection("books")
-//     .where("ownerId", "==", auth.currentUser.uid)
-//     .where("title", "==", title)
-//     .get();
-//   const bookId = snapshot.docs.map((doc) => doc.id).join("");
-//   return bookId;
-// };
 
 //UTILS
 
@@ -419,7 +416,7 @@ deleteWordBtn.addEventListener("click", (e) => {
   if (e.target.id === "delete_word") {
     e.preventDefault();
     if (isSignedIn) {
-      deleteWord(allWords, index);
+      removeWord(allWords[index].nedWord);
       renderWords(allWords);
       closeForm(myFormEdit);
     } else {
