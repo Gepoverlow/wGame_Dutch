@@ -117,12 +117,31 @@ function loadWords() {
     where("ownerId", "==", auth.currentUser.uid),
     orderBy("createdAt")
   );
-  const unsubscribe = onSnapshot(q, (querySnapshot) => {
+  onSnapshot(q, (querySnapshot) => {
     allWords = [];
     querySnapshot.forEach((snapshot) => allWords.push(docsToWord(snapshot)));
     renderWords(allWords);
   });
 }
+
+async function getWordIdDB(nedWord) {
+  const q = query(collection(db, "words"), where("nedWord", "==", nedWord));
+
+  const querySnapshot = await getDocs(q);
+  const docRefId = querySnapshot.docs[0].id;
+
+  return docRefId;
+}
+
+// const getBookIdDB = async (title) => {
+//   const snapshot = await db
+//     .collection("books")
+//     .where("ownerId", "==", auth.currentUser.uid)
+//     .where("title", "==", title)
+//     .get();
+//   const bookId = snapshot.docs.map((doc) => doc.id).join("");
+//   return bookId;
+// };
 
 //UTILS
 
