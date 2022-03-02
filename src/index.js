@@ -131,6 +131,17 @@ async function removeWord(nedWord) {
   deleteDoc(docRef);
 }
 
+async function updateWord(nedWord) {
+  const docRef = doc(db, "words", await getWordIdDB(nedWord));
+
+  updateDoc(docRef, {
+    nedWord: document.getElementById("dutchWord_input_edit").value,
+    natWord: document.getElementById("nativeWord_input_edit").value,
+    article: document.getElementById("typeOfWord_edit").value,
+    type: document.getElementById("deOfHet_edit").value,
+  });
+}
+
 async function getWordIdDB(nedWord) {
   const q = query(collection(db, "words"), where("nedWord", "==", nedWord));
 
@@ -243,8 +254,9 @@ containerBody.addEventListener("click", function (e) {
       editForm.childNodes[9].value !== ""
     ) {
       if (isSignedIn) {
-        submitEdit(allWords, index, editForm.childNodes[5]);
-        renderWords(allWords, containerBody);
+        // submitEdit(allWords, index, editForm.childNodes[5]);
+        // renderWords(allWords, containerBody);
+        updateWord(allWords[index].nedWord);
         closeForm(myFormEdit);
       } else {
         submitEdit(allWords, index, editForm.childNodes[5]);
