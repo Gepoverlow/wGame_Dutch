@@ -332,3 +332,7 @@ html {
 #profile-info > #logout {
   cursor: pointer;
 }
+
+#localToCloud {
+  cursor: pointer;
+}
