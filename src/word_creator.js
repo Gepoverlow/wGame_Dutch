@@ -77,7 +77,7 @@ export function printWordInfo(array, index) {
   nWordInput.value = array[index].natWord;
 }
 
-export function submitEdit(array, index, input) {
+export function submitEdit(array, index) {
   array[index].wType = typeOfWord.value;
   array[index].wArticle = deOfHet.value;
   array[index].nedWord = dWordInput.value;

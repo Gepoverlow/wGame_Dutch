@@ -164,15 +164,18 @@ async function copyLocalToCloud() {
     const local = getStorageData("wordsArray");
 
     const querySnapshot = await getDocs(q);
+
     querySnapshot.forEach((doc) => {
-      console.log(doc.data().natWord);
+      local.forEach((word) => {
+        word.nedWord === doc.data().nedWord
+          ? local.splice(findIndex(local, word.nedWord), 1)
+          : null;
+      });
+    });
+    local.forEach((word) => {
+      saveWord(createWordLocalToDb(word));
     });
   }
-  // const local = getStorageData("wordsArray");
-
-  // local.forEach((word) => {
-  //   saveWord(createWordLocalToDb(word));
-  // });
 }
 
 function docsToWord(doc) {
@@ -197,6 +200,16 @@ function wordToDoc(word) {
     link: word.link,
     createdAt: serverTimestamp(),
   };
+}
+
+function findIndex(array, nedWord) {
+  let index = array
+    .map(function (x) {
+      return x.nedWord;
+    })
+    .indexOf(nedWord);
+
+  return index;
 }
 
 let allWords;
