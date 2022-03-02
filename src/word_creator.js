@@ -14,6 +14,18 @@ export class Word {
   }
 }
 
+export function createWordLocalToDb(word) {
+  let newWord = new Word(
+    word.wType,
+    word.wArticle,
+    word.nedWord,
+    word.natWord,
+    word.value,
+    "Meaning in Woorden - > "
+  );
+  return newWord;
+}
+
 export function createWordDB() {
   let typeOfWord = document.getElementById("typeOfWord_add").value;
   let deOfHet = document.getElementById("deOfHet_add").value;

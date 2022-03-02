@@ -26,6 +26,7 @@ import {
 import {
   createWord,
   createWordDB,
+  createWordLocalToDb,
   printWordInfo,
   deleteWord,
   submitEdit,
@@ -153,6 +154,27 @@ async function getWordIdDB(nedWord) {
 
 //UTILS
 
+async function copyLocalToCloud() {
+  if (isSignedIn) {
+    const q = query(
+      collection(db, "words"),
+      where("ownerId", "==", auth.currentUser.uid)
+    );
+
+    const local = getStorageData("wordsArray");
+
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      console.log(doc.data().natWord);
+    });
+  }
+  // const local = getStorageData("wordsArray");
+
+  // local.forEach((word) => {
+  //   saveWord(createWordLocalToDb(word));
+  // });
+}
+
 function docsToWord(doc) {
   return new Word(
     doc.data().type,
@@ -226,9 +248,13 @@ let remainingWords = document.getElementById("remaining_words");
 let logInBtn = document.getElementById("login");
 let logOutBtn = document.getElementById("logout");
 
+let localToCloud = document.getElementById("localToCloud");
+
 //
 logInBtn.addEventListener("click", googleLogIn);
 logOutBtn.addEventListener("click", logOut);
+
+localToCloud.addEventListener("click", copyLocalToCloud);
 //
 
 hiScoreValue.textContent = game.hiScore;
@@ -381,7 +407,7 @@ addBtn.addEventListener("click", function (e) {
   if (addForm.checkValidity()) {
     e.preventDefault();
     if (isSignedIn) {
-      createWord(allWords);
+      // createWord(allWords);
       saveWord(createWordDB());
       addForm.reset();
       renderWords(allWords);
@@ -429,7 +455,6 @@ deleteWordBtn.addEventListener("click", (e) => {
     e.preventDefault();
     if (isSignedIn) {
       removeWord(allWords[index].nedWord);
-      renderWords(allWords);
       closeForm(myFormEdit);
     } else {
       deleteWord(allWords, index);
