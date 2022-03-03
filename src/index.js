@@ -59,7 +59,7 @@ initializeApp(firebaseConfig);
 const provider = new GoogleAuthProvider();
 const auth = getAuth();
 
-let isSignedIn;
+export let isSignedIn;
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
@@ -140,6 +140,30 @@ async function updateWord(nedWord) {
     natWord: document.getElementById("nativeWord_input_edit").value,
     article: document.getElementById("typeOfWord_edit").value,
     type: document.getElementById("deOfHet_edit").value,
+  });
+}
+
+export async function addScoreDb(nedWord) {
+  const docRef = doc(db, "words", await getWordIdDB(nedWord));
+  const q = query(collection(db, "words"), where("nedWord", "==", nedWord));
+  const querySnapshot = await getDocs(q);
+
+  querySnapshot.forEach((doc) => {
+    updateDoc(docRef, {
+      value: doc.data().value + 1,
+    });
+  });
+}
+
+export async function decreaseScoreDb(nedWord) {
+  const docRef = doc(db, "words", await getWordIdDB(nedWord));
+  const q = query(collection(db, "words"), where("nedWord", "==", nedWord));
+  const querySnapshot = await getDocs(q);
+
+  querySnapshot.forEach((doc) => {
+    updateDoc(docRef, {
+      value: doc.data().value - 1,
+    });
   });
 }
 

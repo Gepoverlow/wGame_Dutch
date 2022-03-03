@@ -1,3 +1,5 @@
+import { addScoreDb, decreaseScoreDb, isSignedIn } from "./index";
+
 export class Game {
   constructor(gameArray, currentScore, hiScore) {
     this.gameArray = gameArray;
@@ -56,11 +58,15 @@ export class Game {
   }
 
   addValue() {
-    return this.gameArray[0].value++;
+    return isSignedIn
+      ? addScoreDb(this.gameArray[0].nedWord)
+      : this.gameArray[0].value++;
   }
 
   removeValue() {
-    return this.gameArray[0].value--;
+    return isSignedIn
+      ? decreaseScoreDb(this.gameArray[0].nedWord)
+      : this.gameArray[0].value--;
   }
 
   removeFirstObject() {
