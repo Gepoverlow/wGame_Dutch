@@ -122,7 +122,7 @@ function loadWords() {
   onSnapshot(q, (querySnapshot) => {
     allWords = [];
     querySnapshot.forEach((snapshot) => allWords.push(docsToWord(snapshot)));
-    renderWords(allWords);
+    game.isPlaying ? null : renderWords(allWords);
   });
 }
 
@@ -240,6 +240,8 @@ let allWords;
 
 let gameArray = [];
 
+let index = undefined;
+
 let game = new Game(gameArray, 0, getStorageData("hiScore"));
 
 let containerBody = document.querySelector(".container_body");
@@ -287,16 +289,18 @@ let logOutBtn = document.getElementById("logout");
 
 let localToCloud = document.getElementById("localToCloud");
 
+//EVENT LISTENERS
+
 //
+
 logInBtn.addEventListener("click", googleLogIn);
 logOutBtn.addEventListener("click", logOut);
 
 localToCloud.addEventListener("click", copyLocalToCloud);
+
 //
 
 hiScoreValue.textContent = game.hiScore;
-
-let index = undefined;
 
 containerBody.addEventListener("click", function (e) {
   if (
@@ -332,6 +336,7 @@ containerBody.addEventListener("click", function (e) {
 });
 
 playBtn.addEventListener("click", function () {
+  game.isPlaying = true;
   renderGameInfo();
   game.startGame(allWords, currentScoreValue, hiScoreValue);
   correctAnswer.textContent = "";
@@ -346,6 +351,7 @@ playBtn.addEventListener("click", function () {
 });
 
 playBtn_.addEventListener("click", () => {
+  game.isPlaying = true;
   renderGameInfo();
   correctAnswer.textContent = "";
   indicator.textContent = "Word ->";
@@ -362,6 +368,7 @@ playBtn_.addEventListener("click", () => {
 });
 
 wordsBtn.addEventListener("click", () => {
+  game.isPlaying = true;
   renderGameInfo();
   correctAnswer.textContent = "";
   indicator.textContent = "Word ->";
@@ -381,6 +388,7 @@ wordsBtn.addEventListener("click", () => {
 });
 
 prepositionsBtn.addEventListener("click", () => {
+  game.isPlaying = true;
   renderGameInfo();
   correctAnswer.textContent = "";
   indicator.textContent = "Word ->";
@@ -400,6 +408,7 @@ prepositionsBtn.addEventListener("click", () => {
 });
 
 verbsBtn.addEventListener("click", () => {
+  game.isPlaying = true;
   renderGameInfo();
   correctAnswer.textContent = "";
   indicator.textContent = "Word ->";
@@ -417,10 +426,12 @@ verbsBtn.addEventListener("click", () => {
 });
 
 listBtn.addEventListener("click", function () {
+  game.isPlaying = false;
   renderWords(allWords, containerBody);
 });
 
 rearrangeBtn.addEventListener("click", () => {
+  game.isPlaying = false;
   if (!isSignedIn) {
     reArrange(allWords);
     addToLocalStorage("wordsArray", allWords);
@@ -429,6 +440,7 @@ rearrangeBtn.addEventListener("click", () => {
 });
 
 resetBtn.addEventListener("click", () => {
+  game.isPlaying = false;
   allWords.forEach((word) => {
     word.value = 0;
     renderWords(allWords, containerBody);
@@ -438,11 +450,13 @@ resetBtn.addEventListener("click", () => {
 });
 
 instructionsBtn.addEventListener("click", () => {
+  game.isPlaying = false;
   console.log("testing");
   renderGameRules();
 });
 
 addBtn.addEventListener("click", function (e) {
+  game.isPlaying = false;
   if (addForm.checkValidity()) {
     e.preventDefault();
     if (isSignedIn) {
@@ -490,6 +504,7 @@ searchBar.addEventListener("keyup", (e) => {
 });
 
 deleteWordBtn.addEventListener("click", (e) => {
+  game.isPlaying = false;
   if (e.target.id === "delete_word") {
     e.preventDefault();
     if (isSignedIn) {
@@ -526,6 +541,7 @@ hiScore.addEventListener("click", () => {
 dropBtn.addEventListener("click", showDropDown);
 
 addWordBtn.addEventListener("click", function () {
+  game.isPlaying = false;
   openForm(myFormAdd);
 });
 

@@ -5,6 +5,7 @@ export class Game {
     this.gameArray = gameArray;
     this.currentScore = currentScore;
     this.hiScore = hiScore;
+    this.isPlaying = true;
   }
 
   startGame(array, htmlElementC, htmlElementH) {
