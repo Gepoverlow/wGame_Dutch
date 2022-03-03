@@ -421,9 +421,11 @@ listBtn.addEventListener("click", function () {
 });
 
 rearrangeBtn.addEventListener("click", () => {
-  reArrange(allWords);
-  addToLocalStorage("wordsArray", allWords);
-  renderWords(allWords, containerBody);
+  if (!isSignedIn) {
+    reArrange(allWords);
+    addToLocalStorage("wordsArray", allWords);
+    renderWords(allWords, containerBody);
+  }
 });
 
 resetBtn.addEventListener("click", () => {
