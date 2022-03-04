@@ -64,13 +64,14 @@ export let isSignedIn;
 onAuthStateChanged(auth, (user) => {
   if (user) {
     // User is signed in
+    isSignedIn = true;
+    game.isPlaying = false;
     loadWords();
     showProfileInfo(user);
-    isSignedIn = true;
   } else {
     // User is signed out
-    hideProfileInfo();
     isSignedIn = false;
+    hideProfileInfo();
     allWords = getStorageData("wordsArray");
     renderWords(allWords);
   }
@@ -143,6 +144,20 @@ async function updateWord(nedWord) {
   });
 }
 
+async function resetValueDb() {
+  const q = query(
+    collection(db, "words"),
+    where("ownerId", "==", auth.currentUser.uid)
+  );
+  const querySnapshot = await getDocs(q);
+
+  querySnapshot.forEach((doc) => {
+    updateDoc(doc.ref, {
+      value: 0,
+    });
+  });
+}
+
 export async function addScoreDb(nedWord) {
   const docRef = doc(db, "words", await getWordIdDB(nedWord));
   const q = query(collection(db, "words"), where("nedWord", "==", nedWord));
@@ -157,6 +172,7 @@ export async function addScoreDb(nedWord) {
 
 export async function decreaseScoreDb(nedWord) {
   const docRef = doc(db, "words", await getWordIdDB(nedWord));
+  console.log(docRef);
   const q = query(collection(db, "words"), where("nedWord", "==", nedWord));
   const querySnapshot = await getDocs(q);
 
@@ -441,12 +457,16 @@ rearrangeBtn.addEventListener("click", () => {
 
 resetBtn.addEventListener("click", () => {
   game.isPlaying = false;
-  allWords.forEach((word) => {
-    word.value = 0;
-    renderWords(allWords, containerBody);
-    addToLocalStorage("wordsArray", allWords);
-  });
-  console.log(allWords);
+  if (isSignedIn) {
+    console.log(allWords);
+    resetValueDb();
+  } else {
+    allWords.forEach((word) => {
+      word.value = 0;
+      renderWords(allWords, containerBody);
+      addToLocalStorage("wordsArray", allWords);
+    });
+  }
 });
 
 instructionsBtn.addEventListener("click", () => {
