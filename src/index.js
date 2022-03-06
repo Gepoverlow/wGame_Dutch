@@ -160,7 +160,11 @@ async function resetValueDb() {
 
 export async function addScoreDb(nedWord) {
   const docRef = doc(db, "words", await getWordIdDB(nedWord));
-  const q = query(collection(db, "words"), where("nedWord", "==", nedWord));
+  const q = query(
+    collection(db, "words"),
+    where("nedWord", "==", nedWord),
+    where("ownerId", "==", auth.currentUser.uid)
+  );
   const querySnapshot = await getDocs(q);
 
   querySnapshot.forEach((doc) => {
@@ -172,8 +176,11 @@ export async function addScoreDb(nedWord) {
 
 export async function decreaseScoreDb(nedWord) {
   const docRef = doc(db, "words", await getWordIdDB(nedWord));
-  console.log(docRef);
-  const q = query(collection(db, "words"), where("nedWord", "==", nedWord));
+  const q = query(
+    collection(db, "words"),
+    where("nedWord", "==", nedWord),
+    where("ownerId", "==", auth.currentUser.uid)
+  );
   const querySnapshot = await getDocs(q);
 
   querySnapshot.forEach((doc) => {
@@ -458,7 +465,6 @@ rearrangeBtn.addEventListener("click", () => {
 resetBtn.addEventListener("click", () => {
   game.isPlaying = false;
   if (isSignedIn) {
-    console.log(allWords);
     resetValueDb();
   } else {
     allWords.forEach((word) => {
