@@ -1,0 +1,66 @@
+0000000000000000000000000000000000000000 269cf1d550bc55bf281df385bac32776627a92a3 Gepoverlow <gepeoverload@gmail.com> 1635256820 +0200	commit (initial): first commit
+269cf1d550bc55bf281df385bac32776627a92a3 d969ee57b640cec29562c7f8295803933c0e012d Gepoverlow <gepeoverload@gmail.com> 1635256961 +0200	commit: added gitignore
+d969ee57b640cec29562c7f8295803933c0e012d 0000000000000000000000000000000000000000 Gepoverlow <gepeoverload@gmail.com> 1635256977 +0200	Branch: renamed refs/heads/main to refs/heads/main
+d969ee57b640cec29562c7f8295803933c0e012d d969ee57b640cec29562c7f8295803933c0e012d Gepoverlow <gepeoverload@gmail.com> 1635256977 +0200	Branch: renamed refs/heads/main to refs/heads/main
+d969ee57b640cec29562c7f8295803933c0e012d eae1e5263d8b45f5f31e663f558cb566f9d2c4ad Gepoverlow <gepeoverload@gmail.com> 1635264503 +0200	commit: added form to add words
+eae1e5263d8b45f5f31e663f558cb566f9d2c4ad 25bf1eb75f8de3bd21ea003743bb87c555b9ff6d Gepoverlow <gepeoverload@gmail.com> 1635264865 +0200	commit: final tweaks of the day, created different module for dom stuff
+25bf1eb75f8de3bd21ea003743bb87c555b9ff6d 12aeaa53dd3c5e5f77e4fc0dc82fb7b2a3c4d512 Gepoverlow <gepeoverload@gmail.com> 1635353503 +0200	commit: added add word feature & compare function almost works, needs tweaking
+12aeaa53dd3c5e5f77e4fc0dc82fb7b2a3c4d512 e23458f73976cdb864f9a24786ed4c80b87d31ee Gepoverlow <gepeoverload@gmail.com> 1635417757 +0200	commit: game class is working better now, added compare, remove and add to wrong array or correct array
+e23458f73976cdb864f9a24786ed4c80b87d31ee 190241c92c3ba252250b7a582c1a771bc5fb0713 Gepoverlow <gepeoverload@gmail.com> 1635429182 +0200	commit: added feature to add or remove value depending if answer is correct or not
+190241c92c3ba252250b7a582c1a771bc5fb0713 4e49a461b9ce1ea17c8d97c8e3400a679c7bdc41 Gepoverlow <gepeoverload@gmail.com> 1635435963 +0200	commit: added localstorage to hiscore
+4e49a461b9ce1ea17c8d97c8e3400a679c7bdc41 f0a123d289372a18b634a2499628ad31f9a18cce Gepoverlow <gepeoverload@gmail.com> 1635507298 +0200	commit: added feature: cant add a word that has already been added to the main array
+f0a123d289372a18b634a2499628ad31f9a18cce 83fcb59ece1da81aca15f4d9426a7fa7eb15c9a9 Gepoverlow <gepeoverload@gmail.com> 1635512840 +0200	commit: added localstorage to allWords array
+83fcb59ece1da81aca15f4d9426a7fa7eb15c9a9 17cb11f332c4019054cd03d00d38430b363a3a44 Gepoverlow <gepeoverload@gmail.com> 1635773453 +0100	commit: added feature: words can now be seen in a list
+17cb11f332c4019054cd03d00d38430b363a3a44 d1ec64d47525391fefc960505c5c3261f0387b31 Gepoverlow <gepeoverload@gmail.com> 1635774099 +0100	commit: play button now also appends game info into baody container, allowing toggling between list and game
+d1ec64d47525391fefc960505c5c3261f0387b31 48f1b02f6e2629ea68d042e866733ec2c2c06227 Gepoverlow <gepeoverload@gmail.com> 1635861248 +0100	commit: working on editing words feature
+48f1b02f6e2629ea68d042e866733ec2c2c06227 827d8f33411c6c83828414d065f54844caca402c Gepoverlow <gepeoverload@gmail.com> 1635864576 +0100	commit: save before tidying up code
+827d8f33411c6c83828414d065f54844caca402c 4918f5a20138ed7fce15eb1a11d445d4e0fe716e Gepoverlow <gepeoverload@gmail.com> 1635869598 +0100	commit: code is a bit more tidy and added edit feature succesfully
+4918f5a20138ed7fce15eb1a11d445d4e0fe716e 0d3c55bd2384bc961c552e8c86c0b5c0836f67ca Gepoverlow <gepeoverload@gmail.com> 1635936685 +0100	commit: search function is semi working- need to change the edit way of operating
+0d3c55bd2384bc961c552e8c86c0b5c0836f67ca e092bc2dd2add1fcbac68e028ee05407e4498cf1 Gepoverlow <gepeoverload@gmail.com> 1635939180 +0100	commit: succesfully implemented search bar functionality!
+e092bc2dd2add1fcbac68e028ee05407e4498cf1 64b5013717839a979e496f07d159282ebbd26996 Gepoverlow <gepeoverload@gmail.com> 1635940458 +0100	commit: added feature : delete word functionality works correctly
+64b5013717839a979e496f07d159282ebbd26996 9aa7a560bd2c68f9609b79d4e304a1c45710aad3 Gepoverlow <gepeoverload@gmail.com> 1635942168 +0100	commit: added case insensitive to the searchbar func
+9aa7a560bd2c68f9609b79d4e304a1c45710aad3 eebf65b936e127ef5f9340120dbdd2baac054793 Gepoverlow <gepeoverload@gmail.com> 1636022376 +0100	commit: added feature words are displayed in different colours depending on the score2
+eebf65b936e127ef5f9340120dbdd2baac054793 1f99accf24c4c49e5c3cccc7fdfbd28adec430bc Gepoverlow <gepeoverload@gmail.com> 1636024822 +0100	commit: working on game only with negative score words, commiting before experimenting
+1f99accf24c4c49e5c3cccc7fdfbd28adec430bc aa2f88a9404fca94bbf4af20b740f1074373d18e Gepoverlow <gepeoverload@gmail.com> 1636036591 +0100	commit: commit before removing form status to edit popup
+aa2f88a9404fca94bbf4af20b740f1074373d18e 05a9ba47fdc1a83c34de416c82f50eaf3d6d7559 Gepoverlow <gepeoverload@gmail.com> 1636040135 +0100	commit: added focus to the input field on form submit
+3fa5346a9a65901282f16bc4c3b9bcc1c4154fec d5baf12a7d649e6c1ac50fcfa8f3be491f185df3 Gepoverlow <gepeoverload@gmail.com> 1636285440 +0100	commit: changed add button icon
+d5baf12a7d649e6c1ac50fcfa8f3be491f185df3 fdd42243d5a979d6bf7d7755f82c4fb1725b38bc Gepoverlow <gepeoverload@gmail.com> 1636288077 +0100	commit: added animation to dropdown button
+fdd42243d5a979d6bf7d7755f82c4fb1725b38bc c7a0b3e8cb94e7648742cca7df11cc9cf7528675 Gepoverlow <gepeoverload@gmail.com> 1636290718 +0100	commit: added feature to redirect and search book on dictionary
+c7a0b3e8cb94e7648742cca7df11cc9cf7528675 26ac37fde671ab4a1d44802b07accdf9e49c597c Gepoverlow <gepeoverload@gmail.com> 1636298205 +0100	commit: added feature to see the correct answer
+26ac37fde671ab4a1d44802b07accdf9e49c597c a41ccb159d2a5b789dbabad6c167340508604b49 Gepoverlow <gepeoverload@gmail.com> 1636300759 +0100	commit: improved the edit funcionality
+a41ccb159d2a5b789dbabad6c167340508604b49 5439bb89573b71231ba8ca2d975c6dcf5ae6fe13 Gepoverlow <gepeoverload@gmail.com> 1636302729 +0100	commit: app is ready to launch!
+5439bb89573b71231ba8ca2d975c6dcf5ae6fe13 aebee7bcdd3ca3f86f12b10078f73526cc6fe2e8 Gepoverlow <gepeoverload@gmail.com> 1636305083 +0100	commit: changed development to production mode
+aebee7bcdd3ca3f86f12b10078f73526cc6fe2e8 7da1eb5dc36c995b6a20f46ed0d4a5796c15ebe9 Gepoverlow <gepeoverload@gmail.com> 1636474618 +0100	commit: testing now new edit
+7da1eb5dc36c995b6a20f46ed0d4a5796c15ebe9 183b95df4949c2aaaabbf44f6c68376c73d1132c Gepoverlow <gepeoverload@gmail.com> 1636474993 +0100	commit: now correct answer erases on new game button click
+183b95df4949c2aaaabbf44f6c68376c73d1132c 9223869918fe37af68d1f557b9f9cdc0a9abc142 Gepoverlow <gepeoverload@gmail.com> 1636475066 +0100	commit: now on wrong words button click correct answer get deleted aswell
+9223869918fe37af68d1f557b9f9cdc0a9abc142 7927db59d811ea961ad60762de36e3dbe1896466 Gepoverlow <gepeoverload@gmail.com> 1636476952 +0100	commit: tidying up the code and UI
+7927db59d811ea961ad60762de36e3dbe1896466 dd80d0947250073afb0842e16b4f39a7ddca354d Gepoverlow <gepeoverload@gmail.com> 1636645693 +0100	commit: words can now be of type -
+dd80d0947250073afb0842e16b4f39a7ddca354d 6e63eb93f4a9be09da13757cd4242c039e284441 Gepoverlow <gepeoverload@gmail.com> 1637251910 +0100	commit: added ability to play only with prepositions
+6e63eb93f4a9be09da13757cd4242c039e284441 d798a2deec3a4e0be6c1be441c0d5c81f7a70c22 Gepoverlow <gepeoverload@gmail.com> 1637252697 +0100	commit: added minor UI
+d798a2deec3a4e0be6c1be441c0d5c81f7a70c22 6bf89af9bc15129346a2c6317a6f8424b808b82b Gepoverlow <gepeoverload@gmail.com> 1637493451 +0100	commit: added feature to play woordenschat only also
+6bf89af9bc15129346a2c6317a6f8424b808b82b aac5a7a752538b6a77b3e1ada3531534a908f976 Gepoverlow <gepeoverload@gmail.com> 1637493664 +0100	commit: added info about prepositions
+aac5a7a752538b6a77b3e1ada3531534a908f976 738812af0cfa839eacd89d51c9a1b7084c3b4400 Gepoverlow <gepeoverload@gmail.com> 1637494957 +0100	commit: added feature to see if the word is de of het
+738812af0cfa839eacd89d51c9a1b7084c3b4400 10428cabee24cbbb065c63099853cdde7a3895e6 Gepoverlow <gepeoverload@gmail.com> 1638376417 +0100	commit: added feature to play irregular verbs only
+10428cabee24cbbb065c63099853cdde7a3895e6 8fcbf44deeb302ecb6dd84a3499d29dce576bc68 Gepoverlow <gepeoverload@gmail.com> 1638376589 +0100	commit: fixed typo
+8fcbf44deeb302ecb6dd84a3499d29dce576bc68 625a612d817ea8c5b78875a3bacfa7c9d68b917b Gepoverlow <gepeoverload@gmail.com> 1638377055 +0100	commit: fixed another minor detail
+625a612d817ea8c5b78875a3bacfa7c9d68b917b b3a5f9ea15df356012aa249406e25294638153af Gepoverlow <gepeoverload@gmail.com> 1639253241 +0100	commit: added feature to re-order and set the worst world on top of the list
+b3a5f9ea15df356012aa249406e25294638153af 1df1771413890b78641afc1e5f773f3f8120575d Gepoverlow <gepeoverload@gmail.com> 1639253360 +0100	commit: added instruction to play with irregular verbs only
+1df1771413890b78641afc1e5f773f3f8120575d b809b1a0dd84815ccc910275799300ac0dae35a0 Gepoverlow <gepeoverload@gmail.com> 1642431916 +0100	commit: added readme
+b809b1a0dd84815ccc910275799300ac0dae35a0 d5a7adcc9e6105d68dd050ef34f3cea5e6acdd5f Gepoverlow <gepeoverload@gmail.com> 1646049193 +0100	commit: implemented login auth firebase
+d5a7adcc9e6105d68dd050ef34f3cea5e6acdd5f e53db1f73a6149fcb8e16bbb4ff8468657f0a2ee Gepoverlow <gepeoverload@gmail.com> 1646055155 +0100	commit: adding firestore logic
+e53db1f73a6149fcb8e16bbb4ff8468657f0a2ee a59d252feb7ea7c32a877de4a7cad84fad4eac4f Gepoverlow <gepeoverload@gmail.com> 1646066455 +0100	commit: added way of saving words in clouod firestore
+                                                                                                                                                               f5a440fb38f75497fe1953dccd33993ec80b3d8d a59d252feb7ea7c32a877de4a7cad84fad4eac4f Gepoverlow <gepeoverload@gmail.com> 1646138711 +0100
+a59d252feb7ea7c32a877de4a7cad84fad4eac4f a59d252feb7ea7c32a877de4a7cad84fad4eac4f Gepoverlow <gepeoverload@gmail.com> 1646138808 +0100	reset: moving to HEAD
+a59d252feb7ea7c32a877de4a7cad84fad4eac4f fb886c908fe0773009c456d0ef305c06d876b23f Gepoverlow <gepeoverload@gmail.com> 1646139040 +0100	commit: re commiting
+fb886c908fe0773009c456d0ef305c06d876b23f 3ac4ea086189d1bf7fa3f2b1365e8377c3450b2f Gepoverlow <gepeoverload@gmail.com> 1646151614 +0100	commit: added function to look for doc id in reference of its title
+3ac4ea086189d1bf7fa3f2b1365e8377c3450b2f a20de6bb8ff8a0f78b39e246822819c6e283753e Gepoverlow <gepeoverload@gmail.com> 1646153710 +0100	commit: added way to deleting documents from a certain collection
+a20de6bb8ff8a0f78b39e246822819c6e283753e 7a5a61648b56fe50a404d32a868e499289c4b190 Gepoverlow <gepeoverload@gmail.com> 1646216459 +0100	commit: implemented way of editing firestore documents from the client
+7a5a61648b56fe50a404d32a868e499289c4b190 c061f4052e5ab39b3cc4e076401bf6e1f843161f Gepoverlow <gepeoverload@gmail.com> 1646226075 +0100	commit: working on implementing local to cloud feature
+c061f4052e5ab39b3cc4e076401bf6e1f843161f ce6829084276c34238e269ec6f08bbffb48dc1d1 Gepoverlow <gepeoverload@gmail.com> 1646236831 +0100	commit: succesfully implemented save local to cloud functionality
+ce6829084276c34238e269ec6f08bbffb48dc1d1 c4c6357f9245d0077dd5b6e0855a043b488c4c6e Gepoverlow <gepeoverload@gmail.com> 1646303815 +0100	commit: added words value on correct or wrong functionality
+c4c6357f9245d0077dd5b6e0855a043b488c4c6e c4689fd22324bf4f92d10bf8367df58809de5ea5 Gepoverlow <gepeoverload@gmail.com> 1646304033 +0100	commit: fixed bug with re-arrage button saving all to localstorage
+c4689fd22324bf4f92d10bf8367df58809de5ea5 836225b14657db149c5d198a89a1fcbb3f0e142c Gepoverlow <gepeoverload@gmail.com> 1646305220 +0100	commit: added conditional to prevent cloud firestore data from rendering on event change while playing the game
+836225b14657db149c5d198a89a1fcbb3f0e142c 91d88fea230cb8fa74fbd3c5881054b46ee3a089 Gepoverlow <gepeoverload@gmail.com> 1646394671 +0100	commit: implemented reset value feature for online play
+91d88fea230cb8fa74fbd3c5881054b46ee3a089 2613f0d3867e1d5fd9c2b78f143bf18c2e73b912 Gepoverlow <gepeoverload@gmail.com> 1646583619 +0100	commit: fixed bug that would retreive the wrong data from firestore
+2613f0d3867e1d5fd9c2b78f143bf18c2e73b912 c0912c6521a21f4b63df8fbae7e4cb89221bf555 Gepoverlow <gepeoverload@gmail.com> 1646585525 +0100	commit: ran out offirestore reads needs to check back tomorrow
+                                                                                                                                                           

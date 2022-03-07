@@ -159,7 +159,7 @@ async function resetValueDb() {
 }
 
 export async function addScoreDb(nedWord) {
-  // const docRef = doc(db, "words", await getWordIdDB(nedWord));
+  //  const docRef = doc(db, "words", await getWordIdDB(nedWord));
 
   const q = query(
     collection(db, "words"),
@@ -169,14 +169,14 @@ export async function addScoreDb(nedWord) {
   const querySnapshot = await getDocs(q);
 
   querySnapshot.forEach((doc) => {
-    updateDoc(docRef, {
+    updateDoc(doc.showProfileInfo, {
       value: doc.data().value + 1,
     });
   });
 }
 
 export async function decreaseScoreDb(nedWord) {
-  // const docRef = doc(db, "words", await getWordIdDB(nedWord));
+  //  const docRef = doc(db, "words", await getWordIdDB(nedWord));
 
   const q = query(
     collection(db, "words"),
@@ -189,7 +189,6 @@ export async function decreaseScoreDb(nedWord) {
     updateDoc(doc.ref, {
       value: doc.data().value - 1,
     });
-    console.log(doc.data().value);
   });
 }
 
