@@ -175,6 +175,8 @@ export async function addScoreDb(nedWord) {
   });
 }
 
+//
+
 export async function decreaseScoreDb(nedWord) {
   //  const docRef = doc(db, "words", await getWordIdDB(nedWord));
 
