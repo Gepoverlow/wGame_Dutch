@@ -163,7 +163,7 @@ export async function addScoreDb(nedWord) {
   const querySnapshot = await getDocs(q);
 
   querySnapshot.forEach((doc) => {
-    updateDoc(doc.showProfileInfo, {
+    updateDoc(doc.ref, {
       value: doc.data().value + 1,
     });
   });
@@ -189,7 +189,11 @@ export async function decreaseScoreDb(nedWord) {
 }
 
 async function getWordIdDB(nedWord) {
-  const q = query(collection(db, "words"), where("nedWord", "==", nedWord));
+  const q = query(
+    collection(db, "words"),
+    where("nedWord", "==", nedWord),
+    where("ownerId", "==", auth.currentUser.uid)
+  );
 
   const querySnapshot = await getDocs(q);
   const docRefId = querySnapshot.docs[0].id;
