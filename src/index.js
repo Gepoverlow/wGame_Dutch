@@ -112,7 +112,7 @@ function loadWords() {
   const q = query(
     collection(db, "words"),
     where("ownerId", "==", auth.currentUser.uid),
-    orderBy("createdAt")
+    orderBy("nedWord")
   );
   onSnapshot(q, (querySnapshot) => {
     allWords = [];
@@ -153,8 +153,6 @@ async function resetValueDb() {
 }
 
 export async function addScoreDb(nedWord) {
-  //  const docRef = doc(db, "words", await getWordIdDB(nedWord));
-
   const q = query(
     collection(db, "words"),
     where("nedWord", "==", nedWord),
@@ -172,8 +170,6 @@ export async function addScoreDb(nedWord) {
 //
 
 export async function decreaseScoreDb(nedWord) {
-  //  const docRef = doc(db, "words", await getWordIdDB(nedWord));
-
   const q = query(
     collection(db, "words"),
     where("nedWord", "==", nedWord),
@@ -196,6 +192,7 @@ async function getWordIdDB(nedWord) {
   );
 
   const querySnapshot = await getDocs(q);
+  console.log(querySnapshot.docs[0].id);
   const docRefId = querySnapshot.docs[0].id;
 
   return docRefId;
