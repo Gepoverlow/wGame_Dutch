@@ -133,8 +133,8 @@ async function updateWord(nedWord) {
   updateDoc(docRef, {
     nedWord: document.getElementById("dutchWord_input_edit").value,
     natWord: document.getElementById("nativeWord_input_edit").value,
-    article: document.getElementById("typeOfWord_edit").value,
-    type: document.getElementById("deOfHet_edit").value,
+    article: document.getElementById("deOfHet_edit").value,
+    type: document.getElementById("typeOfWord_edit").value,
   });
 }
 
