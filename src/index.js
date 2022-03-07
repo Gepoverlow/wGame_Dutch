@@ -82,13 +82,7 @@ function googleLogIn() {
 }
 
 function logOut() {
-  signOut(auth)
-    .then(() => {
-      console.log("user logged out!");
-    })
-    .catch((e) => {
-      console.log(e);
-    });
+  signOut(auth);
 }
 
 function showProfileInfo(user) {
