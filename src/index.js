@@ -33,6 +33,9 @@ import {
   submitEdit,
   Word,
   Score,
+  orderByWord,
+  orderByType,
+  orderByScore,
 } from "./word_creator";
 import {
   openForm,
@@ -41,7 +44,6 @@ import {
   renderGameInfo,
   renderWords,
   renderGameRules,
-  reArrange,
 } from "./dom_stuff";
 import { Game } from "./game";
 
@@ -378,6 +380,36 @@ containerBody.addEventListener("click", function (e) {
       }
     }
   }
+  if (
+    e.target.className === "table-header" &&
+    e.target.textContent === "Type"
+  ) {
+    if (!isSignedIn) {
+      orderByType(allWords);
+      addToLocalStorage("wordsArray", allWords);
+      renderWords(allWords, containerBody);
+    }
+  }
+  if (
+    e.target.className === "table-header" &&
+    e.target.textContent === "Word"
+  ) {
+    if (!isSignedIn) {
+      orderByWord(allWords);
+      addToLocalStorage("wordsArray", allWords);
+      renderWords(allWords, containerBody);
+    }
+  }
+  if (
+    e.target.className === "table-header" &&
+    e.target.textContent === "Score"
+  ) {
+    if (!isSignedIn) {
+      orderByScore(allWords);
+      addToLocalStorage("wordsArray", allWords);
+      renderWords(allWords, containerBody);
+    }
+  }
 });
 
 playBtn.addEventListener("click", function () {
@@ -486,14 +518,14 @@ listBtn.addEventListener("click", function () {
   renderWords(allWords, containerBody);
 });
 
-rearrangeBtn.addEventListener("click", () => {
-  game.isPlaying = false;
-  if (!isSignedIn) {
-    reArrange(allWords);
-    addToLocalStorage("wordsArray", allWords);
-    renderWords(allWords, containerBody);
-  }
-});
+// rearrangeBtn.addEventListener("click", () => {
+//   game.isPlaying = false;
+//   if (!isSignedIn) {
+//     orderByScore(allWords);
+//     addToLocalStorage("wordsArray", allWords);
+//     renderWords(allWords, containerBody);
+//   }
+// });
 
 resetBtn.addEventListener("click", () => {
   game.isPlaying = false;

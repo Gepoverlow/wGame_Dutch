@@ -104,3 +104,31 @@ export function submitEdit(array, index) {
   //   array[index].natWord = nWordInput.value;
   // }
 }
+
+export function orderByWord(arr) {
+  arr.sort(function (a, b) {
+    let nameA = a.nedWord.toLowerCase();
+    let nameB = b.nedWord.toLowerCase();
+    if (nameA < nameB)
+      //sort string ascending
+      return -1;
+    if (nameA > nameB) return 1;
+    return 0; //default return value (no sorting)
+  });
+}
+
+export function orderByType(arr) {
+  arr.sort(function (a, b) {
+    let nameA = a.wType.toLowerCase();
+    let nameB = b.wType.toLowerCase();
+    if (nameA < nameB)
+      //sort string ascending
+      return -1;
+    if (nameA > nameB) return 1;
+    return 0; //default return value (no sorting)
+  });
+}
+
+export function orderByScore(arr) {
+  arr.sort((a, b) => (a.value > b.value ? 1 : -1));
+}

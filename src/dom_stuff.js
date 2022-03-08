@@ -8,7 +8,7 @@ let headers = [
   "DE/HET",
   "Word",
   "Your Meaning",
-  "score",
+  "Score",
   "Woordensboek Meaning",
 ];
 
@@ -29,24 +29,16 @@ export function showDropDown() {
 export function renderWords(arr) {
   emptyNode(containerBody);
 
-  arr.sort(function (a, b) {
-    let wordA = a.nedWord.toLowerCase();
-    let wordB = b.nedWord.toLowerCase();
-    if (wordA < wordB)
-      //sort string ascending
-      return -1;
-    if (wordA > wordB) return 1;
-    return 0; //default return value (no sorting)
-  });
-
   let tableWrapper = document.createElement("div");
   let table = document.createElement("table");
   let headerRow = document.createElement("tr");
+  headerRow.id = "header-row";
   tableWrapper.id = "tableWrapper";
   table.id = "wordsTable";
 
   headers.forEach((headerText) => {
     let header = document.createElement("th");
+    header.className = "table-header";
     let textNode = document.createTextNode(headerText);
     header.appendChild(textNode);
     headerRow.appendChild(header);
@@ -153,12 +145,17 @@ export function renderGameRules() {
   ruleCreator("Click on Hiscore to reset the number back to 0.", infoUL);
 
   ruleCreator(
-    "To add items to the PREPOSITIONS ONLY GAME, you must add the word ARTICLE to dutch word input when adding the item. For example ARTICLE - houden",
+    "To add items to the PREPOSITIONS ONLY GAME, just make sure that the word has the acording Preposition word type",
     infoUL
   );
 
   ruleCreator(
-    "To add items to the Irr. VERBS ONLY GAME, you must add the word IV to dutch word input when adding the item. For example IV - ruiken",
+    "To add items to the IRREGULAR VERB ONLY GAME, just make sure that the word has the acording Irregular-Verb word type",
+    infoUL
+  );
+
+  ruleCreator(
+    "Clicking on Type, Word and Score table headers will organize it alphabetically or by value",
     infoUL
   );
 }
@@ -179,10 +176,6 @@ function ruleCreator(info, parentNode) {
   let rule = document.createElement("li");
   parentNode.appendChild(rule);
   rule.textContent = info;
-}
-
-export function reArrange(array) {
-  array.sort((a, b) => (a.value > b.value ? 1 : -1));
 }
 
 // function createId() {

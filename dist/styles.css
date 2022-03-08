@@ -336,3 +336,11 @@ html {
 #localToCloud {
   cursor: pointer;
 }
+
+.table-header {
+  cursor: pointer;
+}
+
+#header-row {
+  position: sticky;
+}
