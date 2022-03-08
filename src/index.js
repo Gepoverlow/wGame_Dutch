@@ -552,6 +552,8 @@ inputAnswer.addEventListener("keyup", function (e) {
   }
 });
 
+//
+
 searchBar.addEventListener("keyup", (e) => {
   const searchString = e.target.value.toLowerCase();
   const filteredWords = allWords.filter((word) => {
