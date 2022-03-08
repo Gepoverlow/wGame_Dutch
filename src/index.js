@@ -415,8 +415,8 @@ prepositionsBtn.addEventListener("click", () => {
   correctAnswer.textContent = "";
   indicator.textContent = "Word ->";
 
-  let allPrepositionsArray = allWords.filter((word) =>
-    word.nedWord.includes("ARTICLE")
+  let allPrepositionsArray = allWords.filter(
+    (word) => word.wType === "Preposition"
   );
 
   game.startGame(allPrepositionsArray, currentScoreValue, hiScoreValue);
@@ -435,7 +435,11 @@ verbsBtn.addEventListener("click", () => {
   correctAnswer.textContent = "";
   indicator.textContent = "Word ->";
 
-  let allIVerbsArray = allWords.filter((word) => word.nedWord.includes("IV"));
+  let allIVerbsArray = allWords.filter(
+    (word) => word.wType === "Irregular-Verb"
+  );
+
+  console.log(allIVerbsArray);
 
   game.startGame(allIVerbsArray, currentScoreValue, hiScoreValue);
 
