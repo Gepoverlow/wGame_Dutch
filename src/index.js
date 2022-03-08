@@ -544,7 +544,9 @@ inputAnswer.addEventListener("keyup", function (e) {
     if (game.gameArray.length !== 0) {
       game.nextWord(wordOnScreen, remainingWords);
     } else {
-      isSignedIn ? saveScore(createScoreDb(game.currentScore)) : null;
+      isSignedIn
+        ? saveScore(createScoreDb(game.currentScore))
+        : console.log("need offline hiscore functionality");
       wordOnScreen.textContent = "DONE!";
       remainingWords.textContent = "/0 words";
     }

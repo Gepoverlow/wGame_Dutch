@@ -29,6 +29,16 @@ export function showDropDown() {
 export function renderWords(arr) {
   emptyNode(containerBody);
 
+  arr.sort(function (a, b) {
+    let wordA = a.nedWord.toLowerCase();
+    let wordB = b.nedWord.toLowerCase();
+    if (wordA < wordB)
+      //sort string ascending
+      return -1;
+    if (wordA > wordB) return 1;
+    return 0; //default return value (no sorting)
+  });
+
   let tableWrapper = document.createElement("div");
   let table = document.createElement("table");
   let headerRow = document.createElement("tr");
