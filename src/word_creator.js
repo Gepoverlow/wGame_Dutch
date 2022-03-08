@@ -14,6 +14,18 @@ export class Word {
   }
 }
 
+export class Score {
+  constructor(score) {
+    this.score = score;
+  }
+}
+
+export function createScoreDb(score) {
+  let newScore = new Score(score);
+
+  return newScore;
+}
+
 export function createWordLocalToDb(word) {
   let newWord = new Word(
     word.wType,

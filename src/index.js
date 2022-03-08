@@ -26,11 +26,13 @@ import {
 import {
   createWord,
   createWordDB,
+  createScoreDb,
   createWordLocalToDb,
   printWordInfo,
   deleteWord,
   submitEdit,
   Word,
+  Score,
 } from "./word_creator";
 import {
   openForm,
@@ -108,6 +110,15 @@ async function saveWord(newWord) {
     console.error("Error writing new message to Firebase Database", error);
   }
 }
+
+async function saveScore(score) {
+  try {
+    await addDoc(collection(db, "scores"), scoreToDoc(score));
+  } catch (error) {
+    console.error("Error writing new message to Firebase Database", error);
+  }
+}
+
 function loadWords() {
   const q = query(
     collection(db, "words"),
@@ -244,6 +255,18 @@ function wordToDoc(word) {
     natWord: word.natWord,
     value: word.value,
     link: word.link,
+    createdAt: serverTimestamp(),
+  };
+}
+
+function docToScore(doc) {
+  return new Score(doc.data().score);
+}
+
+function scoreToDoc(score) {
+  return {
+    ownerId: auth.currentUser.uid,
+    score: score.score,
     createdAt: serverTimestamp(),
   };
 }
@@ -521,6 +544,7 @@ inputAnswer.addEventListener("keyup", function (e) {
     if (game.gameArray.length !== 0) {
       game.nextWord(wordOnScreen, remainingWords);
     } else {
+      isSignedIn ? saveScore(createScoreDb(game.currentScore)) : null;
       wordOnScreen.textContent = "DONE!";
       remainingWords.textContent = "/0 words";
     }
