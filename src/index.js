@@ -396,8 +396,10 @@ wordsBtn.addEventListener("click", () => {
   indicator.textContent = "Word ->";
 
   let allWoordenschatArray = allWords.filter(
-    (word) => !word.nedWord.includes("ARTICLE") && !word.nedWord.includes("IV")
+    (word) => word.wType !== "Preposition" && word.wType !== "Irregular-Verb"
   );
+
+  console.log(allWoordenschatArray);
 
   game.startGame(allWoordenschatArray, currentScoreValue, hiScoreValue);
 
@@ -419,7 +421,12 @@ prepositionsBtn.addEventListener("click", () => {
     (word) => word.wType === "Preposition"
   );
 
-  game.startGame(allPrepositionsArray, currentScoreValue, hiScoreValue);
+  game.startGame(
+    allPrepositionsArray,
+    currentScoreValue,
+    hiScoreValue,
+    "Prepositions"
+  );
 
   if (game.gameArray.length !== 0) {
     game.randomizeArray();

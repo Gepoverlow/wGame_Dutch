@@ -8,10 +8,11 @@ export class Game {
     this.isPlaying = true;
   }
 
-  startGame(array, htmlElementC, htmlElementH) {
+  startGame(array, htmlElementC, htmlElementH, gameType) {
     this.gameArray = [...array];
     this.currentScore = 0;
     this.updateScore(htmlElementC, htmlElementH);
+    this.gameType = gameType;
   }
 
   compareWords(input, htmlElement) {
@@ -103,7 +104,3 @@ export class Game {
     htmlElement.appendChild(iconW);
   }
 }
-
-// function addToLocalStorage(name, objKey) {
-//   localStorage.setItem(name, JSON.stringify(objKey));
-// }
