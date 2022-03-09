@@ -8,6 +8,7 @@ body,
 html {
   height: 100%;
   padding: 0;
+  overflow: hidden;
 }
 
 .container_all {
@@ -133,13 +134,14 @@ html {
 /* Dropdown Content (Hidden by Default) */
 .dropdown_content {
   display: none;
-  position: absolute;
+  position: fixed;
+  right: auto;
   background-color: rgba(68, 32, 68, 0.8);
-  min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
   cursor: pointer;
   margin-left: 0;
+  overflow-y: scroll;
 }
 
 /* Links inside the dropdown */
