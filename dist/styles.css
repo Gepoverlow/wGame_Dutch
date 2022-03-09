@@ -344,3 +344,8 @@ html {
 #header-row {
   position: sticky;
 }
+
+#indicator,
+#remaining_words {
+  font-size: 30px;
+}

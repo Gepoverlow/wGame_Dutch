@@ -1,4 +1,5 @@
 import { addScoreDb, decreaseScoreDb, isSignedIn } from "./index";
+import { Word } from "./word_creator";
 
 export class Game {
   constructor(gameArray, currentScore, hiScore) {
@@ -36,11 +37,12 @@ export class Game {
     return `Correct Answer ->  ${this.gameArray[0].natWord}`;
   }
 
-  nextWord(htmlElement, htmlElement0) {
-    htmlElement.textContent = !this.gameArray[0].wArticle.includes("-")
+  nextWord(wordType, currentWord, remainingWords) {
+    wordType.textContent = `${this.gameArray[0].wType}`;
+    currentWord.textContent = !this.gameArray[0].wArticle.includes("-")
       ? `${this.gameArray[0].wArticle} ${this.gameArray[0].nedWord}`
       : `${this.gameArray[0].nedWord}`;
-    htmlElement0.textContent = `/${this.remainingWords()} words`;
+    remainingWords.textContent = `/ ${this.remainingWords()} words`;
   }
 
   addPointToScore() {

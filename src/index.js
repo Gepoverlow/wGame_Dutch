@@ -417,11 +417,11 @@ playBtn.addEventListener("click", function () {
   renderGameInfo();
   game.startGame(allWords, currentScoreValue, hiScoreValue);
   correctAnswer.textContent = "";
-  indicator.textContent = "Word ->";
+  // indicator.textContent = "Word ->";
 
   if (game.gameArray.length !== 0) {
     game.randomizeArray();
-    game.nextWord(wordOnScreen, remainingWords);
+    game.nextWord(indicator, wordOnScreen, remainingWords);
   } else if (game.gameArray.length === 0) {
     wordOnScreen.textContent = "ADD SOME WORDS BEFORE PLAYING!";
   }
@@ -431,14 +431,14 @@ playBtn_.addEventListener("click", () => {
   game.isPlaying = true;
   renderGameInfo();
   correctAnswer.textContent = "";
-  indicator.textContent = "Word ->";
+  // indicator.textContent = "Word ->";
 
   let allNegativeWordsArray = allWords.filter((word) => word.value < 0);
   game.startGame(allNegativeWordsArray, currentScoreValue, hiScoreValue);
 
   if (game.gameArray.length !== 0) {
     game.randomizeArray();
-    game.nextWord(wordOnScreen, remainingWords);
+    game.nextWord(indicator, wordOnScreen, remainingWords);
   } else if (game.gameArray.length === 0) {
     wordOnScreen.textContent = "0 NEGATIVE SCORE WORDS!";
   }
@@ -448,7 +448,7 @@ wordsBtn.addEventListener("click", () => {
   game.isPlaying = true;
   renderGameInfo();
   correctAnswer.textContent = "";
-  indicator.textContent = "Word ->";
+  // indicator.textContent = "Word ->";
 
   let allWoordenschatArray = allWords.filter(
     (word) => word.wType !== "Preposition" && word.wType !== "Irregular-Verb"
@@ -460,7 +460,7 @@ wordsBtn.addEventListener("click", () => {
 
   if (game.gameArray.length !== 0) {
     game.randomizeArray();
-    game.nextWord(wordOnScreen, remainingWords);
+    game.nextWord(indicator, wordOnScreen, remainingWords);
   } else if (game.gameArray.length === 0) {
     wordOnScreen.textContent = "0 WOORDENSCHAT LEFT!";
   }
@@ -470,7 +470,7 @@ prepositionsBtn.addEventListener("click", () => {
   game.isPlaying = true;
   renderGameInfo();
   correctAnswer.textContent = "";
-  indicator.textContent = "Word ->";
+  // indicator.textContent = "Word ->";
 
   let allPrepositionsArray = allWords.filter(
     (word) => word.wType === "Preposition"
@@ -485,7 +485,7 @@ prepositionsBtn.addEventListener("click", () => {
 
   if (game.gameArray.length !== 0) {
     game.randomizeArray();
-    game.nextWord(wordOnScreen, remainingWords);
+    game.nextWord(indicator, wordOnScreen, remainingWords);
   } else if (game.gameArray.length === 0) {
     wordOnScreen.textContent = "0 PREPOSITIONS LEFT!";
   }
@@ -495,7 +495,7 @@ verbsBtn.addEventListener("click", () => {
   game.isPlaying = true;
   renderGameInfo();
   correctAnswer.textContent = "";
-  indicator.textContent = "Word ->";
+  // indicator.textContent = "Word ->";
 
   let allIVerbsArray = allWords.filter(
     (word) => word.wType === "Irregular-Verb"
@@ -507,7 +507,7 @@ verbsBtn.addEventListener("click", () => {
 
   if (game.gameArray.length !== 0) {
     game.randomizeArray();
-    game.nextWord(wordOnScreen, remainingWords);
+    game.nextWord(indicator, wordOnScreen, remainingWords);
   } else if (game.gameArray.length === 0) {
     wordOnScreen.textContent = "0 VERBS LEFT!";
   }
@@ -574,7 +574,7 @@ inputAnswer.addEventListener("keyup", function (e) {
     game.updateLocalStorage("hiScore");
     isSignedIn ? null : addToLocalStorage("wordsArray", allWords);
     if (game.gameArray.length !== 0) {
-      game.nextWord(wordOnScreen, remainingWords);
+      game.nextWord(indicator, wordOnScreen, remainingWords);
     } else {
       isSignedIn
         ? saveScore(createScoreDb(game.currentScore))
