@@ -334,7 +334,7 @@ let remainingWords = document.getElementById("remaining_words");
 let logInBtn = document.getElementById("login");
 let logOutBtn = document.getElementById("logout");
 
-let localToCloud = document.getElementById("localToCloud");
+let localToCloud = document.getElementById("local-to-cloud");
 
 //EVENT LISTENERS
 
