@@ -16,21 +16,41 @@ export class Game {
     this.gameType = gameType;
   }
 
-  compareWords(input, htmlElement) {
+  compareWords(input, result, correct, inputed, last) {
     if (this.gameArray[0].natWord === input.value) {
       this.addValue();
       this.addPointToScore();
-      htmlElement.textContent = `Correct! ${this.displayCorrectAnswer()} Your Answer -> ${
-        input.value
-      }`;
-      this.addCorrectIcon(htmlElement);
+      this.displayCorrectInfo(result, correct, inputed, input, last);
     } else {
       this.removeValue();
-      htmlElement.textContent = `Wrong! ${this.displayCorrectAnswer()} Your Answer -> ${
-        input.value
-      }`;
-      this.addWrongIcon(htmlElement);
+      this.displayWrongInfo(result, correct, inputed, input, last);
     }
+  }
+
+  displayCorrectInfo(result, correct, inputx, input, last) {
+    this.refreshResult(result);
+    this.addCorrectIcon(result);
+
+    correct.textContent = `Correct Word: ${this.gameArray[0].natWord}`;
+    correct.className = "correct-info";
+
+    inputx.textContent = `Your Input: ${input.value}`;
+    inputx.className = "correct-info";
+
+    last.textContent = `Last Word: ${this.gameArray[0].nedWord} (${this.gameArray[0].wType})`;
+  }
+
+  displayWrongInfo(result, correct, inputx, input, last) {
+    this.refreshResult(result);
+    this.addWrongIcon(result);
+
+    correct.textContent = `Correct Word: ${this.gameArray[0].natWord}`;
+    correct.className = "wrong-info";
+
+    inputx.textContent = `Your Input: ${input.value}`;
+    inputx.className = "wrong-info";
+
+    last.textContent = `Last Word: ${this.gameArray[0].nedWord} (${this.gameArray[0].wType})`;
   }
 
   displayCorrectAnswer() {
@@ -93,7 +113,7 @@ export class Game {
     iconC.textContent = "check";
     iconC.classList.add("material-icons-outlined");
     iconC.style.color = "green";
-    iconC.style.fontSize = "55px";
+    htmlElement.textContent = "Result: ";
     htmlElement.appendChild(iconC);
   }
 
@@ -102,7 +122,11 @@ export class Game {
     iconW.textContent = "clear";
     iconW.classList.add("material-icons-outlined");
     iconW.style.color = "red";
-    iconW.style.fontSize = "55px";
+    htmlElement.textContent = "Result: ";
     htmlElement.appendChild(iconW);
+  }
+
+  refreshResult(result) {
+    result.textContent = "";
   }
 }

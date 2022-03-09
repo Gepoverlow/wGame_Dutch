@@ -312,7 +312,6 @@ let wordsBtn = document.getElementById("playWords");
 let prepositionsBtn = document.getElementById("playPrepositions");
 let verbsBtn = document.getElementById("playVerbs");
 let instructionsBtn = document.getElementById("instructions");
-let rearrangeBtn = document.getElementById("re-arrange");
 
 let inputAnswer = document.getElementById("input_answer");
 let wordOnScreen = document.getElementById("wordOnScreen");
@@ -326,7 +325,13 @@ let myFormAdd = document.getElementById("myForm_add");
 let myFormEdit = document.getElementById("myForm_edit");
 
 let searchBar = document.getElementById("searchBar");
-let correctAnswer = document.getElementById("correctAnswer");
+
+//
+let answerResult = document.getElementById("answer-result");
+let answerCorrect = document.getElementById("answer-correct");
+let answerInput = document.getElementById("answer-input");
+let lastWord = document.getElementById("last-word");
+//
 
 let indicator = document.getElementById("indicator");
 let remainingWords = document.getElementById("remaining_words");
@@ -416,8 +421,7 @@ playBtn.addEventListener("click", function () {
   game.isPlaying = true;
   renderGameInfo();
   game.startGame(allWords, currentScoreValue, hiScoreValue);
-  correctAnswer.textContent = "";
-  // indicator.textContent = "Word ->";
+  // correctAnswer.textContent = "";
 
   if (game.gameArray.length !== 0) {
     game.randomizeArray();
@@ -430,8 +434,7 @@ playBtn.addEventListener("click", function () {
 playBtn_.addEventListener("click", () => {
   game.isPlaying = true;
   renderGameInfo();
-  correctAnswer.textContent = "";
-  // indicator.textContent = "Word ->";
+  // correctAnswer.textContent = "";
 
   let allNegativeWordsArray = allWords.filter((word) => word.value < 0);
   game.startGame(allNegativeWordsArray, currentScoreValue, hiScoreValue);
@@ -447,8 +450,7 @@ playBtn_.addEventListener("click", () => {
 wordsBtn.addEventListener("click", () => {
   game.isPlaying = true;
   renderGameInfo();
-  correctAnswer.textContent = "";
-  // indicator.textContent = "Word ->";
+  // correctAnswer.textContent = "";
 
   let allWoordenschatArray = allWords.filter(
     (word) => word.wType !== "Preposition" && word.wType !== "Irregular-Verb"
@@ -469,8 +471,7 @@ wordsBtn.addEventListener("click", () => {
 prepositionsBtn.addEventListener("click", () => {
   game.isPlaying = true;
   renderGameInfo();
-  correctAnswer.textContent = "";
-  // indicator.textContent = "Word ->";
+  // correctAnswer.textContent = "";
 
   let allPrepositionsArray = allWords.filter(
     (word) => word.wType === "Preposition"
@@ -494,8 +495,7 @@ prepositionsBtn.addEventListener("click", () => {
 verbsBtn.addEventListener("click", () => {
   game.isPlaying = true;
   renderGameInfo();
-  correctAnswer.textContent = "";
-  // indicator.textContent = "Word ->";
+  // correctAnswer.textContent = "";
 
   let allIVerbsArray = allWords.filter(
     (word) => word.wType === "Irregular-Verb"
@@ -517,15 +517,6 @@ listBtn.addEventListener("click", function () {
   game.isPlaying = false;
   renderWords(allWords, containerBody);
 });
-
-// rearrangeBtn.addEventListener("click", () => {
-//   game.isPlaying = false;
-//   if (!isSignedIn) {
-//     orderByScore(allWords);
-//     addToLocalStorage("wordsArray", allWords);
-//     renderWords(allWords, containerBody);
-//   }
-// });
 
 resetBtn.addEventListener("click", () => {
   game.isPlaying = false;
@@ -568,7 +559,13 @@ addBtn.addEventListener("click", function (e) {
 
 inputAnswer.addEventListener("keyup", function (e) {
   if (e.keyCode === 13 && game.gameArray.length !== 0) {
-    game.compareWords(inputAnswer, correctAnswer);
+    game.compareWords(
+      inputAnswer,
+      answerResult,
+      answerCorrect,
+      answerInput,
+      lastWord
+    );
     game.removeFirstObject();
     game.updateScore(currentScoreValue, hiScoreValue);
     game.updateLocalStorage("hiScore");
