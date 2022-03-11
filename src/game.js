@@ -1,6 +1,10 @@
 import { addScoreDb, decreaseScoreDb, isSignedIn } from "./index";
 import { Word } from "./word_creator";
 
+let inputAnswer = document.getElementById("input_answer");
+let scoreDom = document.querySelector(".score");
+let answerInfo = document.getElementById("answer-info");
+
 export class Game {
   constructor(gameArray, currentScore, hiScore) {
     this.gameArray = gameArray;
@@ -9,14 +13,22 @@ export class Game {
     this.isPlaying = true;
   }
 
-  startGame(array, htmlElementC, htmlElementH, gameType) {
+  startGame(array, htmlElementC, htmlElementH, gameType, startHtmlElement) {
     this.gameArray = [...array];
     this.currentScore = 0;
     this.updateScore(htmlElementC, htmlElementH);
     this.gameType = gameType;
+
+    answerInfo.style.display = "none";
+    startHtmlElement.classList.add("hidden");
+    inputAnswer.classList.remove("hidden");
+    scoreDom.style.display = "flex";
   }
 
   compareWords(input, result, correct, inputed, last) {
+    answerInfo.style.display === "none"
+      ? (answerInfo.style.display = "flex")
+      : null;
     if (this.gameArray[0].natWord === input.value) {
       this.addValue();
       this.addPointToScore();

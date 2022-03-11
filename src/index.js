@@ -69,15 +69,16 @@ onAuthStateChanged(auth, (user) => {
   if (user) {
     // User is signed in
     isSignedIn = true;
-    game.isPlaying = false;
+    game.isPlaying = true;
     loadWords();
     showProfileInfo(user);
   } else {
     // User is signed out
     isSignedIn = false;
+    game.isPlaying = true;
     hideProfileInfo();
     allWords = getStorageData("wordsArray");
-    renderWords(allWords);
+    game.isPlaying ? null : renderWords(allWords);
   }
 });
 
@@ -366,6 +367,7 @@ let answerResult = document.getElementById("answer-result");
 let answerCorrect = document.getElementById("answer-correct");
 let answerInput = document.getElementById("answer-input");
 let lastWord = document.getElementById("last-word");
+let startGameBtn = document.getElementById("start-game-btn");
 //
 
 let indicator = document.getElementById("indicator");
@@ -457,14 +459,42 @@ containerBody.addEventListener("click", function (e) {
 playBtn.addEventListener("click", function () {
   game.isPlaying = true;
   renderGameInfo();
-  game.startGame(allWords, currentScoreValue, hiScoreValue);
+  game.startGame(
+    allWords,
+    currentScoreValue,
+    hiScoreValue,
+    "Standard",
+    startGameBtn
+  );
   // correctAnswer.textContent = "";
 
   if (game.gameArray.length !== 0) {
     game.randomizeArray();
     game.nextWord(indicator, wordOnScreen, remainingWords);
   } else if (game.gameArray.length === 0) {
-    wordOnScreen.textContent = "ADD SOME WORDS BEFORE PLAYING!";
+    wordOnScreen.textContent =
+      "Add words clicking on the top right corner first!";
+  }
+});
+
+startGameBtn.addEventListener("click", function () {
+  game.isPlaying = true;
+  renderGameInfo();
+  game.startGame(
+    allWords,
+    currentScoreValue,
+    hiScoreValue,
+    "Standard",
+    startGameBtn
+  );
+  // correctAnswer.textContent = "";
+
+  if (game.gameArray.length !== 0) {
+    game.randomizeArray();
+    game.nextWord(indicator, wordOnScreen, remainingWords);
+  } else if (game.gameArray.length === 0) {
+    wordOnScreen.textContent =
+      "Add words clicking on the top right corner first!";
   }
 });
 
@@ -474,7 +504,13 @@ playBtn_.addEventListener("click", () => {
   // correctAnswer.textContent = "";
 
   let allNegativeWordsArray = allWords.filter((word) => word.value < 0);
-  game.startGame(allNegativeWordsArray, currentScoreValue, hiScoreValue);
+  game.startGame(
+    allNegativeWordsArray,
+    currentScoreValue,
+    hiScoreValue,
+    "Wrong Words",
+    startGameBtn
+  );
 
   if (game.gameArray.length !== 0) {
     game.randomizeArray();
@@ -495,7 +531,13 @@ wordsBtn.addEventListener("click", () => {
 
   console.log(allWoordenschatArray);
 
-  game.startGame(allWoordenschatArray, currentScoreValue, hiScoreValue);
+  game.startGame(
+    allWoordenschatArray,
+    currentScoreValue,
+    hiScoreValue,
+    "Woordenschat",
+    startGameBtn
+  );
 
   if (game.gameArray.length !== 0) {
     game.randomizeArray();
@@ -518,7 +560,8 @@ prepositionsBtn.addEventListener("click", () => {
     allPrepositionsArray,
     currentScoreValue,
     hiScoreValue,
-    "Prepositions"
+    "Prepositions",
+    startGameBtn
   );
 
   if (game.gameArray.length !== 0) {
@@ -540,7 +583,13 @@ verbsBtn.addEventListener("click", () => {
 
   console.log(allIVerbsArray);
 
-  game.startGame(allIVerbsArray, currentScoreValue, hiScoreValue);
+  game.startGame(
+    allIVerbsArray,
+    currentScoreValue,
+    hiScoreValue,
+    "Irregular Verbs",
+    startGameBtn
+  );
 
   if (game.gameArray.length !== 0) {
     game.randomizeArray();
