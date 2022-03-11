@@ -43,9 +43,8 @@ html {
 #container_header {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   align-items: center;
-  width: 100%;
+  width: 90%;
 }
 
 #add_word {
@@ -105,10 +104,11 @@ html {
   font-weight: bold;
   font-size: clamp(1.75rem, 3.9vw, 7.25rem);
   margin-bottom: 15px;
+  align-self: center;
 }
 
 .score {
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: space-around;
   height: 20vh;
@@ -382,4 +382,15 @@ html {
   #game-name {
     display: none;
   }
+}
+
+.hidden {
+  display: none;
+}
+
+#start-game-btn {
+  cursor: pointer;
+  font-size: clamp(1.75rem, 3.9vw, 7.25rem);
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 20px;
 }
