@@ -205,7 +205,6 @@ async function getWordIdDB(nedWord) {
   );
 
   const querySnapshot = await getDocs(q);
-  console.log(querySnapshot.docs[0].id);
   const docRefId = querySnapshot.docs[0].id;
 
   return docRefId;
@@ -214,57 +213,23 @@ async function getWordIdDB(nedWord) {
 //UTILS
 
 async function copyLocalToCloud() {
-  // if (isSignedIn) {
-  //   const q = query(
-  //     collection(db, "words"),
-  //     where("ownerId", "==", auth.currentUser.uid)
-  //   );
-
-  //   const local = getStorageData("wordsArray");
-
-  //   const querySnapshot = await getDocs(q);
-
-  //   querySnapshot.forEach((doc) => {
-  //     local.forEach((word) => {
-  //       word.nedWord === doc.data().nedWord
-  //         ? local.splice(findIndex(local, word.nedWord), 1)
-  //         : null;
-  //     });
-  //   });
-  //   local.forEach((word) => {
-  //     saveWord(createWordLocalToDb(word));
-  //   });
-  // }
-
   if (isSignedIn) {
     const q = query(
       collection(db, "words"),
       where("ownerId", "==", auth.currentUser.uid)
     );
-
     const local = getStorageData("wordsArray");
-    const temp = [];
-
     const querySnapshot = await getDocs(q);
-
     querySnapshot.forEach((doc) => {
-      temp.push(
-        new Word(
-          doc.data().type,
-          doc.data().article,
-          doc.data().nedWord,
-          doc.data().natWord,
-          doc.data().value,
-          doc.data().link
-        )
-      );
+      local.forEach((word) => {
+        word.nedWord === doc.data().nedWord
+          ? local.splice(findIndex(local, word.nedWord), 1)
+          : null;
+      });
     });
-
-    const results = temp.filter(
-      ({ nedWord: id1 }) => !local.some(({ nedWord: id2 }) => id2 === id1)
-    );
-
-    console.log(result);
+    local.forEach((word) => {
+      saveWord(createWordLocalToDb(word));
+    });
   }
 }
 
@@ -297,9 +262,12 @@ async function copyCloudToLocal() {
       ({ nedWord: id1 }) => !temp.some(({ nedWord: id2 }) => id2 === id1)
     );
 
+    console.log(results);
+
     results.forEach((word) => {
       local.push(word);
     });
+    console.log(local);
     addToLocalStorage("wordsArray", local);
   }
 }
