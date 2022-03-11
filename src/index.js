@@ -90,9 +90,11 @@ function logOut() {
 }
 
 function showProfileInfo(user) {
+  let firstName = `${user.displayName}`.split(" ")[0];
+
   document.getElementById("profile-info").style.display = "flex";
   document.getElementById("login").style.display = "none";
-  document.getElementById("profile-name").textContent = `${user.displayName}`;
+  document.getElementById("profile-name").textContent = `${firstName}`;
   document.getElementById("profile-picture").src = `${user.photoURL}`;
 }
 
