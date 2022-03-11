@@ -189,3 +189,18 @@ function ruleCreator(info, parentNode) {
 //   }
 //   return randomStr;
 // }
+
+export function renderHiscoreStats(category, score, total, percentage) {
+  let hiscoreBackground = document.getElementById("hiscore-background");
+  hiscoreBackground.style.display = "flex";
+
+  let hCategory = document.getElementById("hiscore-category");
+  let hScore = document.getElementById("hiscore-score");
+  let hTotal = document.getElementById("hiscore-total");
+  let hPercentage = document.getElementById("hiscore-percentage");
+
+  hCategory.textContent = `CATEGORY: ${category}`;
+  hScore.textContent = `SCORE: ${score}`;
+  hTotal.textContent = `TOTAL WORDS: ${total}`;
+  hPercentage.textContent = `PERCENTAGE: ${percentage}`;
+}

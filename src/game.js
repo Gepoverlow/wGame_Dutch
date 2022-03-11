@@ -18,6 +18,7 @@ export class Game {
     this.currentScore = 0;
     this.updateScore(htmlElementC, htmlElementH);
     this.gameType = gameType;
+    this.gameLength = this.gameArray.length;
 
     answerInfo.style.display = "none";
     startHtmlElement.classList.add("hidden");
@@ -46,7 +47,7 @@ export class Game {
     correct.textContent = `Correct Word: ${this.gameArray[0].natWord}`;
     correct.className = "correct-info";
 
-    inputx.textContent = `Your Input: ${input.value}`;
+    inputx.textContent = `Your Answer: ${input.value}`;
     inputx.className = "correct-info";
 
     last.textContent = `Last Word: ${this.gameArray[0].nedWord} (${this.gameArray[0].wType})`;
@@ -59,7 +60,7 @@ export class Game {
     correct.textContent = `Correct Word: ${this.gameArray[0].natWord}`;
     correct.className = "wrong-info";
 
-    inputx.textContent = `Your Input: ${input.value}`;
+    inputx.textContent = `Your Answer: ${input.value}`;
     inputx.className = "wrong-info";
 
     last.textContent = `Last Word: ${this.gameArray[0].nedWord} (${this.gameArray[0].wType})`;
@@ -140,5 +141,13 @@ export class Game {
 
   refreshResult(result) {
     result.textContent = "";
+  }
+
+  calculateSuccess(length, score) {
+    if (score === 0) {
+      return `0 %`;
+    } else {
+      return `${Math.round((score / length) * 100)} %`;
+    }
   }
 }

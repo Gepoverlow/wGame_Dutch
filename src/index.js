@@ -44,6 +44,7 @@ import {
   renderGameInfo,
   renderWords,
   renderGameRules,
+  renderHiscoreStats,
 } from "./dom_stuff";
 import { Game } from "./game";
 
@@ -303,9 +304,12 @@ function docToScore(doc) {
 
 function scoreToDoc(score) {
   return {
-    ownerId: auth.currentUser.uid,
     score: score.score,
+    category: score.category,
+    length: score.total,
+    percentage: score.percentage,
     createdAt: serverTimestamp(),
+    name: score.name,
   };
 }
 
@@ -378,6 +382,9 @@ let logOutBtn = document.getElementById("logout");
 
 let localToCloud = document.getElementById("local-to-cloud");
 let cloudToLocal = document.getElementById("cloud-to-local");
+
+let submitHiscoreBtn = document.getElementById("submit-hiscore-btn");
+let hiscoreBackground = document.getElementById("hiscore-background");
 
 //EVENT LISTENERS
 
@@ -529,8 +536,6 @@ wordsBtn.addEventListener("click", () => {
     (word) => word.wType !== "Preposition" && word.wType !== "Irregular-Verb"
   );
 
-  console.log(allWoordenschatArray);
-
   game.startGame(
     allWoordenschatArray,
     currentScoreValue,
@@ -659,9 +664,14 @@ inputAnswer.addEventListener("keyup", function (e) {
     if (game.gameArray.length !== 0) {
       game.nextWord(indicator, wordOnScreen, remainingWords);
     } else {
-      isSignedIn
-        ? saveScore(createScoreDb(game.currentScore))
-        : console.log("need offline hiscore functionality");
+      game.currentScore > 0
+        ? renderHiscoreStats(
+            game.gameType,
+            game.currentScore,
+            game.gameLength,
+            game.calculateSuccess(game.gameLength, game.currentScore)
+          )
+        : null;
       wordOnScreen.textContent = "DONE!";
       remainingWords.textContent = "/0 words";
     }
@@ -715,6 +725,27 @@ hiScore.addEventListener("click", () => {
   game.hiScore = 0;
   hiScoreValue.textContent = game.hiScore;
   game.updateLocalStorage("hiScore");
+});
+
+hiscoreBackground.addEventListener("click", (e) => {
+  if (e.target.id === "hiscore-background") {
+    hiscoreBackground.style.display = "none";
+  }
+});
+
+submitHiscoreBtn.addEventListener("click", () => {
+  let hiscoreName = document.getElementById("hiscore-input").value;
+
+  saveScore(
+    createScoreDb(
+      game.currentScore,
+      game.gameLength,
+      game.gameType,
+      game.calculateSuccess(game.gameLength, game.currentScore),
+      hiscoreName
+    )
+  );
+  hiscoreBackground.style.display = "none";
 });
 
 dropBtn.addEventListener("click", showDropDown);

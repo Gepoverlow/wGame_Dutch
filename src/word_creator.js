@@ -15,13 +15,17 @@ export class Word {
 }
 
 export class Score {
-  constructor(score) {
-    this.score = score;
+  constructor(score, total, category, percentage, name) {
+    (this.score = score),
+      (this.total = total),
+      (this.category = category),
+      (this.percentage = percentage);
+    this.name = name;
   }
 }
 
-export function createScoreDb(score) {
-  let newScore = new Score(score);
+export function createScoreDb(score, total, category, percentage, name) {
+  let newScore = new Score(score, total, category, percentage, name);
 
   return newScore;
 }
