@@ -214,6 +214,28 @@ async function getWordIdDB(nedWord) {
 //UTILS
 
 async function copyLocalToCloud() {
+  // if (isSignedIn) {
+  //   const q = query(
+  //     collection(db, "words"),
+  //     where("ownerId", "==", auth.currentUser.uid)
+  //   );
+
+  //   const local = getStorageData("wordsArray");
+
+  //   const querySnapshot = await getDocs(q);
+
+  //   querySnapshot.forEach((doc) => {
+  //     local.forEach((word) => {
+  //       word.nedWord === doc.data().nedWord
+  //         ? local.splice(findIndex(local, word.nedWord), 1)
+  //         : null;
+  //     });
+  //   });
+  //   local.forEach((word) => {
+  //     saveWord(createWordLocalToDb(word));
+  //   });
+  // }
+
   if (isSignedIn) {
     const q = query(
       collection(db, "words"),
@@ -221,19 +243,64 @@ async function copyLocalToCloud() {
     );
 
     const local = getStorageData("wordsArray");
+    const temp = [];
 
     const querySnapshot = await getDocs(q);
 
     querySnapshot.forEach((doc) => {
-      local.forEach((word) => {
-        word.nedWord === doc.data().nedWord
-          ? local.splice(findIndex(local, word.nedWord), 1)
-          : null;
-      });
+      temp.push(
+        new Word(
+          doc.data().type,
+          doc.data().article,
+          doc.data().nedWord,
+          doc.data().natWord,
+          doc.data().value,
+          doc.data().link
+        )
+      );
     });
-    local.forEach((word) => {
-      saveWord(createWordLocalToDb(word));
+
+    const results = temp.filter(
+      ({ nedWord: id1 }) => !local.some(({ nedWord: id2 }) => id2 === id1)
+    );
+
+    console.log(result);
+  }
+}
+
+async function copyCloudToLocal() {
+  if (isSignedIn) {
+    const q = query(
+      collection(db, "words"),
+      where("ownerId", "==", auth.currentUser.uid)
+    );
+
+    const local = getStorageData("wordsArray");
+    const temp = [];
+
+    const querySnapshot = await getDocs(q);
+
+    querySnapshot.forEach((doc) => {
+      temp.push(
+        new Word(
+          doc.data().type,
+          doc.data().article,
+          doc.data().nedWord,
+          doc.data().natWord,
+          doc.data().value,
+          doc.data().link
+        )
+      );
     });
+
+    const results = local.filter(
+      ({ nedWord: id1 }) => !temp.some(({ nedWord: id2 }) => id2 === id1)
+    );
+
+    results.forEach((word) => {
+      local.push(word);
+    });
+    addToLocalStorage("wordsArray", local);
   }
 }
 
@@ -340,6 +407,7 @@ let logInBtn = document.getElementById("login");
 let logOutBtn = document.getElementById("logout");
 
 let localToCloud = document.getElementById("local-to-cloud");
+let cloudToLocal = document.getElementById("cloud-to-local");
 
 //EVENT LISTENERS
 
@@ -349,6 +417,7 @@ logInBtn.addEventListener("click", googleLogIn);
 logOutBtn.addEventListener("click", logOut);
 
 localToCloud.addEventListener("click", copyLocalToCloud);
+cloudToLocal.addEventListener("click", copyCloudToLocal);
 
 //
 
