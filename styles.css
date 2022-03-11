@@ -372,13 +372,13 @@ html {
   color: red;
 }
 
-@media (max-width: 599px) {
+@media (max-width: 699px) {
   #profile-name {
     display: none;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 580px) {
   #game-name {
     display: none;
   }
