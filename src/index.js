@@ -258,16 +258,14 @@ async function copyCloudToLocal() {
       );
     });
 
-    const results = local.filter(
-      ({ nedWord: id1 }) => !temp.some(({ nedWord: id2 }) => id2 === id1)
+    const results = temp.filter(
+      ({ nedWord: id1 }) => !local.some(({ nedWord: id2 }) => id2 === id1)
     );
-
-    console.log(results);
 
     results.forEach((word) => {
       local.push(word);
     });
-    console.log(local);
+
     addToLocalStorage("wordsArray", local);
   }
 }
