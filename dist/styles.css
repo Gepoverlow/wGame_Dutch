@@ -123,18 +123,17 @@ html {
   justify-content: space-between;
 }
 
-.dropbtn {
+#dropbtn {
   color: rgb(211, 198, 198);
-  padding: 16px;
-  font-size: 1.7vw;
+  font-size: clamp(1.75rem, 2.9vw, 4.25rem);
   border: none;
   cursor: pointer;
   margin-left: 1vw;
 }
 
 /* Dropdown button on hover & focus */
-.dropbtn:hover,
-.dropbtn:focus {
+#dropbtn:hover,
+#dropbtn:focus {
   background-color: rgb(172, 15, 172);
 }
 
@@ -371,4 +370,16 @@ html {
 
 .wrong-info {
   color: red;
+}
+
+@media (max-width: 599px) {
+  #profile-name {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  #game-name {
+    display: none;
+  }
 }

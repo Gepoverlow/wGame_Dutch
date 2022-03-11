@@ -296,7 +296,7 @@ let containerBody = document.querySelector(".container_body");
 let addForm = document.getElementById("form_container_add");
 let editForm = document.getElementById("form_container_edit");
 
-let dropBtn = document.querySelector(".dropbtn");
+let dropBtn = document.getElementById("dropbtn");
 
 let addWordBtn = document.getElementById("add_word");
 let deleteWordBtn = document.getElementById("delete_word");
@@ -614,7 +614,7 @@ deleteWordBtn.addEventListener("click", (e) => {
 
 // Close the dropdown menu if the user clicks outside of it
 window.onclick = function (event) {
-  if (!event.target.matches(".dropbtn")) {
+  if (event.target.id !== "dropbtn") {
     let dropdowns = document.getElementsByClassName("dropdown_content");
     for (let i = 0; i < dropdowns.length; i++) {
       let openDropdown = dropdowns[i];
