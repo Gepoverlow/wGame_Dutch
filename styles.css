@@ -394,3 +394,41 @@ html {
   background-color: rgba(0, 0, 0, 0.2);
   padding: 20px;
 }
+
+#hiscore-background {
+  background-color: rgba(34, 31, 31, 0.5);
+  position: absolute;
+  z-index: 2;
+  height: 100vh;
+  width: 100vw;
+
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+#hiscore-popup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  margin-right: 20px;
+  margin-left: 20px;
+  font-size: clamp(0.75rem, 1.9vw, 1.25rem);
+  background-color: rgba(160, 142, 142, 0.9);
+}
+
+#hiscore-input {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid black;
+  outline: 0;
+  color: rgb(0, 0, 0);
+  padding-left: 10px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+#submit-hiscore-btn {
+  cursor: pointer;
+}
