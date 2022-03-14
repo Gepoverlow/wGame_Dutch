@@ -138,6 +138,20 @@ function loadWords() {
   });
 }
 
+async function loadScores() {
+  const q = query(collection(db, "scores"), orderBy("category"));
+
+  let scoresArray = [];
+
+  let querySnapshot = await getDocs(q);
+
+  querySnapshot.forEach((doc) => {
+    scoresArray.push(docToScore(doc));
+  });
+
+  console.log(scoresArray);
+}
+
 async function removeWord(nedWord) {
   const docRef = doc(db, "words", await getWordIdDB(nedWord));
 
@@ -299,14 +313,19 @@ function wordToDoc(word) {
 }
 
 function docToScore(doc) {
-  return new Score(doc.data().score);
+  return new Score(
+    doc.data().category,
+    doc.data().name,
+    doc.data().score,
+    doc.data().percentage,
+    doc.data().createdAt.toDate().toLocaleString()
+  );
 }
 
 function scoreToDoc(score) {
   return {
     score: score.score,
     category: score.category,
-    length: score.total,
     percentage: score.percentage,
     createdAt: serverTimestamp(),
     name: score.name,
@@ -321,6 +340,10 @@ function findIndex(array, nedWord) {
     .indexOf(nedWord);
 
   return index;
+}
+
+function nanosecondsToDate(nano) {
+  return new Date(nano);
 }
 
 let allWords;
@@ -384,6 +407,8 @@ let cloudToLocal = document.getElementById("cloud-to-local");
 
 let submitHiscoreBtn = document.getElementById("submit-hiscore-btn");
 let hiscoreBackground = document.getElementById("hiscore-background");
+
+let hiscoresBtn = document.getElementById("hiscores-btn");
 
 //EVENT LISTENERS
 
@@ -715,14 +740,17 @@ submitHiscoreBtn.addEventListener("click", () => {
 
   saveScore(
     createScoreDb(
-      game.currentScore,
-      game.gameLength,
       game.gameType,
-      game.calculateSuccess(game.gameLength, game.currentScore),
-      hiscoreName
+      hiscoreName,
+      game.currentScore,
+      game.calculateSuccess(game.gameLength, game.currentScore)
     )
   );
   hiscoreBackground.style.display = "none";
+});
+
+hiscoresBtn.addEventListener("click", () => {
+  loadScores();
 });
 
 dropBtn.addEventListener("click", showDropDown);

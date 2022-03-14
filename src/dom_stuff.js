@@ -84,13 +84,13 @@ export function renderScores(arr) {
   let tableWrapper = document.createElement("div");
   let table = document.createElement("table");
   let headerRow = document.createElement("tr");
-  headerRow.id = "header-row";
-  tableWrapper.id = "tableWrapper";
-  table.id = "wordsTable";
+  headerRow.id = "header-row-hiscores";
+  tableWrapper.id = "tableWrapper-hiscores";
+  table.id = "wordsTable-hiscores";
 
   headersScores.forEach((headerText) => {
     let header = document.createElement("th");
-    header.className = "table-header";
+    header.className = "table-header-hiscores";
     let textNode = document.createTextNode(headerText);
     header.appendChild(textNode);
     headerRow.appendChild(header);
@@ -99,11 +99,7 @@ export function renderScores(arr) {
 
   arr.forEach((word) => {
     let row = document.createElement("tr");
-    row.id = word.nedWord;
-    let link = document.createElement("a");
-    link.text = "Search";
-    link.href = createWordLink(word);
-    link.target = "_blank";
+    // row.id = word.name;
     Object.values(word).forEach((text) => {
       let cell = document.createElement("td");
       let textNode = document.createTextNode(text);
