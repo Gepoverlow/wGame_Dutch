@@ -24,7 +24,7 @@ html {
   font-size: 20px;
   color: rgb(211, 198, 198);
   width: 100%;
-  background-color: rgb(68, 32, 68);
+  background-color: #080f0f;
   height: 10vh;
 }
 
@@ -67,7 +67,7 @@ html {
   height: 100%;
   overflow: scroll;
 
-  background-color: rgb(211, 198, 198);
+  background-color: #eff2c0;
 }
 
 #container_game {
@@ -134,7 +134,7 @@ html {
 /* Dropdown button on hover & focus */
 #dropbtn:hover,
 #dropbtn:focus {
-  background-color: rgb(172, 15, 172);
+  background-color: #eff2c0;
 }
 
 /* The container <div> - needed to position the dropdown content */
@@ -148,17 +148,17 @@ html {
   display: none;
   position: fixed;
   right: auto;
-  background-color: rgba(68, 32, 68, 0.8);
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  background-color: #bea57d;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.7);
   z-index: 1;
   cursor: pointer;
   margin-left: 0;
-  overflow-y: scroll;
+  margin-top: 10px;
 }
 
 /* Links inside the dropdown */
 .dropdown_content h3 {
-  color: rgb(211, 198, 198);
+  color: #080f0f;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
@@ -166,7 +166,7 @@ html {
 
 /* Change color of dropdown links on hover */
 .dropdown_content h3:hover {
-  background-color: rgb(172, 15, 172);
+  background-color: #eff2c0;
 }
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
@@ -246,19 +246,19 @@ html {
 
 /* Set a style for the submit/login button */
 .form_container .btn {
-  background-color: rgb(68, 32, 68);
+  background-color: #a4bab7;
   padding: 16px 20px;
   border: none;
   cursor: pointer;
   width: 100%;
   margin-bottom: 10px;
   opacity: 0.8;
-  color: #ddd;
+  color: #080f0f;
 }
 
 /* Add a red background color to the cancel button */
 .form_container .cancel {
-  background-color: red;
+  background-color: #a52422;
 }
 
 /* Add some hover effects to buttons */
@@ -276,7 +276,7 @@ html {
 
 #wordsTable td,
 #wordsTable th {
-  border: 1px solid #ddd;
+  border: 1px solid #bea57d;
   padding: 8px;
 }
 
@@ -285,14 +285,14 @@ html {
 } */
 
 #wordsTable tr:hover {
-  background-color: #ddd;
+  background-color: #a4bab7;
 }
 
 #wordsTable th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: rgb(107, 45, 107);
+  background-color: #bea57d;
   color: white;
 }
 
