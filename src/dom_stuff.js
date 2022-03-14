@@ -12,7 +12,14 @@ let headersWords = [
   "Woordensboek Meaning",
 ];
 
-let headersScores = ["Game Type", "Name", "Score", "Percentage", "Date"];
+let headersScores = [
+  "Game Type",
+  "Name",
+  "Score",
+  "Out Of",
+  "Percentage",
+  "Date",
+];
 
 export function openForm(htmlElement) {
   htmlElement.style.display = "block";
@@ -105,7 +112,6 @@ export function renderScores(arr) {
       let textNode = document.createTextNode(text);
       cell.appendChild(textNode);
       row.appendChild(cell);
-      cell.appendChild(link);
     });
 
     row.classList.add("row");

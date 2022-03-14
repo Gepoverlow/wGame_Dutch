@@ -43,6 +43,7 @@ import {
   showDropDown,
   renderGameInfo,
   renderWords,
+  renderScores,
   renderGameRules,
   renderHiscoreStats,
 } from "./dom_stuff";
@@ -139,7 +140,7 @@ function loadWords() {
 }
 
 async function loadScores() {
-  const q = query(collection(db, "scores"), orderBy("category"));
+  const q = query(collection(db, "scores"), orderBy("category"), limit(100));
 
   let scoresArray = [];
 
@@ -149,7 +150,7 @@ async function loadScores() {
     scoresArray.push(docToScore(doc));
   });
 
-  console.log(scoresArray);
+  renderScores(scoresArray);
 }
 
 async function removeWord(nedWord) {
@@ -317,6 +318,7 @@ function docToScore(doc) {
     doc.data().category,
     doc.data().name,
     doc.data().score,
+    doc.data().total,
     doc.data().percentage,
     doc.data().createdAt.toDate().toLocaleString()
   );
@@ -329,6 +331,7 @@ function scoreToDoc(score) {
     percentage: score.percentage,
     createdAt: serverTimestamp(),
     name: score.name,
+    total: score.total,
   };
 }
 
@@ -595,8 +598,6 @@ verbsBtn.addEventListener("click", () => {
     (word) => word.wType === "Irregular-Verb"
   );
 
-  console.log(allIVerbsArray);
-
   game.startGame(
     allIVerbsArray,
     currentScoreValue,
@@ -737,13 +738,14 @@ hiscoreBackground.addEventListener("click", (e) => {
 
 submitHiscoreBtn.addEventListener("click", () => {
   let hiscoreName = document.getElementById("hiscore-input").value;
-
   saveScore(
     createScoreDb(
       game.gameType,
       hiscoreName,
       game.currentScore,
-      game.calculateSuccess(game.gameLength, game.currentScore)
+      game.gameLength,
+      game.calculateSuccess(game.gameLength, game.currentScore),
+      undefined
     )
   );
   hiscoreBackground.style.display = "none";
