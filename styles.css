@@ -90,10 +90,12 @@ html {
 }
 
 #answer-info {
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: center;
   font-size: clamp(0.35rem, 1vw, 0.55rem);
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 10px;
 }
 
 #high_score {
