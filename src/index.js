@@ -329,7 +329,7 @@ let gameArray = [];
 
 let index = undefined;
 
-let game = new Game(gameArray, 0, getStorageData("hiScore"));
+let game = new Game(gameArray, 0);
 
 let containerBody = document.querySelector(".container_body");
 
@@ -356,8 +356,7 @@ let instructionsBtn = document.getElementById("instructions");
 let inputAnswer = document.getElementById("input_answer");
 let wordOnScreen = document.getElementById("wordOnScreen");
 let currentScoreValue = document.getElementById("current_score_value");
-let hiScoreValue = document.getElementById("high_score_value");
-let hiScore = document.getElementById("high_score");
+
 let listBtn = document.getElementById("seeWordsBtn");
 let resetBtn = document.getElementById("resetWordsScore");
 
@@ -398,7 +397,7 @@ cloudToLocal.addEventListener("click", copyCloudToLocal);
 
 //
 
-hiScoreValue.textContent = game.hiScore;
+// hiScoreValue.textContent = game.hiScore;
 
 containerBody.addEventListener("click", function (e) {
   if (
@@ -466,13 +465,7 @@ containerBody.addEventListener("click", function (e) {
 playBtn.addEventListener("click", function () {
   game.isPlaying = true;
   renderGameInfo();
-  game.startGame(
-    allWords,
-    currentScoreValue,
-    hiScoreValue,
-    "Standard",
-    startGameBtn
-  );
+  game.startGame(allWords, currentScoreValue, "Standard", startGameBtn);
   // correctAnswer.textContent = "";
 
   if (game.gameArray.length !== 0) {
@@ -487,13 +480,7 @@ playBtn.addEventListener("click", function () {
 startGameBtn.addEventListener("click", function () {
   game.isPlaying = true;
   renderGameInfo();
-  game.startGame(
-    allWords,
-    currentScoreValue,
-    hiScoreValue,
-    "Standard",
-    startGameBtn
-  );
+  game.startGame(allWords, currentScoreValue, "Standard", startGameBtn);
   // correctAnswer.textContent = "";
 
   if (game.gameArray.length !== 0) {
@@ -514,7 +501,6 @@ playBtn_.addEventListener("click", () => {
   game.startGame(
     allNegativeWordsArray,
     currentScoreValue,
-    hiScoreValue,
     "Wrong Words",
     startGameBtn
   );
@@ -539,7 +525,6 @@ wordsBtn.addEventListener("click", () => {
   game.startGame(
     allWoordenschatArray,
     currentScoreValue,
-    hiScoreValue,
     "Woordenschat",
     startGameBtn
   );
@@ -564,7 +549,6 @@ prepositionsBtn.addEventListener("click", () => {
   game.startGame(
     allPrepositionsArray,
     currentScoreValue,
-    hiScoreValue,
     "Prepositions",
     startGameBtn
   );
@@ -591,7 +575,6 @@ verbsBtn.addEventListener("click", () => {
   game.startGame(
     allIVerbsArray,
     currentScoreValue,
-    hiScoreValue,
     "Irregular Verbs",
     startGameBtn
   );
@@ -658,7 +641,7 @@ inputAnswer.addEventListener("keyup", function (e) {
       lastWord
     );
     game.removeFirstObject();
-    game.updateScore(currentScoreValue, hiScoreValue);
+    game.updateScore(currentScoreValue);
     game.updateLocalStorage("hiScore");
     isSignedIn ? null : addToLocalStorage("wordsArray", allWords);
     if (game.gameArray.length !== 0) {
@@ -720,12 +703,6 @@ window.onclick = function (event) {
     }
   }
 };
-
-hiScore.addEventListener("click", () => {
-  game.hiScore = 0;
-  hiScoreValue.textContent = game.hiScore;
-  game.updateLocalStorage("hiScore");
-});
 
 hiscoreBackground.addEventListener("click", (e) => {
   if (e.target.id === "hiscore-background") {

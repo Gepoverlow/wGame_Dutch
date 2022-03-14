@@ -3,7 +3,7 @@ let addForm = document.getElementById("myForm_add");
 let editForm = document.getElementById("myForm_edit");
 let containerGame = document.getElementById("container_game");
 
-let headers = [
+let headersWords = [
   "Type",
   "DE/HET",
   "Word",
@@ -11,6 +11,8 @@ let headers = [
   "Score",
   "Woordensboek Meaning",
 ];
+
+let headersScores = ["Game Type", "Name", "Score", "Percentage", "Date"];
 
 export function openForm(htmlElement) {
   htmlElement.style.display = "block";
@@ -36,7 +38,7 @@ export function renderWords(arr) {
   tableWrapper.id = "tableWrapper";
   table.id = "wordsTable";
 
-  headers.forEach((headerText) => {
+  headersWords.forEach((headerText) => {
     let header = document.createElement("th");
     header.className = "table-header";
     let textNode = document.createTextNode(headerText);
@@ -73,6 +75,52 @@ export function renderWords(arr) {
   tableWrapper.appendChild(table);
   containerBody.appendChild(tableWrapper);
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+export function renderScores(arr) {
+  emptyNode(containerBody);
+
+  let tableWrapper = document.createElement("div");
+  let table = document.createElement("table");
+  let headerRow = document.createElement("tr");
+  headerRow.id = "header-row";
+  tableWrapper.id = "tableWrapper";
+  table.id = "wordsTable";
+
+  headersScores.forEach((headerText) => {
+    let header = document.createElement("th");
+    header.className = "table-header";
+    let textNode = document.createTextNode(headerText);
+    header.appendChild(textNode);
+    headerRow.appendChild(header);
+  });
+  table.appendChild(headerRow);
+
+  arr.forEach((word) => {
+    let row = document.createElement("tr");
+    row.id = word.nedWord;
+    let link = document.createElement("a");
+    link.text = "Search";
+    link.href = createWordLink(word);
+    link.target = "_blank";
+    Object.values(word).forEach((text) => {
+      let cell = document.createElement("td");
+      let textNode = document.createTextNode(text);
+      cell.appendChild(textNode);
+      row.appendChild(cell);
+      cell.appendChild(link);
+    });
+
+    row.classList.add("row");
+    table.appendChild(row);
+  });
+
+  tableWrapper.appendChild(table);
+  containerBody.appendChild(tableWrapper);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 export function renderGameInfo() {
   emptyNode(containerBody);

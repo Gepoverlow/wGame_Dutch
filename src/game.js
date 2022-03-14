@@ -6,17 +6,16 @@ let scoreDom = document.querySelector(".score");
 let answerInfo = document.getElementById("answer-info");
 
 export class Game {
-  constructor(gameArray, currentScore, hiScore) {
+  constructor(gameArray, currentScore) {
     this.gameArray = gameArray;
     this.currentScore = currentScore;
-    this.hiScore = hiScore;
     this.isPlaying = true;
   }
 
-  startGame(array, htmlElementC, htmlElementH, gameType, startHtmlElement) {
+  startGame(array, htmlElementC, gameType, startHtmlElement) {
     this.gameArray = [...array];
     this.currentScore = 0;
-    this.updateScore(htmlElementC, htmlElementH);
+    this.updateScore(htmlElementC);
     this.gameType = gameType;
     this.gameLength = this.gameArray.length;
 
@@ -82,17 +81,15 @@ export class Game {
     return this.currentScore++;
   }
 
-  updateScore(htmlElementC, htmlElementH) {
-    this.checkForHiscore();
+  updateScore(htmlElementC) {
     htmlElementC.textContent = this.currentScore;
-    htmlElementH.textContent = this.hiScore;
   }
 
-  checkForHiscore() {
-    if (this.currentScore >= this.hiScore) {
-      this.hiScore = this.currentScore;
-    }
-  }
+  // checkForHiscore() {
+  //   if (this.currentScore >= this.hiScore) {
+  //     this.hiScore = this.currentScore;
+  //   }
+  // }
 
   addValue() {
     return isSignedIn
